@@ -48,7 +48,7 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10))
 
 process.demo = cms.EDAnalyzer('FakeTestAnalyzer',
        # output text file  name
-       OutTextFileName = cms.untracked.string("TestFile.txt"),
+       OutTextFileName = cms.untracked.string("OutFileTest.txt"),
        # output text file size (MB), minimal size is 0.35 KB
        OutputSize = cms.untracked.double(5), 
        # sleep time per event (seconds)
