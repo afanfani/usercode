@@ -1,0 +1,4 @@
+cvs co -d Dimuons UserCode/AFanfani/Dimuons
+cvs co -r CMSSW_2_1_9 PhysicsTools/HepMCCandAlgos
+cvs co -r 1.6 PhysicsTools/HepMCCandAlgos/interface/MCCandMatcher.h
+
