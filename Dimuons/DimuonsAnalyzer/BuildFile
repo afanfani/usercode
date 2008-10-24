@@ -1,0 +1,33 @@
+
+<use name=clhep>
+ 
+<use name=FWCore/Utilities>
+<use name=DataFormats/Math>
+<use name=DataFormats/TrackReco>
+<use name=DataFormats/VertexReco>
+<use name=DataFormats/BTauReco>
+<use name=DataFormats/HepMCCandidate>
+<use name=DataFormats/JetReco>
+<use name=DataFormats/Candidate>
+<use name=DataFormats/MuonReco>
+<use name=DataFormats/RecoCandidate>
+<use name=DataFormats/PatCandidates>
+<use name=SimDataFormats/HepMCProduct>
+<use name=RecoBTag/MCTools>
+
+<use name=FWCore/Framework>
+<use name=FWCore/PluginManager>
+<use name=FWCore/ParameterSet>
+
+<use name=root>
+<use name=PhysicsTools/UtilAlgos>
+<use name=FWCore/ServiceRegistry>
+
+
+<flags EDM_PLUGIN=1>
+<export>
+   <lib name=DimuonsDimuonsAnalyzer>
+   <use name=FWCore/Framework>
+   <use name=FWCore/PluginManager>
+   <use name=FWCore/ParameterSet>
+</export>
