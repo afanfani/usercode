@@ -1,4 +1,12 @@
+## Download and compile the code
+scramv1 project CMSSW CMSSW_2_1_9
+cd CMSSW_2_1_9/src
+eval `scramv1 runtime -csh`
 cvs co -d Dimuons UserCode/AFanfani/Dimuons
 cvs co -r CMSSW_2_1_9 PhysicsTools/HepMCCandAlgos
 cvs co -r 1.6 PhysicsTools/HepMCCandAlgos/interface/MCCandMatcher.h
+scramv1 b
+
+## configuration file to use the analyzer reading dimuon skim output
+Dimuons/DimuonsAnalyzer/test/AnalyzeDimuonSkim.py
 
