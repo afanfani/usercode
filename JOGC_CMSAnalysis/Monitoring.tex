@@ -1,0 +1,139 @@
+
+CMS Tier2's provide a large amount of resources in a fully distributed way,
+spanning various
+Grid organizations and middleware stacks
+without any central place playing a reference role.
+Each computing center has
+different configuration, user community, policy, history and
+constraints.
+It was clear since the early days of CMS Analysis that
+good monitoring tools are critical to the success of such
+a highly distributed project, both to keep an overall
+view of the usage and use patterns and to make it possible
+to detect and address problems in an effective way,
+using quantitative information to judge where to put
+more effort and to evaluate the effectivness of solutions.
+Good monitoring has allowed CMS to evolve tool development
+and operational structure from vision and anedoctal driven
+to a fact based approach.
+
+Since the beginning a few main point drove the development of
+those monitoring tools:
+\begin{itemize}
+\item no reliance on local site monitoring. It is not possible to ask
+ all Tier2's to install some kind of CMS'owm ad hoc software, only the
+ minimal grid service needed for grid interoperability can be expected.
+\item a single entry point to the high level view of the usage from which
+ it would be possible to drill down to detailed information at the single
+  job level
+\item  monitoring is not accounting: keep the system lean and
+ flexible and do not worry if a small
+ percentage of jobs is not properly reported
+\item diagnose failures of users workflows so to
+  take suggest corrective actions to developers and administrators, make
+  enough proper information available so that plans and action are set
+  based on quantitative facts and effectiveness of solutions can be metered
+\item detect overall usage patterns to guide management into making
+ choices and plans about how and were to steer user activities and
+ how to plan for the future
+\item do not try to define a priori the relevant metrics, usage, tools and
+ hardware will always be changing and we expect the need to fight the
+  problem of the month, different each month
+\end{itemize}
+
+That requires the capability to collect for most (ideally all) of the jobs
+information like: execution and submission site, user, kind of activity,
+accessed data, amount of I/O and CPU, efficiency of resource usage,
+failure details (if any) and more and store it in some
+place where data can be queried in various ways according to need.
+
+Therefore job monitoring was built around the idea of instrumented
+application: CMS jobs and tools send messages with a few relevant
+parameters to a central collector, independently and in parallel to
+whichever grid or monitoring system may exists, thus giving us
+access to experiment specific information and giving independency
+from execution sites. The price to pay is that only jobs that use the
+instrumented submission framework can be monitored in this way.
+This price turns out to be very small in CMS case, since almost
+all user analysis jobs are submitted using the CRAB tool, which
+inserts on user's behalf the needed reporting hooks.
+
+The implementation of this idea comprises an optimised central
+database running on Oraclo server, a set of information collectors
+that feed data into it from various sources, a simple messaging
+system to send information to the collector from the
+CRAB tools running at submission location and job execution hosts,
+and a few web pages providing access with different levels
+of detail, aggregation and flexibility, customized to
+typical use cases. This set of tools is called ''the CMS Dashboard''.
+
+The Dashboard main collector is the one receiving messages from
+CRAB user interface and CRAB wrapper used in running jobs, for thi
+we used the already existing MonAlisa messaging system, which was
+already proven to the needed scale. Other collectors add
+information from gLite WMS and gLite LB hosts, adding in this way
+information about the status of jobs while processed by the
+middleware or local batch systems and allowing some limited
+tracking of jobs submitted outside the CRAB tool.
+
+The CMS dashboard collects information for both user jobs
+(Analysis) and centrally controlled jobs (Production), providing
+a comprehensive and uniform view of the CMS usage of computing
+resources.
+
+Three web interfaces are used to monitor and metere distributed analysis,
+since those are different views of the same underlying database,
+it is possible to cross link and navigate from one to another
+providing both extreme flexibility and fast access to desired
+informations
+
+\subsection{History View}
+The aim of this view is to present time history of relevant
+metrics to get a view of overall patterns and trends.
+\figure{put a screenshot}
+The list of viewable metrics is thus predefined, and
+the interface uses aggregated tables in the DB to provide
+efficient access to old information with (of course) a limited
+amount of detail. Metrics can be viewed up to one year in the past
+with granularity varying from fraction of a hour to a few days
+according to the chosen time period. Data can be viewed divided
+according e.g. to the used site(s), job type or job completion status.
+
+
+\subsection{Task Monitoring for Analysis user}
+Users usually submit many jobs in a single workflow, this
+is called a Task in CRAB. Tasks usually have from a few hundred
+to a thousand jobs each. A user will oftern submit one crab task
+for each dataset used in a particular analysis, up to a few
+tasks in one day. Task Monitoring for Analysis user was
+developer as a user centric interface where the user is
+initially presented the list of tasks he submitted in lasts
+three days, both in tabular and graphical way.
+\figure{a screenshot}
+The user can then expand one selected task to get
+a graphical overall summary of execution/completion progress
+and access details of each job.1
+\figure{another screenshot}
+
+\subsection{Interactive Interface}
+This view was the first to be developed, based on
+vision more then experience with the tool, therefore
+emphasis was put on flexibility. It is a job-centric view
+where the entry point is the number of jobs submitted or
+terminated in a chosen time period.
+\figure{a screenshot}
+The interactive interface
+allows then to drill down expanding the set of jobs by
+various relevant properties (execution site, grid gateway,
+submitter user, completions status, grid workload management host,
+activity type, used dataset etc.), until all details stored in the DataBase
+about a choosen (set of) job(s) can be accessed.
+The interface reports success/failure values and fractions
+according to grid/site/application problem and information
+on used wall and cpu time of jobs.
+The DataBase ahs been setup so to allow fast access for this
+detailed information for the last two weeks, while queries
+become more and more slow as time range expands. The idea is that
+details are only needed to analyse current issues and for
+long time view of trends the History View should be used.
+
