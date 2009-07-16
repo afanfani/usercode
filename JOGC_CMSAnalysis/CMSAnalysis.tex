@@ -162,15 +162,25 @@ The CMS analysis model foresees activites driven by data location. Data are scat
 
 \subsection{Data Management}
 \label{sec:3_1}
-The CMS Data Management System provides the basic infrastructure and tools necessary to manage the large amounts of data produced, processed and analysed in a distributed computing environment. It is made of a set of loosely coupled components as described in the following sections.
-% I'm negletting local catalogue....
+The CMS Data Management System provides the basic infrastructure and tools necessary to manage the large amounts of data produced, processed and analysed in a distributed computing environment. 
+In order to simplify bulk data management, files are grouped together into “file-blocks”  of a convenient size for data transfer. %the exact choice of the size of the file blocks will depend on the type of data. 
+File-blocks are in turn grouped in datasets whose size is driven by physics.
+The file-block is the unit of data location and replication. 
+The tracking of data location is file-block based and it provides the name of sites hosting the data, not the physical location of constituent files at the sites nor the composition of file-blocks.
+The file-block contains files that can be processed and analyzed together.
+%Processing is block-based. 
+The packaging of events into files is done so that the average file size is
+kept reasonably large (e.g. at least 1GB), in order to avoid scaling issues with storage and tape systems and to optimize data transfer.
+This is achieved merging small outputs files produced by individual jobs in fewer larger files.
+
+The CMS Data Management System is made of a set of loosely coupled components as described in the following sections.
 \subsubsection{DBS}
 \label{sec:3_1_1}
 The Dataset Bookkeeping Service (DBS)\cite{RefDBS} provides the means to describe, discover and use CMS event data. 
 It catalogs CMS specific data definitions such as run number, the algorithms and configurations used to process the data toghether with the information regarding the processing parentage of the data it describes.
-The DBS stores information about CMS data in a queryable format. The supported queries allow to discover available data and how they are organized logically in term of packaging units like files and groups of files. The information available from queries to DBS are site independent.
+The DBS stores information about CMS data in a queryable format. The supported queries allow to discover available data and how they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
 
-The DBS is used for data discovery and job configuration by the production and analysis system through a DBS API.
+The DBS is used for data discovery and job configuration by the production and analysis systems through a DBS API. 
 Users can discover what data exists using a Web browser or Command Line Interface.
 The DBS is usable in multiple “scopes”:
 \begin{itemize}
@@ -183,8 +193,14 @@ An XML format is used for the format of the HTTP payload exchanged with the clie
 The Global DBS is hosted at CERN and its database engine is the CERN Oracle RAC (Real Application Cluster) server for CMS. Some local scopes DBS instances that catalogs Physics groups data are also hosted at CERN. There are also DBS instances installed at other sites for private use. 
 % If possible find out the amount of data (datasets,files) described so far in Global DBS
 
-\subsubsection{PhEDEx}
+\subsubsection{Local Data Catalogue}
 \label{sec:3_1_2}
+CMS application only knows about logical files and relies on a local catalogue service to have access to the physical files.
+Each CMS site has a Trivial File Catalogue made of simple rules to build site-specific physical paths from logical file names and access protocols.
+%Local file catalogues provides site local information about how to access any given logical file name. This file catalogue returns the physical location of a logical file within the site itself. 
+
+\subsubsection{PhEDEx}
+\label{sec:3_1_3}
 The CMS data placement and transfer systems are implemented by PhEDEx\cite{RefPhEDEx}. The data placement system provides an interface to define, execute and monitor administrative decision of data movement like where experiment data is to be located, which copies are custodial, etc. 
 Data are distributed according to available resources and physics interests at sites. 
 % Users can request data transfer to a site however an authorization by the site data manager is required
@@ -193,7 +209,7 @@ the underlying grid file and storage management services.
 PhEDEx keeps track of data location in the distributed computing system. The analysis system refers to PhEDEx to obtain the locations of the data.
 
 Technically PhEDEx is based on software agents storing their state and communicating via a central “black board” database hosted in the CERN Oracle RAC. A set of service agents are operated centrally at CERN while each site in general operates only the agents that interact with the storage at the site. A web site offers various management tools and allows to monitor to current and historical transfer conditions.
-
+\emph{FIXME: expand a bit with routing to find the optimal source, subscription and approval procedure, interfaced to the FTS service, deletion of data via PhEDEx, data consistency tool, etc}
 \emph{FIXME: fill phedex usage numbers} In the last XY months PhEDEx transferred XY PB data. In months XXX the average global daily transfer rate was XYTB/day or XY GB/s. 
 %PhEDEx has demonstrated capacity to sustain well over xy million transfers an hour for extended periods of time.
 
@@ -224,8 +240,7 @@ Publish the produced data with their description and provenance into a local DBS
 %% Grid integration via BOSSLite
 CRAB is implemented in python. The interface to the Grid middlewares and local batch systems is provided by a python library named BOSSLite\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
 An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. Current implementation supports MySQL and SQLite databases.
-Standard operations such as job submission, tracking, cancel and output retrieval are also performed via a generic abstract interface. Scheduler specific interfaces are implemented in specific plug-ins, loaded at run-time. Presently, plug-ins are implemented for Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} and ARC (NorduGrid)\cite{RefARC} and for LSF and SGE batch systems.
-
+Standard operations such as job submission, tracking, cancel and output retrieval are also performed via a generic abstract interface. Scheduler specific interfaces are implemented in specific plug-ins, loaded at run-time. Presently, plug-ins are implemented for Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
 %\emph{FIXME: are few lines about grid specific implementation required? Such as the following lines about gLite}
 %Using the gLite WMS BOSSLite enables bulk job submission through gLite collections. This allows a faster job submission, but also an optimized job status tracking through bulk queries. Since the CMS computing model uses its own data location system, the gLite WMS match making has the main role to perform a load balancing among sites that are hosting the data to be accessed. 
 
@@ -238,14 +253,15 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 
 \begin{figure}
  \includegraphics[width=0.70\textwidth]{figures/CRABWorkflow.png}
-\caption{CRAB workflow}
+\caption{CRAB workflow. WMS can stand either for gLite WMS or glidein WMS.}
 \label{fig:CRABWorkflow}
 \end{figure}
 
 \subsection{Monitoring}
 \label{sec:3_3}
+\emph{TO BE SHORTENED A LOT}
 \subsubsection{Dashboard}
-\emph{TO BE FILLED BY STEFANOB}
+\input{Monitoring.tex}
 
 \section{Operation of CMS Distributed Analysis}
 \label{sec:4}
@@ -292,9 +308,9 @@ Skimming, t1access role
 
 \subsubsection{ User and Physics Group Support }
 \label{sec:4_2_2}
-\emph{ Association T2-PAG
-Storage Hierarchy}
-
+\paragraph{Association T2-Physics group}
+\paragraph{Storage Hierarchy}
+\emph{ central/user/group/production data }
 \emph{USE THE COMPUTING MODEL PAPER AT CHEP09 CR2009-084}
 %Making efficient use of the networking and ensuring the appropriate revision of a dataset is at a location with sufficient processing resources is a challenging data management exercise. The knowledge of the needs of many
 %groups of people is aggregated in the group leaders and not in an automated software system. CMS has attempted to increase the number of people empowered to make data management decisions by dividing the available storage into chunks. The 200TB of Tier-2 storage is divided into 4 logical pieces. At the storage at the Tier-2s increases in 2009 and beyond the allocations to groups and central space will grow.
@@ -311,13 +327,20 @@ Storage Hierarchy}
 %dynamically and take advantage of the wide area network links to update samples frequently.
 %Shifting to this paradigm involves solving technical challenges as well as engaging a large community of users.
 
+\paragraph{User support model}
+User documentation is provided by a set of twiki pages composing the so called CMS Workbook. Documentation about the distributed environment and CRAB usage are available, as well as a troubleshouting guide.
+Tutorials including hands-on session are periodically organized.
+The day by day support is mainly performed via a mailing list (HyperNews) where
+users reports the problems they are facing with. The reported problems ranges
+ from problems with the infrastructure, site related issues to user's mistakes in tools configuration or real bug report that are feed back to developers.
+The CMS Savannah Computing Infrastructure portal is used to report problems across the distributed infrastructure such as data access problems, problem on specific CMS software version at sites etc.
+
 \subsection{Experience with CMS Distributed Analysis}
 \label{sec:4_3}
 \emph{intro about challanges and user experience....}
 
 \subsubsection{Tests}
 \label{sec:4_3_1}
-%% CCRC08 add also the other part...
 During the Common Computing Readiness Challenge (CCRC08) in May 2008
 various analysis exercises were performed to gain an overall understanding 
 of the performance and readiness of the T2 sites for CMS data analysis.
@@ -352,10 +375,10 @@ Most failures were problems accessing the input data, from 0.1\%-10\% up to 50\%
 promptly fixed by the site administrators. 
 %Grid aborted jobswere usually reported via Global Grid User Support (GGUS)
 %[] web with fast feedback from the sites. 
-During the second week, sites with efficiency above 90\% significantly increased, as shown in Figure\ref{fig:CCRC08SiteEff}.
+During the second week, sites with efficiency above 90\% significantly increased, as shown in Figure~\ref{fig:CCRC08SiteEff}.
 %% mention the chaotic pahse?
-%During the last two weeks of the challenge, T2 sites were encouraged to submit jobs to other T2 sites, for mimicking a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities
-% at several sites. Figure ? summarizes the number of active users per site, including T1s, T2s, T3s and opportunistic usage. Around 60 sites participated on these tests
+\paragraph{Chaotic job submissions}
+People from T2 sites were encouraged to submit jobs to other T2 sites, for mimicking a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities at several sites. Figure~\ref{fig:CCRC08Chaotic} summarizes the number of active users per site, including T1s, T2s, T3s and opportunistic usage. Around 60 sites participated on these tests.
 
 The CCRC08 analysis challenge drove the level of activity and participation at Tier2s to an unprecedented scale in CMS.
 
@@ -366,14 +389,21 @@ The CCRC08 analysis challenge drove the level of activity and participation at T
 groups workflows on CCRC’08}
 \label{fig:CCRC08SiteEff}
 \end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.55\textwidth]{figures/CCRC08Chaotic.png}
+\caption{Chaotic phase}
+\label{fig:CCRC08Chaotic}
+\end{figure}
 
 %% Scale test of CRAB server
 \paragraph{CRAB Analysis server stress test} 
 In order to test the CRAB server scalability and reliability up to
 the expected CMS operational rates a dedicated test environment was
-set up. The Storage Element, based on GridFTP, that CRAB server relies
-on was installed on a different machine with respect to the machine
-hosting the CRAB Server components. The aim was to decouple the load
+set up in October 2008. The Storage Element, based on GridFTP, 
+that CRAB server relies on was installed on a different machine with 
+respect to the machine hosting the CRAB Server components. The aim was 
+to decouple the load
 due the shipping of input/output sandboxes and the core workflow
 management. The machine hosting the Storage Element and the CRAB
 server were both 4 CPU 2000 MHz Dual Core AMD Opterons with 4 GB
@@ -386,50 +416,44 @@ jobs submitted were very short jobs running for less than a few
 minutes, not reading a dataset and without stage-out. This choice was
 made to provide an harsher environment for job handling due to higher
 rate of finished jobs and to limit the resource usage at sites.
-The test was split into two phases: a controlled submission pattern
-originated by a single user and an emulation of a multi-user
-environment.
 
-\begin{itemize}
-\item{   Single user phase}
+%\begin{itemize}
+%\item{   Single user phase}
+%
+%A single user performed a controlled job submission pattern: peaks of
+%1000-2000 jobs every 5 hours superimposed on a constant rate of
+%500-600 jobs every 20 minutes. Almost 200,000 jobs were submitted to
+%more than 50 sites with a rate above 40,000 jobs/day, as shown in
+%Figure \ref{fig:stresssingle}. The CRAB Server was able to cope with that
+%rate with no indication of reaching a breaking point. No significant
+%backlogs were accumulated. The main contributors to the load of the
+%system were the MySQL and GridFTP usage, using about 2 and 1.5 CPUs
+%\begin{figure}
+%\includegraphics[width=0.55\textwidth]{figures/SingleUserJobStatus.png}
+%\caption{Cumulative distribution of jobs submitted to CRAB Server
+%  during the single user test phase. Aborted jobs were Grid related
+%  problems at some sites. }
+%\label{fig:stresssingle}
+%\end{figure}
+%
+%\item{    Multi user environment phase}
 
-A single user performed a controlled job submission pattern: peaks of
-1000-2000 jobs every 5 hours superimposed on a constant rate of
-500-600 jobs every 20 minutes. Almost 200,000 jobs were submitted to
-more than 50 sites with a rate above 40,000 jobs/day, as shown in
-Figure \ref{fig:stresssingle}. The CRAB Server was able to cope with that
-rate with no indication of reaching a breaking point. No significant
-backlogs were accumulated. The main contributors to the load of the
-system were the MySQL and GridFTP usage, using about 2 and 1.5 CPUs
-\begin{figure}
-\includegraphics[width=0.55\textwidth]{figures/SingleUserJobStatus.png}
-%\includegraphics[width=3.5in]{SingleUserJobStatus.png}
-\caption{Cumulative distribution of jobs submitted to CRAB Server
-  during the single user test phase. Aborted jobs were Grid related
-  problems at some sites. }
-\label{fig:stresssingle}
-\end{figure}
-
-\item{    Multi user environment phase}
-
-In the second testing phase the job submissions were from different
-user certificates, thus emulating the CRAB Server usage by more
-users. The need to further stress the multi-user environment arises
-from its higher complexity. Single threads of the very same component
-may be handling different user's jobs, requiring different
-certificates. Any interaction among them may cause failures, stopping
-the component work and causing a backlog.
-
+Controlled submissions from different user certificates, thus 
+emulating the CRAB Server usage in a multi-users environment, were performed.
+%The need to further stress the multi-user environment arises
+%from its higher complexity. Single threads of the very same component
+%may be handling different user's jobs, requiring different
+%certificates. Any interaction among them may cause failures, stopping
+%the component work and causing a backlog.
 Different submission patterns were adopted by the 12 users
 involved. For example a user submitting 100 jobs every 15 minutes,
 another 500 jobs every 20 minutes, another 2000 jobs every 6 hours
 etc. plus a couple of users submitting randomly at their will.  No
 CRAB Server misbehaviour was identified due to the multi-user
-environment. With respect to the single-user test the submission rate
-was increased to above 50,000 jobs/day and this helped identify some
-limitations in the communication between JobTracking and GetOutput
-components that caused a backlog of jobs without output
-retrieved. This effect is more evident for homogeneous very short
+environment. %With respect to the single-user test 
+Jobs were submitted to more than 50 sites with a rate above 50,000 jobs/day.
+This helped identify some limitations in the communication between 
+JobTracking and GetOutput components that caused a backlog of jobs without output retrieved. This effect is more evident for homogeneous very short
 jobs, as those used in the test, that have a higher finishing rate
 than real user's jobs which tend to finish at different times. None
 the less, the backlog was absorbed in a few hours. This issue was
@@ -449,7 +473,7 @@ CMS Computing model target is around 100,000-200,000 jobs/day. Some
 CRAB Server instances deployed at different sites to serve physic's
 group activities and regional community, as foreseen, can cope with
 analysis needs.
-\end{itemize}
+%\end{itemize}
 \begin{figure}
 \centering
 \includegraphics[width=0.55\textwidth]{figures/MultiUserJobStatus.png}
@@ -633,6 +657,7 @@ G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Pr
 \bibitem{RefgLiteWMS} P. Andreetto et al., The gLite Workload Management System, J.Phys.Conf.Ser, 119, 062007 (2008)
 %
 \bibitem{RefOSG} R. Pordes et al, The Open Science Grid, J.Phys.Conf.Ser, 78, 012057 (2007)
+\bibitem{Refglidein} ADD A REFERENCE
 %
 \bibitem{RefARC} M.Ellertet al., Advanced Resource Connector middleware
   for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)
