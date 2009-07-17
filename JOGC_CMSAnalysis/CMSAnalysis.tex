@@ -144,10 +144,12 @@ Roughly 20\% of the computing capacity is located at CERN, while the remaining i
 
 \subsection{Tier-1}
 \label{sec:2_2}
-The Tier-1 are 7 large regional computing centers located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States, where organized mass data processing are performed. That includes re-processing, data skimming and other organized intensive analysis tasks. 
-%From CM CHEP09: For reconstruction a nominal Tier-1 should be capable of processing 70Hz worth of data with a required IO rate of 100MB/s. Skimming through the reconstructed datasets uses only 1\% of CPU of reconstruction so sparse reading of the file is required to have manageable IO rates.
-The Tier-1 centres archive the fraction of data distributed to them as well as the simulated data produced at the Tier-2 centres,  while they are serving analysis transfer requests to Tier-2.
-%From CM CHEP09: In the CMS experiment the Tier-1 centers rather than the Tier-0 serve the majority of the data to the Tier-2 centers for analysis.
+The Tier-1 centres assure the distributed custodial storage of a fraction of the RAW data produced by the CMS detector and for the simulated data produced at the connected Tier-2 centres; provide computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis; control the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
+
+%The Tier-1 are 7 large regional computing centers located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States, where organized mass data processing are performed. That includes re-processing, data skimming and other organized intensive analysis tasks. 
+%%From CM CHEP09: For reconstruction a nominal Tier-1 should be capable of processing 70Hz worth of data with a required IO rate of 100MB/s. Skimming through the reconstructed datasets uses only 1\% of CPU of reconstruction so sparse reading of the file is required to have manageable IO rates.
+%The Tier-1 centres archive the fraction of data distributed to them as well as the simulated data produced at the Tier-2 centres,  while they are serving analysis transfer requests to Tier-2.
+%%From CM CHEP09: In the CMS experiment the Tier-1 centers rather than the Tier-0 serve the majority of the data to the Tier-2 centers for analysis.
 
 \subsection{Tier-2}
 \label{sec:2_3}
@@ -214,7 +216,7 @@ Technically PhEDEx is based on software agents storing their state and communica
 %PhEDEx has demonstrated capacity to sustain well over xy million transfers an hour for extended periods of time.
 
 \subsection{Workload Management}
-\emph{one/two lines of introduction....}
+\emph{one/two lines of introduction....mention MC production then analysis}
 \label{sec:3_2}
 \subsubsection{CRAB}
 The CMS Remote Analysis Builder (CRAB)\cite{RefCRAB} have been developed as a user-friendly interface to handle data analysis in a distributed environment, hiding the complexity of interactions to the Grid and CMS services.
@@ -259,7 +261,7 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 
 \subsection{Monitoring}
 \label{sec:3_3}
-\emph{TO BE SHORTENED A LOT}
+\emph{TO BE SHORTENED...}
 \subsubsection{Dashboard}
 \input{Monitoring.tex}
 
@@ -288,9 +290,12 @@ publish the versions available on a site information system.
 \subsubsection{ Site Readiness }
 \label{sec:4_1_3} 
 %systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
-\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
+%\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
+%\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
+The operation of the CMS distributed infrastructure requires a stable and reliable behaviour of the sites. CMS has established a procedure now routinely operated by the Facilities Operations team to extensively test all relevant aspects of sites supporting CMS, such as the ability to efficiently use their network to transfer data, the functionality of all the site services relevant for CMS and the capability to sustain the various CMS computing workflows at the required scale.
 
-\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
+The procedure to evaluate the commissioning status of a site relies on several sources of information. Every day the following quantities are monitored: the CMS Site Availability Monitoring (SAM) tests, running on Grid site resources to check their basic functionality and the local CMS software and configuration; the success rate of the Job Robot, a load generator simulating user data analysis; the number and the quality of the data transfer links used in production by the site; the downtimes scheduled by the site. If any of the metrics based on the above information is not satisfied the site is declared in error state. A site is allowed to be in error state not more than two days over the last week, then it is declared "not ready". To recover from a "not ready state" the site needs to be ok for at least two consecutive days. In this way temporary glitches are allowed if recovered promptly.
+
 
 \subsubsection{ Link Commissioning }
 %% From DanieleB
