@@ -4,33 +4,26 @@ a highly distributed project.
 Good monitoring has allowed CMS to evolve tool development
 and operational structure from vision and anedoctal driven
 to a fact based approach.
-
-Since the beginning a few main point drove the development of
-those monitoring tools:
+A few main point drove the development of monitoring tools:
 \begin{itemize}
 \item no reliance on local site monitoring.
 \item a single  high level view of the usage from which
-  to dig details down to single job level
-\item  monitoring is not accounting: keep the system lean and
- flexible and do not worry if a small
- percentage of jobs is not properly reported
+  to drill down to single job level
+\item   keep the system lean and flexible: even if a few
+  jobs are not properly reported
 \item make
-  enough proper information available about job failures so that plans and
+  enough information about failures so that plans and
 action are set
-  based on quantitative facts and effectiveness of solutions can be metered
+  based on quantitative facts and that effectiveness of solutions can be metered
 \item detect overall usage patterns to guide management into making
  choices and plans about how and were to steer user activities and
  how to plan for the future
-\item do not try to define a priori all the relevant metrics, usage, tools and
- hardware will always be changing and we expect the need to fight the
-  problem of the month, different each month
+\item do not try to define a priori all the relevant metrics
 \end{itemize}
 
 Job monitoring was built around the idea of instrumented
 application: CMS jobs and tools send messages with a few relevant
-parameters to a central collector giving
-access to experiment specific information and independency
-from execution sites configuratin. Only jobs that use the
+parameters to a central collector. Only jobs that use the
 instrumented submission framework can be monitored in this way,
 but this is a small penalty in CMS case, since almost
 all user analysis jobs are submitted using the CRAB tool.
@@ -41,16 +34,20 @@ and a few web pages providing access with different levels
 of detail, aggregation and flexibility, customized to
 typical use cases. This set of tools is called ''the CMS Dashboard''.
 
-Three web interfaces are used to monitor and meter distributed analysis,
-since those are different views of the same underlying database,
+Three web interfaces provide
+different views of the same underlying database,
 it is possible to cross link and navigate from one to another
 providing both extreme flexibility and fast access to desired
 informations
 
 \subsection{History View}
 The aim of this view is to present time history of relevant
-metrics to get a view of overall patterns and trends.
-%\figure{put a screenshot}
+metrics to get a view of overall patterns and trends (see Fig.~\ref{fig:HistoryView}).
+\begin{figure}
+ \includegraphics[width=0.70\textwidth]{figures/HistoryView.png}
+\caption{All users tasks in last 2 days}
+\label{fig:HistoryView}
+\end{figure}
 The list of viewable metrics is predefined, and
 the interface uses aggregated tables in the DB to provide
 efficient access to old information with a limited
@@ -65,19 +62,35 @@ for each dataset used in a particular analysis, up to a few
 tasks in one day. Task Monitoring for Analysis user was
 developer as a user centric interface where the user is
 initially presented the list of tasks he submitted in lasts
-three days, both in tabular and graphical way.
-%\figure{a screenshot}
+three days, both in tabular and graphical way (see Fig.~\ref{fig:TaskMonitor1}).
+
 The user can then expand one selected task to get
 a graphical overall summary of execution/completion progress
-and access details of each job.1
-%\figure{another screenshot}
+and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
+
+
+\begin{figure}
+ \includegraphics[width=0.50\textwidth]{figures/TaskMonitor1.png}
+\caption{All users tasks in last 2 days}
+\label{fig:TaskMonitor1}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.50\textwidth]{figures/TaskMonitor2.png}
+\caption{One task}
+\label{fig:TaskMonitor2}
+\end{figure}
+
 \subsection{Interactive Interface}
 Was the first view to be developed, based on
 vision more then experience, therefore
 emphasis was put on flexibility. It is a job-centric view
 where the entry point is the number of jobs submitted or
-terminated in a chosen time period.
-%\figure{a screenshot}
+terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
+\begin{figure}
+ \includegraphics[width=0.80\textwidth]{figures/DashboardInteractive.png}
+\caption{Dashboard Interactive Interface}
+\label{fig:Dashboard}
+\end{figure}
 The interactive interface
 allows to drill down expanding the set of jobs by
 various relevant properties (execution site, grid gateway,
