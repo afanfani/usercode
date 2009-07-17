@@ -144,7 +144,7 @@ Roughly 20\% of the computing capacity is located at CERN, while the remaining i
 
 \subsection{Tier-1}
 \label{sec:2_2}
-The Tier-1 centres assure the distributed custodial storage of a fraction of the RAW data produced by the CMS detector and for the simulated data produced at the connected Tier-2 centres; provide computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis; control the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
+Each Tier-1 centre assures the distributed custodial storage of a fraction of the RAW data produced by the CMS detector and for the simulated data produced at the connected Tier-2 centres; provides computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis; controls the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
 
 %The Tier-1 are 7 large regional computing centers located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States, where organized mass data processing are performed. That includes re-processing, data skimming and other organized intensive analysis tasks. 
 %%From CM CHEP09: For reconstruction a nominal Tier-1 should be capable of processing 70Hz worth of data with a required IO rate of 100MB/s. Skimming through the reconstructed datasets uses only 1\% of CPU of reconstruction so sparse reading of the file is required to have manageable IO rates.
@@ -160,7 +160,7 @@ as improving site availability, as described in section ~\ref{sec:4_1_3}.
 
 \section{Framework for CMS Distributed Analysis}
 \label{sec:3}
-The CMS analysis model foresees activites driven by data location. Data are scattered over many computing centers according to CMS data placement policies and user analysis runs where data is located. In order to enable distributed analysis a set of Workload and Data Management tools have been designed, building CMS-specific services on top of existing Grid ones.
+The CMS analysis model foresees activites driven by data location. Data are scattered over many computing centers according to CMS data placement policies and processing takes place where data are located. In order to enable distributed analysis a set of Workload and Data Management tools have been designed, building CMS-specific services on top of existing Grid ones.
 
 \subsection{Data Management}
 \label{sec:3_1}
@@ -197,8 +197,8 @@ The Global DBS is hosted at CERN and its database engine is the CERN Oracle RAC 
 
 \subsubsection{Local Data Catalogue}
 \label{sec:3_1_2}
-CMS application only knows about logical files and relies on a local catalogue service to have access to the physical files.
-Each CMS site has a Trivial File Catalogue made of simple rules to build site-specific physical paths from logical file names and access protocols.
+A CMS application only knows about logical files and relies on a local catalogue service to have access to the physical files.
+Each CMS site has a Trivial File Catalogue made of simple rules to build site-specific physical paths starting from logical file names and access protocols.
 %Local file catalogues provides site local information about how to access any given logical file name. This file catalogue returns the physical location of a logical file within the site itself. 
 
 \subsubsection{PhEDEx}
@@ -208,21 +208,28 @@ Data are distributed according to available resources and physics interests at s
 % Users can request data transfer to a site however an authorization by the site data manager is required
 The data transfer system manages the replication of files from multiple sources to multiple destinations. It relies on transfer nodes dealing with %site specific replication and tape management. 
 the underlying grid file and storage management services.
-PhEDEx keeps track of data location in the distributed computing system. The analysis system refers to PhEDEx to obtain the locations of the data.
+PhEDEx keeps track of data location in the distributed computing system. The analysis system relies on PhEDEx to obtain the locations of the data.
 
-Technically PhEDEx is based on software agents storing their state and communicating via a central “black board” database hosted in the CERN Oracle RAC. A set of service agents are operated centrally at CERN while each site in general operates only the agents that interact with the storage at the site. A web site offers various management tools and allows to monitor to current and historical transfer conditions.
+Technically PhEDEx is based on software agents storing their state and communicating via a central ''black board'' database hosted in the CERN Oracle RAC (Real Application Clusters). A set of service agents are operated centrally at CERN while each site in general operates only the agents that interact with the storage at the site. A web site offers various management tools and allows to monitor to current and historical transfer conditions.
 \emph{FIXME: expand a bit with routing to find the optimal source, subscription and approval procedure, interfaced to the FTS service, deletion of data via PhEDEx, data consistency tool, etc}
 \emph{FIXME: fill phedex usage numbers} In the last XY months PhEDEx transferred XY PB data. In months XXX the average global daily transfer rate was XYTB/day or XY GB/s. 
 %PhEDEx has demonstrated capacity to sustain well over xy million transfers an hour for extended periods of time.
 
 \subsection{Workload Management}
-\emph{one/two lines of introduction....mention MC production then analysis}
+The role of the CMS Workload Management system includes the interpretation of
+user processing requests, the creation of the jobs that process the data, the
+submission of the jobs to local or distributed systems, the monitoring of the
+jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\ref{RefPA} is a tool
+optimized to perform these operations in a controlled environment i.e. at the
+Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is
+optimized for user analysis.
+%
 \label{sec:3_2}
 \subsubsection{CRAB}
-The CMS Remote Analysis Builder (CRAB)\cite{RefCRAB} have been developed as a user-friendly interface to handle data analysis in a distributed environment, hiding the complexity of interactions to the Grid and CMS services.
-It allow the user to run over large distributed data samples the very same 
+The CMS Remote Analysis Builder (CRAB)\cite{RefCRAB} has been developed as a user-friendly interface to handle data analysis in a local or distributed environment, hiding the complexity of interactions to the Grid and CMS services.
+It allows the user to run over large distributed data samples the same 
 analysis code he has developed locally in a small scale test. 
-The functionalities CRAB provides, as schematically illustrated in Fig.~\ref{fig:CRABWorkflow}, are:
+The functionalities that CRAB provides, as schematically illustrated in Fig.~\ref{fig:CRABWorkflow}, are:
 \begin{itemize}
 \item{Data discovery and location:}
 Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find which data and where is to be accessed.
@@ -240,14 +247,14 @@ Publish the produced data with their description and provenance into a local DBS
 \end{itemize} 
 
 %% Grid integration via BOSSLite
-CRAB is implemented in python. The interface to the Grid middlewares and local batch systems is provided by a python library named BOSSLite\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
-An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. Current implementation supports MySQL and SQLite databases.
-Standard operations such as job submission, tracking, cancel and output retrieval are also performed via a generic abstract interface. Scheduler specific interfaces are implemented in specific plug-ins, loaded at run-time. Presently, plug-ins are implemented for Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
+CRAB is coded in Python. The interface to the Grid middlewares and local batch systems is provided by a Python library named BOSSLite\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
+An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. The current implementation supports MySQL and SQLite databases.
+Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler (batch system or grid) specific interfaces are implemented in plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
 %\emph{FIXME: are few lines about grid specific implementation required? Such as the following lines about gLite}
 %Using the gLite WMS BOSSLite enables bulk job submission through gLite collections. This allows a faster job submission, but also an optimized job status tracking through bulk queries. Since the CMS computing model uses its own data location system, the gLite WMS match making has the main role to perform a load balancing among sites that are hosting the data to be accessed. 
 
 %% CRAB server motivation and architecture:
-The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Fig.~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval and leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
+The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Fig.~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
 The Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
 The Analysis Server is coupled with an external GridFTp server %Storage Element
  that stores the user input and output data, allowing to implement CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
@@ -261,7 +268,7 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 
 \subsection{Monitoring}
 \label{sec:3_3}
-\emph{TO BE SHORTENED...}
+TO BE STILL SHORTENED A BIT....
 \subsubsection{Dashboard}
 \input{Monitoring.tex}
 
@@ -269,26 +276,46 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 \label{sec:4}
 \subsection{Distributed Infrastructure}
 \label{sec:4_1}
-\emph{Short overview, grid Middleware needed, central grid services}
+
+\subsubsection{ Grid services }
+\label{sec:4_1_2}
+
+The access to CMS resources is controlled by grid services provided by the WLCG project.
+
+Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA). Authorization is based on VOMS attribute certificates that certify the membership of users to the CMS Virtual Organization and possibly to CMS groups and the roles they have. VOMS servers are provided by the WLCG project.
+
+Data are stored on systems exposing an SRM interface (Storage Elements). The specific implementation of the storage system is left to the sites (e.g. d-Cache, DPM, Castor, Storm, etc...). In CMS Tier-1s the storage systems also have a tape-based back-end to fulfil their custodial responsibilities, while at Tier-2s they are disk-based.
+
+The access to computing resources (Compute Elements) is based on the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
+
+The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer, several high level workload management tools provided by the different infrastructures. In particular the gLite WMS (by the EGEE projects), and the glide-in WMS (by OSG) are used to dispatch jobs to the different Compute Elements.
+
+All computing and storage resources publish information on their characteristics and state to an Information System based on the BDII provided by WLCG. The information is used both for monitoring and for resource selection by the gLite-WMS.
+
+The CMS data transfer system is implemented by Phedex that in turn depends on the gLite File Transfer System (FTS). WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites) that define the transfer channels on which the transfers take place.
+
+% FIXME Need to define where/how to use the following sentence
+%CMS established a body to coordinate the operation of the facilities offering support to the experiment. The Facilities Operations team coordinates the operations at all sites (Tier-0, Tier-1s and Tier-2s) in close collaboration with the site managers and with the WLCG project.
 
 \subsubsection{ SiteDB }
+\label{sec:4_1_2}
 %% From DanieleB
 SiteDB is a catalogue of all CMS computing Tiers. It records the CMS resources at the site, the resources pledged for the future, and it keeps track of CMS personnel at each site, including the roles and duties they fulfull in the collaboration.
 %Collaborators are automatically added to the SiteDB database on registering with the CMS Hypernews system. As well as providing the aforementioned information, SiteDB acts as a simple monitoring portal, bringing  in and providing links to content from PhEDEx, DBS, SAM tests, CMS Dashboard, GOCDB and GSTAT. The database also maintains a mapping between the different names a site can be known by, for instance the institute name (University of Bristol), its SAM/WLCG name (UKI-SOUTHGRID-BRIS-HEP), and the CMS name (T2_UK_SGrid_Bristol), as well as associations between sites (e.g. the parent T1 site for a T2)
 CMS has designed and built SiteDB because CMS relies on close contact to the sites it uses. The distributed nature of CMS computing makes it very useful to track the people's responsbilities, and to contact them on the basis of their role. Some site roles are technical (for instance running PhEDEx) others are related to CMS computing policy (e.g. the site's Data Manager). 
 %For users (both end users, and consumer of the info like the computing shifters) who have a problem with a site and may not know what the various roles and responsibilities are at a site, SiteDB provides this information. 
-In additions, SiteDB links to the CMS Savannah Computing Infrastructure portal, one of the tools CMS uses for internal  tracking of problems across the distributed infrastructure. In Savannah there is a group ('squad' in Savannah jargon) per site, dynamically maintained from the information in SiteDB via a set of cron-tabbed scripts.
+%In additions, SiteDB links to the CMS Savannah Computing Infrastructure portal, one of the tools CMS uses for internal  tracking of problems across the distributed infrastructure. In Savannah there is a group ('squad' in Savannah jargon) per site, dynamically maintained from the information in SiteDB via a set of cron-tabbed scripts.
 
 \subsubsection{ Software Installation }
-\label{sec:4_1_1}
+\label{sec:4_1_3}
 Distributed analysis relies on the experiment software being pre-installed on the remote
 sites for each release and removed when declared obsolete. 
-The installation procedure is triggered centrally via high priority Grid jobs, which also 
-publish the versions available on a site information system.
+The installation procedure is controlled centrally via high priority Grid jobs, which install the software on dedicated shared areas on the Compute Elements and also publish the versions available on the information system.
 
-\label{sec:4_1_2}
+\subsection{Operational readiness}
+\label{sec:4_2}
 \subsubsection{ Site Readiness }
-\label{sec:4_1_3} 
+\label{sec:4_2_1} 
 %systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
 %\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
 %\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
@@ -297,26 +324,55 @@ The operation of the CMS distributed infrastructure requires a stable and reliab
 The procedure to evaluate the commissioning status of a site relies on several sources of information. Every day the following quantities are monitored: the CMS Site Availability Monitoring (SAM) tests, running on Grid site resources to check their basic functionality and the local CMS software and configuration; the success rate of the Job Robot, a load generator simulating user data analysis; the number and the quality of the data transfer links used in production by the site; the downtimes scheduled by the site. If any of the metrics based on the above information is not satisfied the site is declared in error state. A site is allowed to be in error state not more than two days over the last week, then it is declared "not ready". To recover from a "not ready state" the site needs to be ok for at least two consecutive days. In this way temporary glitches are allowed if recovered promptly.
 
 
-\subsubsection{ Link Commissioning }
+\subsubsection{ Data transfer links }
+\label{sec:4_2_2}
 %% From DanieleB
 An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT} was created to coordinate the debugging of data transfer links, in order to commission most crucial transfer routes among CMS Tiers by designing and enforcing a clear procedure to debug problematic links. The DDT procedures are now part of the commissioned links overview.
 \emph{USE DDT PAPER AT CHEP09 CR2009-093}
 
 
-\label{sec:4_1_4}
-\subsection{Analysis Support at CMS Sites}
-\label{sec:4_2}
+\subsection{Analysis Organization at CMS Sites}
+\label{sec:4_3}
 \subsubsection{ Organized Analysis Activities }
-\label{sec:4_2_1}
-Skimming, t1access role 
-\emph{TO BE FILLED BY CLAUDIO}
+\label{sec:4_3_1}
+In order to optimize the processing chain, CMS performs as many processing steps as possible in an organized way. 
+Besides the re-processing %that is performed by the Data Operation team 
+on the RAW data when improved reconstruction algorithms are available, a standard set of analysis passes is agreed with the physics groups and is performed promptly at the Tier-1 sites 
+%by the CMS Data Operations team 
+as the data arrive from the Tier-0 (or Tier-2 in case of simulated data). 
+This step, known as skimming, performs data reduction both in terms of event size and number of events. 
+The samples produced in this way are made available to the CMS physicists at the Tier-2s. % together with the AOD.
+
+Normally only the team dealing with data processing operations %CMS Data Operations team 
+has access to the Tier-1 resources but in some special cases 
+some physicist may need access to large samples of RAW data. Examples of this kind of activity are the detector 
+calibration or the Data Quality Monitor validation. Since the RAW data in general are not distributed to the Tier-2 sites, a special VOMS role has been created to grant access to the Tier-1s to those physicists. 
 
 \subsubsection{ User and Physics Group Support }
-\label{sec:4_2_2}
-\paragraph{Association T2-Physics group}
+\label{sec:4_3_2}
+\paragraph{Physics group associations}
+Physicist are organized in groups (Physics Groups, PG) each with its own internal organization. Each PG is associated with a few Tier-2 sites that support it by providing storage space and processing power. On the other hand each Tier-2 supports one or more PGs depending on its size.  Currently PGs may have access to all resources at Tier-2s but it is foreseen to exploit VOMS groups to optimize the support at sites.
+
 \paragraph{Storage Hierarchy}
-\emph{ central/user/group/production data }
-\emph{USE THE COMPUTING MODEL PAPER AT CHEP09 CR2009-084}
+A nominal Tier-2 in 2008 had 200TB of disk-based storage. Making efficient use of the networking and ensuring the appropriate revision 
+of a dataset is at a location with sufficient processing resources is a challenging data management exercise. The knowledge of the needs of many groups of people is aggregated in the group leaders and not in an automated software system. 
+
+CMS has attempted to increase the number of people empowered to make data management decisions by
+dividing the available storage into chunks. The 200TB of Tier-2 storage is divided into 4 logical
+pieces. At the storage at the Tier-2s increases in 2009 and beyond the allocations to groups and
+central space will grow.
+\begin{itemize}
+\item{} Local Group and User Space: This is roughly 30TB per group currently with an additional
+1TB per user that is controlled and managed by the geographically local community.
+\item{} Physics Group Space: 60-90TB of space is allocated to 2-3 physics analysis groups.
+Representatives from the groups serve as data managers for the space and make subscription and deletion requests. The space for each group will increase with time as
+datasets grow.
+\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is identified at each Tier-2 under the control of CMS centrally. This is used to ensure complete copies of the
+reconstruction datasets are available across the Tier-2s.
+\item{} Simulation Staging and Temporary Space: 20TB is identified to stage simulation produced at the Tier-2s and other temporary files before they can either be merged or transferred to the permanent home.
+\end{itemize}
+%\emph{ central/user/group/production data }
+%\emph{USE THE COMPUTING MODEL PAPER AT CHEP09 CR2009-084}
 %Making efficient use of the networking and ensuring the appropriate revision of a dataset is at a location with sufficient processing resources is a challenging data management exercise. The knowledge of the needs of many
 %groups of people is aggregated in the group leaders and not in an automated software system. CMS has attempted to increase the number of people empowered to make data management decisions by dividing the available storage into chunks. The 200TB of Tier-2 storage is divided into 4 logical pieces. At the storage at the Tier-2s increases in 2009 and beyond the allocations to groups and central space will grow.
 %1. Local Group and User Space: This is roughly 30TB per group currently with an additional
@@ -331,7 +387,6 @@ Skimming, t1access role
 %CMS is in the process of training users and administrators to manage the storage at the Tier-2s to efficiently support analysis. Even in the current commissioning phase CMS has hundreds of active users and more than 5PB of disk space across the Tier-2s. We expect to utilize the space
 %dynamically and take advantage of the wide area network links to update samples frequently.
 %Shifting to this paradigm involves solving technical challenges as well as engaging a large community of users.
-
 \paragraph{User support model}
 User documentation is provided by a set of twiki pages composing the so called CMS Workbook. Documentation about the distributed environment and CRAB usage are available, as well as a troubleshouting guide.
 Tutorials including hands-on session are periodically organized.
@@ -340,12 +395,12 @@ users reports the problems they are facing with. The reported problems ranges
  from problems with the infrastructure, site related issues to user's mistakes in tools configuration or real bug report that are feed back to developers.
 The CMS Savannah Computing Infrastructure portal is used to report problems across the distributed infrastructure such as data access problems, problem on specific CMS software version at sites etc.
 
-\subsection{Experience with CMS Distributed Analysis}
-\label{sec:4_3}
+\section{Experience with CMS Distributed Analysis}
+\label{sec:5}
 \emph{intro about challanges and user experience....}
 
-\subsubsection{Tests}
-\label{sec:4_3_1}
+\subsection{Tests}
+\label{sec:5_1}
 During the Common Computing Readiness Challenge (CCRC08) in May 2008
 various analysis exercises were performed to gain an overall understanding 
 of the performance and readiness of the T2 sites for CMS data analysis.
@@ -489,8 +544,8 @@ analysis needs.
 
 
 
-\subsubsection{Sustained Analysis}
-\label{sec:4_3_2}
+\subsection{Sustained Analysis}
+\label{sec:5_2}
 
 Distributed analysis is regularly performed by CMS users for MonteCarlo based analysis
 and analysis of cosmic data collected in detector commissioning activities.
@@ -589,7 +644,7 @@ In preparation for the LHC collision data taking real cosmic data are collected.
 
 
 \section{Conclusions}
-\label{sec:5}
+\label{sec:6}
 
 % For one-column wide figures use
 %\begin{figure}
@@ -648,6 +703,9 @@ A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 07200
 %
 \bibitem{RefPhEDEx}
 L. Tuura et al., Scaling CMS data transfer system for LHC start-up, J.Phys.Conf.Ser, 119, 072030 (2008)
+%
+\bibitem{RefPA}
+FIND A REFERENCE
 %
 \bibitem{RefCRAB}
 D. Spiga et al., The CMS Remote Analysis Builder CRAB, 14th Int. Conf. on High Performance Computing ISBN/ISSN: 978-3-540-77219-4 , 4873, 580-586 (2007)\\
