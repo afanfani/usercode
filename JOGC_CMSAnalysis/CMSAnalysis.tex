@@ -155,7 +155,7 @@ Each Tier-1 centre assures the distributed custodial storage of a fraction of th
 \label{sec:2_3}
 Tier-2 centers provide capacity for user data analysis and for production of simulated data.
 In CMS data transfer to Tier-2 can occur from any Tier-1. A significant effort is required in 
-commissioning all possible transfer links, as described in section ~\ref{sec:4_1_4}, as well
+commissioning all possible transfer links, as described in section ~\ref{sec:LinkCommissioning}, as well
 as improving site availability, as described in section ~\ref{sec:4_1_3}.
 
 \section{Framework for CMS Distributed Analysis}
@@ -219,7 +219,7 @@ Technically PhEDEx is based on software agents storing their state and communica
 The role of the CMS Workload Management system includes the interpretation of
 user processing requests, the creation of the jobs that process the data, the
 submission of the jobs to local or distributed systems, the monitoring of the
-jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\ref{RefPA} is a tool
+jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool
 optimized to perform these operations in a controlled environment i.e. at the
 Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is
 optimized for user analysis.
@@ -277,7 +277,7 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 \label{sec:4_1}
 
 \subsubsection{ Grid services }
-\label{sec:4_1_2}
+\label{sec:4_1_1}
 
 The access to CMS resources is controlled by grid services provided by the WLCG project.
 Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA).
@@ -358,7 +358,7 @@ In this way temporary glitches are allowed if recovered promptly.
 
 
 \subsubsection{ Data transfer links }
-\label{sec:4_2_2}
+\label{sec:LinkCommissioning}
 %% From DanieleB
 NEEDS SOME WORK
 
@@ -520,7 +520,7 @@ RAM. The test was performed in the gLite context using two dedicated
 gLite WMS. Monitoring information was collected from various sources
 like the CRAB Server database tracking the job flow and the CPU usage
 of its components, as well as from underlying services like MySQL and
-GridFTP server and gLite WMS monitoring~\cite{wmsMon}. The kind of
+GridFTP server and gLite WMS internal monitoring. The kind of
 jobs submitted were very short jobs running for less than a few
 minutes, not reading a dataset and without stage-out. This choice was
 made to provide an harsher environment for job handling due to higher
