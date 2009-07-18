@@ -211,18 +211,14 @@ the underlying grid file and storage management services.
 PhEDEx keeps track of data location in the distributed computing system. The analysis system relies on PhEDEx to obtain the locations of the data.
 
 Technically PhEDEx is based on software agents storing their state and communicating via a central ''black board'' database hosted in the CERN Oracle RAC (Real Application Clusters). A set of service agents are operated centrally at CERN while each site in general operates only the agents that interact with the storage at the site. A web site offers various management tools and allows to monitor to current and historical transfer conditions.
-\emph{FIXME: expand a bit with routing to find the optimal source, subscription and approval procedure, interfaced to the FTS service, deletion of data via PhEDEx, data consistency tool, etc}
-\emph{FIXME: fill phedex usage numbers} In the last XY months PhEDEx transferred XY PB data. In months XXX the average global daily transfer rate was XYTB/day or XY GB/s. 
+
+\emph{FIXME FOR RICKY: expand a bit with routing to find the optimal source, subscription and approval procedure, interfaced to the FTS service, deletion of data via PhEDEx, data consistency tool, etc}
+\emph{FIXME FOR RICKY: fill phedex usage numbers} In the last XY months PhEDEx transferred XY PB data. In months XXX the average global daily transfer rate was XYTB/day or XY GB/s. 
 %PhEDEx has demonstrated capacity to sustain well over xy million transfers an hour for extended periods of time.
 
 \subsection{Workload Management}
-The role of the CMS Workload Management system includes the interpretation of
-user processing requests, the creation of the jobs that process the data, the
-submission of the jobs to local or distributed systems, the monitoring of the
-jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool
-optimized to perform these operations in a controlled environment i.e. at the
-Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is
-optimized for user analysis.
+The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs that process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis.
+
 %
 \label{sec:3_2}
 \subsubsection{CRAB}
@@ -310,12 +306,12 @@ This set of tools is called ''the CMS Dashboard''.
 
 \subsubsection{History View}
 The aim here is to present time history of relevant
-metrics to highlite overall patterns and trends (see Fig.~\ref{fig:HistoryView}).
-\begin{figure}
- \includegraphics[width=0.70\textwidth]{figures/HistoryView.png}
-\caption{Dashboard History View}
-\label{fig:HistoryView}
-\end{figure}
+metrics to highlite overall patterns and trends.% (see Fig.~\ref{fig:HistoryView}).
+%\begin{figure}
+% \includegraphics[width=0.70\textwidth]{figures/HistoryView.png}
+%\caption{Dashboard History View}
+%\label{fig:HistoryView}
+%\end{figure}
 The list of viewable metrics is predefined, and
 the interface uses aggregated tables in the DB to provide
 efficient access to old information with a limited
@@ -332,16 +328,21 @@ The user can then expand one selected task to get
 a graphical overall summary of execution/completion progress
 and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
 
-
 \begin{figure}
- \includegraphics[width=0.50\textwidth]{figures/TaskMonitor1.png}
+\begin{minipage}{.45\textwidth}
+\centering
+ \includegraphics[width=0.95\textwidth]{figures/TaskMonitor1.png}
 \caption{All users tasks in last 2 days}
 \label{fig:TaskMonitor1}
-\end{figure}
-\begin{figure}
- \includegraphics[width=0.50\textwidth]{figures/TaskMonitor2.png}
+%\end{figure}
+%\begin{figure}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/TaskMonitor2.png}
 \caption{Expanded view of one task}
 \label{fig:TaskMonitor2}
+\end{minipage}
 \end{figure}
 
 \subsubsection{Interactive Interface}
@@ -436,49 +437,44 @@ The installation procedure is controlled centrally via high priority Grid jobs, 
 
 \subsection{Infrastructure readiness}
 \label{sec:4_2}
-Operation of the CMS distributed infrastructure
-requires a stable and reliable behaviour of the services.
-CMS has established a procedure routinely operated by
-the Facilities Operations team to extensively test all relevant
-aspects of sites supporting CMS. Result of the tests are
-combined in a "Readyness" metric that is used to steer
-activity toward sites with higher Readyness mark.
+Operation of the CMS distributed infrastructure requires a stable and 
+reliable behaviour of the services.
+CMS has established a procedure routinely operated by the Facilities 
+Operations team to extensively test all relevant aspects of sites 
+supporting CMS, such as the ability to efficiently use their network 
+to transfer data, the functionality of all the site services relevant for CMS and the capability to sustain the various CMS computing workflows at the required scale.
+% FIXME: AF is not sure how that steering occurs..it does not for the time being in analysis
+%Result of the tests are combined in a "Readyness" metric that is used to 
+%steer activity toward sites with higher Readyness mark.
+
 \subsubsection{ Sites }
 \label{sec:4_2_1} 
-%systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
 %\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
 %\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
-
 Every day the following quantities are monitored:
-the CMS Service Availability Monitoring (SAM) tests,
-check sites basic 
+the CMS Service Availability Monitoring (SAM) tests to check sites basic 
 functionality and local CMS software and configuration;
 the success rate of the Job Robot, a load generator simulating
 user data analysis; the number and the quality of the data
 transfer links used in production by the site;
 the downtimes scheduled by the site.
-If any of the metrics based on the above
-information is not satisfied the site is declared in
-error state. A site is allowed to be in error state
-not more than two days over the last week, then it
-is declared "not ready". To recover from a "not ready state"
-the site needs to be ok for at least two consecutive days.
-In this way temporary glitches are allowed if recovered promptly.
-
+If any of the metrics based on the above information is not satisfied the site is declared in error state. A site is allowed to be in error state
+not more than two days over the last week, then it is declared "not ready".
+To recover from a "not ready state" the site needs to be ok for at least two consecutive days. In this way temporary glitches are allowed if recovered promptly.
 
 \subsubsection{ Data transfer links }
 \label{sec:LinkCommissioning}
 %% From DanieleB
-NEEDS SOME WORK: CHECK 2008 DATE, ADD SOMETHING ABOUT
-ONGOING EFFORT MORE THEN HISTORY, COMMISSIONED LINKS OVERVIEW
-MEANS NOTHING ETC>
-
+A site needs to have sufficient data transfer connections to other sites in order to perform CMS workflows. 
 An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT}
 was created in 2008 to coordinate the debugging of data transfer links,
-in order to commission most crucial transfer routes among
-CMS Tiers by designing and enforcing a clear procedure
-to debug problematic links.
-The DDT procedures are now part of the commissioned links overview.
+in order to commission most crucial transfer routes among CMS Tiers 
+by designing and enforcing a clear procedure to debug problematic links.
+The DDT procedures are now regularly used to certify links quality.
+A data link from Tier-0 or Tier-1s must demonstrate a rate of at least 20 MB/s over 24 hours from Tier-0 or Tier-1s. Recognizing that uplinks from Tier-2 to Tier-1 sites have a lower requirement in the computing model, they are only required to transfer 5 MB/s. Links are only decommissioned if they
+failed this transfer exercise for three days. 
+All Tier-0/1 to Tier-1 links are commissioned. 35 Tier-2 sites have all of their downlinks from Tier-1 sites commissioned, and 2 more have seven out of eight links commissioned. 43 Tier-2 sites have at least two commissioned uplinks to Tier-1 sites.
+\emph{FIXME: NEEDS SOME WORK: BETTER CLARIFY THE ONGOING EFFORT?}
 \emph{USE DDT PAPER AT CHEP09 CR2009-093}
 
 
@@ -499,57 +495,50 @@ in terms of event size and number of events.
 The samples produced in this way are made available
 to the CMS physicists at the Tier-2s. % together with the AOD.
 
-Normally only the team dealing with data processing operations
+Normally only the team dealing with data processing operations %(Data Operation)
 has access to the Tier-1 resources but in some special cases
 some physicist may need access to large samples of RAW data,
-which can nto be hosted at T2's.
+which can not be hosted at Tier-2's.
 Examples of this kind of activity are the detector 
 calibration or the Data Quality Monitor validation.
 A special VOMS role has been created to grant access
 to the Tier-1s to those physicists. 
 
-\subsubsection{Groups}
+\subsubsection{Physics Groups}
 \label{sec:4_3_2}
-Physicist are organized in Physics Groups (PG) each with its own internal organization.
-Each PG is associated with a few Tier-2 sites that support it by providing
-storage space and processing power.
-Each Tier-2 supports one or more PGs depending on its size.
-Currently, PG-site association is only reflected in policies for data location,
-but it is also foreseen to exploit VOMS groups to prioritize CPU usage at sites.
+Physicist are organized in Physics Groups each with its own internal organization.
+Each Physics Groups is associated with a few Tier-2 sites that support it by providing storage space and processing power.
+Each Tier-2 supports one or more Physics Groups depending on its size.
+Currently, the association of Physics Group to site is only reflected in policies for data location, but it is also foreseen to exploit VOMS groups to prioritize CPU usage at sites.
 
 A nominal Tier-2 in 2008 had 200TB of disk-based storage.
 Making efficient use of the overall space is a challenging data management exercise.
 The current approach is decentralized administration with central oversight.
-The knowledge of the needs is aggregated in the group leaders  whom will decide
-which data should be hosted at T2 for their community. To help
-them in the process, each PG is allocated a limited number of 'quanta',
-each being currently 30TB of disk and enough CPU to process it, hosted
-at one T2. Central support advices PG leaders in selecting the specific
-location among the few available to each.
+The knowledge of the needs is aggregated in the group leaders whom will decide which data should be hosted at Tier-2 for their community. To help
+them in the process, each Physics Group is allocated a limited number 
+of 'quanta', each being currently 30TB of disk and enough CPU to process it, hosted at few Tier-2s. 
+%AF: I am not aware the following statment being true
+%Central support advices PG leaders in selecting the specific location among the few available to each.
 
-\subsubsection{Users}
-Each T2 site also supports a local community of users, providing them
+\subsubsection{Users space}
+Each Tier-2 site also supports a local community of users, providing them
 a common space for data of local interest and a grid-enabled
 storage for each user where to e.g. receive output from CRAB jobs
-running at other sited. Each CMS user can access any data
-hosted at any T2, but can only write at the T2 that supports him
+running at other sites. Each CMS user can access any data
+hosted at any Tier-2, but can only write at the Tier-2 that supports him
 as a local user.
 
-\subsubsection{Storage at T2}
-The Tier-2 storage is divided into 4 logical pieces.
+\subsubsection{Pubblication of Physics Group and User data}
+TO BE ADDED. AS A SEPARATE SUBSECTION OR INCLUDED IN THE ABOVE?
+
+\subsubsection{Storage hierarchy at Tier-2}
+In order to support all the functionalities the CMS model requires the Tier-2 storage is divided into 4 logical pieces:
 \begin{itemize}
-\item{} Local Group and User Space: roughly 30TB for the local group and additional
-1TB per user.
-\item{} Physics Group Space: 60-90TB of space is allocated to 2-3 physics analysis groups.
-Representatives from the groups serve as data managers for the space
-and make subscription and deletion requests.
+\item{} Local Group and User Space: roughly 30TB for the local community and additional 1TB per user.
+\item{} Physics Group Space: 60-90TB of space is allocated to serve 2-3 Physics Groups. Representatives from the groups serve as data managers for the space and make subscription and deletion requests.
 The space for each group will increase with time as datasets grow.
-\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is
-identified at each Tier-2 under the control of CMS centrally.
-This is used to ensure complete copies of the
-reconstruction datasets are available across the Tier-2s. This space can
-be further used as a flexible buffer to deal with operational issues and difficulties
-in the short term.
+\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is identified at each Tier-2 under the control of CMS centrally.
+This is used to ensure complete copies of the reconstruction datasets are available across the Tier-2s. This space can be further used as a flexible buffer to deal with operational issues and difficulties in the short term.
 \item{} Simulation Staging and Temporary Space: 20TB is identified to
 stage simulation produced at the Tier-2s and other temporary
 files before they can be transferred to the permanent home. 
@@ -613,16 +602,21 @@ The CCRC08 analysis challenge drove the level of activity and participation at T
 
 \begin{figure}
 \centering
-\includegraphics[width=0.55\textwidth]{figures/CCRC08SiteEff.png}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/CCRC08SiteEff.png}
 \caption{Distribution of the job efficiency by site, when simulating physics
 groups workflows on CCRC’08}
 \label{fig:CCRC08SiteEff}
-\end{figure}
-\begin{figure}
+%\end{figure}
+%\begin{figure}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
 \centering
-\includegraphics[width=0.55\textwidth]{figures/CCRC08Chaotic.png}
+\includegraphics[width=1.\textwidth]{figures/CCRC08Chaotic.png}
 \caption{Chaotic phase}
 \label{fig:CCRC08Chaotic}
+\end{minipage}
 \end{figure}
 
 %% Scale test of CRAB server
@@ -739,15 +733,20 @@ The distribution of jobs at Tier2s over the year is shown in Figure~\ref{fig:Ana
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=3.5in]{figures/UserInteg.png}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=1.\textwidth]{figures/UserInteg.png}
 \caption{Cumulative number of distinct CRAB users starting from 2008. }
 \label{fig:intuser}
-\end{figure}
-\begin{figure}
-\includegraphics[width=3.5in]{figures/crabusersdaily.png}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=1.\textwidth]{figures/crabusersdaily.png}
 \caption{Number of CRAB daily users in the 2008. }
 \label{fig:distusers}
+\end{minipage}
 \end{figure}
+
 
 Since 2008 the number of distinct CRAB users has grown to more than 1000, almost 30\% of the whole CMS
 community, as shown in Figure~\ref{fig:intuser}. About 100 users per day use CRAB to submit their analysis jobs, 
@@ -800,14 +799,20 @@ In preparation for the LHC collision data taking real cosmic data are collected.
 \end{itemize}
 }
 \begin{figure}
-\includegraphics[width=0.5\textwidth]{figures/CRAFTusers.pdf}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=1.\textwidth]{figures/CRAFTusers.pdf}
 \caption{Number of users analyzing CRAFT data using the CAF (light yellow) or the Tier2s(red).}
 \label{fig:CRAFTusers}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.5\textwidth]{figures/CRAFTjobs.pdf}
+%\end{figure}
+%\begin{figure}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=1.\textwidth]{figures/CRAFTjobs.pdf}
 \caption{Number of jobs analyzing CRAFT data using the CAF (light yellow) or the Tier2s(red).}
 \label{fig:CRAFTjobs}
+\end{minipage}
 \end{figure}
 
 
