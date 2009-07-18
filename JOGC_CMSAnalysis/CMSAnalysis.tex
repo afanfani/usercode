@@ -269,16 +269,113 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 
 \subsection{Job Monitoring}
 \label{sec:3_3}
-%\subsubsection{Dashboard}
-\input{Monitoring.tex}
+It was clear since the early days of CMS Analysis that
+good monitoring tools are critical to the success of such
+a highly distributed project.
+Good monitoring has allowed CMS to evolve tool development
+and operational structure from vision and anedoctal driven
+to a fact based approach.
+A few main point drove the development of monitoring tools:
+\begin{itemize}
+\item no reliance on local site monitoring.
+\item a single  high level view of the usage from which
+  to drill down to single job level
+\item   keep the system lean and flexible: even if a few
+  jobs are not properly reported
+\item record
+  enough information about failures so that plans and
+action are set
+  based on quantitative facts and that effectiveness of solutions can be metered
+\item detect overall usage patterns to guide management into making
+ choices and plans about how and were to steer user activities and
+ how to plan for the future
+\item do not try to define a priori all the relevant metrics
+\end{itemize}
+
+Job monitoring was built around the idea of instrumented
+application: CMS jobs and tools send messages
+to a central collector. Only jobs that use the
+instrumented submission framework can be monitored in this way,
+a small penalty in CMS case where almost
+all user jobs are submitted using the CRAB tool.
+The implementation is based on a
+database running on Oracle server, a set of information collectors
+feeding from various sources, 
+and a few web interfaces (views) providing access with different levels
+of detail, aggregation and flexibility, customized to
+typical use cases, it is possible to cross link and navigate
+from one view to another providing both extreme flexibility
+and fast access to desired informations.
+This set of tools is called ''the CMS Dashboard''.
+
+\subsubsection{History View}
+The aim here is to present time history of relevant
+metrics to highllite overall patterns and trends (see Fig.~\ref{fig:HistoryView}).
+\begin{figure}
+ \includegraphics[width=0.70\textwidth]{figures/HistoryView.png}
+\caption{All users tasks in last 2 days}
+\label{fig:HistoryView}
+\end{figure}
+The list of viewable metrics is predefined, and
+the interface uses aggregated tables in the DB to provide
+efficient access to old information with a limited
+amount of detail. Data can be viewed divided
+according e.g. to the used site(s), job type or job completion status.
+
+
+\subsubsection{Task Monitoring for Analysis user}
+A user centric view where the user is
+initially presented the list of tasks he submitted in lasts
+three days, both in tabular and graphical way (see Fig.~\ref{fig:TaskMonitor1}).
+
+The user can then expand one selected task to get
+a graphical overall summary of execution/completion progress
+and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
+
+
+\begin{figure}
+ \includegraphics[width=0.50\textwidth]{figures/TaskMonitor1.png}
+\caption{All users tasks in last 2 days}
+\label{fig:TaskMonitor1}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.50\textwidth]{figures/TaskMonitor2.png}
+\caption{One task}
+\label{fig:TaskMonitor2}
+\end{figure}
+
+\subsubsection{Interactive Interface}
+Was the first view to be developed, based on
+vision more then experience, therefore
+emphasis was put on flexibility. It is a job-centric view
+aimed at understanding and debugging what happens ``now''.
+The entry point is the number of jobs submitted or
+terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
+\begin{figure}
+ \includegraphics[width=0.80\textwidth]{figures/DashboardInteractive.png}
+\caption{Dashboard Interactive Interface}
+\label{fig:Dashboard}
+\end{figure}
+The interactive interface
+allows to drill down expanding the set of jobs by
+various relevant properties (execution site, grid gateway,
+submitter user, completions status, grid workload management host,
+activity type, used dataset etc.), until all details stored in the DataBase
+about a choosen (set of) job(s) can be accessed.
+The interface reports success/failure
+according to grid/site/application problem, and information
+on used wall and cpu time of jobs.
 
 \section{Operation of CMS Distributed Analysis}
 \label{sec:4}
 \subsection{Distributed Infrastructure}
 \label{sec:4_1}
 The tools described in previous section operate on a distributed infrastructure
-of sites and interconnecting links. Sites hosts both Grid services and
-CMS software and tools. 
+of sites which offer uniform access for
+CMS needs via standard Grid services, moreover CMS maintains
+sofware libraries at each site to get a uniform execution
+environment. A small DataBase is used to keep track of
+informations specific of each site and relevant for CMS operations.
 
 \subsubsection{ Grid services }
 \label{sec:4_1_1}
@@ -305,12 +402,12 @@ several high level workload management tools provided by the different infrastru
 All computing and storage resources publish information on their
 characteristics and state to an Information System based
 on the BDII provided by WLCG. The information is used both
-for monitoring and for resource selection by the gLite-WMS.
+for monitoring and for resource selection.
 
 The CMS data transfer system is implemented by Phedex that
 in turn depends on the gLite File Transfer System (FTS).
 WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites)
-that define the transfer channels on which the transfers take place.
+that provide the transfer channels on which the transfers take place.
 
 % FIXME Need to define where/how to use the following sentence
 %CMS established a body to coordinate the operation of the facilities offering support to the experiment. The Facilities Operations team coordinates the operations at all sites (Tier-0, Tier-1s and Tier-2s) in close collaboration with the site managers and with the WLCG project.
@@ -318,9 +415,17 @@ that define the transfer channels on which the transfers take place.
 \subsubsection{ SiteDB }
 \label{sec:4_1_2}
 %% From DanieleB
-SiteDB is a catalogue of all CMS computing Tiers. It records the CMS resources at the site, the resources pledged for the future, and it keeps track of CMS personnel at each site, including the roles and duties they fulfull in the collaboration.
+SiteDB is a catalogue of all CMS computing Tiers.
+It records the CMS resources at the site, the resources pledged for the future,
+and it keeps track of CMS personnel at each site, including the roles
+and duties they fulfull in the collaboration.
 %Collaborators are automatically added to the SiteDB database on registering with the CMS Hypernews system. As well as providing the aforementioned information, SiteDB acts as a simple monitoring portal, bringing  in and providing links to content from PhEDEx, DBS, SAM tests, CMS Dashboard, GOCDB and GSTAT. The database also maintains a mapping between the different names a site can be known by, for instance the institute name (University of Bristol), its SAM/WLCG name (UKI-SOUTHGRID-BRIS-HEP), and the CMS name (T2_UK_SGrid_Bristol), as well as associations between sites (e.g. the parent T1 site for a T2)
-CMS has designed and built SiteDB because CMS relies on close contact to the sites it uses. The distributed nature of CMS computing makes it very useful to track the people's responsbilities, and to contact them on the basis of their role. Some site roles are technical (for instance running PhEDEx) others are related to CMS computing policy (e.g. the site's Data Manager). 
+CMS has designed and built SiteDB because CMS relies on close contact
+to the sites it uses. The distributed nature of CMS computing makes
+it very useful to track the people's responsbilities, and to contact
+them on the basis of their role. Some site roles are technica
+ (for instance running PhEDEx) others are related to CMS computing
+ policy (e.g. the site's Data Manager). 
 %For users (both end users, and consumer of the info like the computing shifters) who have a problem with a site and may not know what the various roles and responsibilities are at a site, SiteDB provides this information. 
 %In additions, SiteDB links to the CMS Savannah Computing Infrastructure portal, one of the tools CMS uses for internal  tracking of problems across the distributed infrastructure. In Savannah there is a group ('squad' in Savannah jargon) per site, dynamically maintained from the information in SiteDB via a set of cron-tabbed scripts.
 
