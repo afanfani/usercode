@@ -318,9 +318,29 @@ The installation procedure is controlled centrally via high priority Grid jobs, 
 %systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
 %\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
 %\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
-The operation of the CMS distributed infrastructure requires a stable and reliable behaviour of the sites. CMS has established a procedure now routinely operated by the Facilities Operations team to extensively test all relevant aspects of sites supporting CMS, such as the ability to efficiently use their network to transfer data, the functionality of all the site services relevant for CMS and the capability to sustain the various CMS computing workflows at the required scale.
-
-The procedure to evaluate the commissioning status of a site relies on several sources of information. Every day the following quantities are monitored: the CMS Site Availability Monitoring (SAM) tests, running on Grid site resources to check their basic functionality and the local CMS software and configuration; the success rate of the Job Robot, a load generator simulating user data analysis; the number and the quality of the data transfer links used in production by the site; the downtimes scheduled by the site. If any of the metrics based on the above information is not satisfied the site is declared in error state. A site is allowed to be in error state not more than two days over the last week, then it is declared "not ready". To recover from a "not ready state" the site needs to be ok for at least two consecutive days. In this way temporary glitches are allowed if recovered promptly.
+Operation of the CMS distributed infrastructure
+requires a stable and reliable behaviour of the sites.
+CMS has established a procedure routinely operated by
+the Facilities Operations team to extensively test all relevant
+aspects of sites supporting CMS. Result of the tests are
+combined in a "Readyness" metric that is used to steer
+activity toward sites with higher Readyness mark.
+The procedure relies on several sources of information.
+Every day the following quantities are monitored:
+the CMS Service Availability Monitoring (SAM) tests,
+check sites basic 
+functionality and local CMS software and configuration;
+the success rate of the Job Robot, a load generator simulating
+user data analysis; the number and the quality of the data
+transfer links used in production by the site;
+the downtimes scheduled by the site.
+If any of the metrics based on the above
+information is not satisfied the site is declared in
+error state. A site is allowed to be in error state
+not more than two days over the last week, then it
+is declared "not ready". To recover from a "not ready state"
+the site needs to be ok for at least two consecutive days.
+In this way temporary glitches are allowed if recovered promptly.
 
 
 \subsubsection{ Data transfer links }
