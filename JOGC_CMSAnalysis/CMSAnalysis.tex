@@ -280,18 +280,32 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 \label{sec:4_1_2}
 
 The access to CMS resources is controlled by grid services provided by the WLCG project.
+Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA).
+Authorization is based on VOMS attribute certificates that certify the membership of users
+to the CMS Virtual Organization and possibly to CMS groups and the roles they have.
+VOMS servers are provided by the WLCG project.
+Data are stored on systems exposing an SRM interface (Storage Elements).
+The specific implementation of the storage system is left to the sites
+(e.g. d-Cache, DPM, Castor, Storm, etc...). In CMS Tier-1s the storage
+systems also have a tape-based back-end to fulfil their custodial
+responsibilities, while at Tier-2s they are disk-based.
 
-Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA). Authorization is based on VOMS attribute certificates that certify the membership of users to the CMS Virtual Organization and possibly to CMS groups and the roles they have. VOMS servers are provided by the WLCG project.
+The access to computing resources (Compute Elements) is based on
+the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
+The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer,
+several high level workload management tools provided by the different infrastructures.
+In particular the gLite WMS (by the EGEE projects), and the glide-in WMS (by OSG)
+are used to dispatch jobs to the different Compute Elements.
 
-Data are stored on systems exposing an SRM interface (Storage Elements). The specific implementation of the storage system is left to the sites (e.g. d-Cache, DPM, Castor, Storm, etc...). In CMS Tier-1s the storage systems also have a tape-based back-end to fulfil their custodial responsibilities, while at Tier-2s they are disk-based.
+All computing and storage resources publish information on their
+characteristics and state to an Information System based
+on the BDII provided by WLCG. The information is used both
+for monitoring and for resource selection by the gLite-WMS.
 
-The access to computing resources (Compute Elements) is based on the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
-
-The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer, several high level workload management tools provided by the different infrastructures. In particular the gLite WMS (by the EGEE projects), and the glide-in WMS (by OSG) are used to dispatch jobs to the different Compute Elements.
-
-All computing and storage resources publish information on their characteristics and state to an Information System based on the BDII provided by WLCG. The information is used both for monitoring and for resource selection by the gLite-WMS.
-
-The CMS data transfer system is implemented by Phedex that in turn depends on the gLite File Transfer System (FTS). WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites) that define the transfer channels on which the transfers take place.
+The CMS data transfer system is implemented by Phedex that
+in turn depends on the gLite File Transfer System (FTS).
+WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites)
+that define the transfer channels on which the transfers take place.
 
 % FIXME Need to define where/how to use the following sentence
 %CMS established a body to coordinate the operation of the facilities offering support to the experiment. The Facilities Operations team coordinates the operations at all sites (Tier-0, Tier-1s and Tier-2s) in close collaboration with the site managers and with the WLCG project.
@@ -311,21 +325,21 @@ Distributed analysis relies on the experiment software being pre-installed on th
 sites for each release and removed when declared obsolete. 
 The installation procedure is controlled centrally via high priority Grid jobs, which install the software on dedicated shared areas on the Compute Elements and also publish the versions available on the information system.
 
-\subsection{Operational readiness}
+\subsection{Infrastructure readiness}
 \label{sec:4_2}
-\subsubsection{ Site Readiness }
-\label{sec:4_2_1} 
-%systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
-%\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
-%\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
 Operation of the CMS distributed infrastructure
-requires a stable and reliable behaviour of the sites.
+requires a stable and reliable behaviour of the services.
 CMS has established a procedure routinely operated by
 the Facilities Operations team to extensively test all relevant
 aspects of sites supporting CMS. Result of the tests are
 combined in a "Readyness" metric that is used to steer
 activity toward sites with higher Readyness mark.
-The procedure relies on several sources of information.
+\subsubsection{ Sites }
+\label{sec:4_2_1} 
+%systematically test each site and improve the availability of the Tier-1s and Tier-2 sites
+%\emph{USE THE COMMISSIONING PAPER AT CHEP09 CR2009-089}
+%\emph{USE site commissioning section in INTEGRATION PAPER AT CHEP09 CR2009-087}
+
 Every day the following quantities are monitored:
 the CMS Service Availability Monitoring (SAM) tests,
 check sites basic 
@@ -346,7 +360,14 @@ In this way temporary glitches are allowed if recovered promptly.
 \subsubsection{ Data transfer links }
 \label{sec:4_2_2}
 %% From DanieleB
-An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT} was created to coordinate the debugging of data transfer links, in order to commission most crucial transfer routes among CMS Tiers by designing and enforcing a clear procedure to debug problematic links. The DDT procedures are now part of the commissioned links overview.
+NEEDS SOME WORK
+
+An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT}
+was created in 2008 to coordinate the debugging of data transfer links,
+in order to commission most crucial transfer routes among
+CMS Tiers by designing and enforcing a clear procedure
+to debug problematic links.
+The DDT procedures are now part of the commissioned links overview.
 \emph{USE DDT PAPER AT CHEP09 CR2009-093}
 
 
@@ -367,46 +388,55 @@ has access to the Tier-1 resources but in some special cases
 some physicist may need access to large samples of RAW data. Examples of this kind of activity are the detector 
 calibration or the Data Quality Monitor validation. Since the RAW data in general are not distributed to the Tier-2 sites, a special VOMS role has been created to grant access to the Tier-1s to those physicists. 
 
-\subsubsection{ User and Physics Group Support }
+\subsubsection{Groups}
 \label{sec:4_3_2}
-\paragraph{Physics group associations}
-Physicist are organized in groups (Physics Groups, PG) each with its own internal organization. Each PG is associated with a few Tier-2 sites that support it by providing storage space and processing power. On the other hand each Tier-2 supports one or more PGs depending on its size.  Currently PGs may have access to all resources at Tier-2s but it is foreseen to exploit VOMS groups to optimize the support at sites.
+Physicist are organized in Physics Groups (PG) each with its own internal organization.
+Each PG is associated with a few Tier-2 sites that support it by providing
+storage space and processing power.
+Each Tier-2 supports one or more PGs depending on its size.
+Currently, PG-site association is only reflected in policies for data location,
+but it is also foreseen to exploit VOMS groups to prioritize CPU usage at sites.
 
-\paragraph{Storage Hierarchy}
-A nominal Tier-2 in 2008 had 200TB of disk-based storage. Making efficient use of the networking and ensuring the appropriate revision 
-of a dataset is at a location with sufficient processing resources is a challenging data management exercise. The knowledge of the needs of many groups of people is aggregated in the group leaders and not in an automated software system. 
+A nominal Tier-2 in 2008 had 200TB of disk-based storage.
+Making efficient use of the overall space is a challenging data management exercise.
+The current approach is decentralized administration with central oversight.
+The knowledge of the needs is aggregated in the group leaders  whom will decide
+which data should be hosted at T2 for their community. To help
+them in the process, each PG is allocated a limited number of 'quanta',
+each being currently 30TB of disk and enough CPU to process it, hosted
+at one T2. Central support advices PG leaders in selecting the specific
+location among the few available to each.
 
-CMS has attempted to increase the number of people empowered to make data management decisions by
-dividing the available storage into chunks. The 200TB of Tier-2 storage is divided into 4 logical
-pieces. At the storage at the Tier-2s increases in 2009 and beyond the allocations to groups and
-central space will grow.
+\subsubsection{Users}
+Each T2 site also supports a local community of users, providing them
+a common space for data of local interest and a grid-enabled
+storage for each user where to e.g. receive output from CRAB jobs
+running at other sited. Each CMS user can access any data
+hosted at any T2, but can only write at the T2 that supports him
+as a local user.
+
+\subsubsection{Storage at T2}
+The Tier-2 storage is divided into 4 logical pieces.
 \begin{itemize}
-\item{} Local Group and User Space: This is roughly 30TB per group currently with an additional
-1TB per user that is controlled and managed by the geographically local community.
+\item{} Local Group and User Space: roughly 30TB for the local group and additional
+1TB per user.
 \item{} Physics Group Space: 60-90TB of space is allocated to 2-3 physics analysis groups.
-Representatives from the groups serve as data managers for the space and make subscription and deletion requests. The space for each group will increase with time as
-datasets grow.
-\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is identified at each Tier-2 under the control of CMS centrally. This is used to ensure complete copies of the
-reconstruction datasets are available across the Tier-2s.
-\item{} Simulation Staging and Temporary Space: 20TB is identified to stage simulation produced at the Tier-2s and other temporary files before they can either be merged or transferred to the permanent home.
+Representatives from the groups serve as data managers for the space
+and make subscription and deletion requests.
+The space for each group will increase with time as datasets grow.
+\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is
+identified at each Tier-2 under the control of CMS centrally.
+This is used to ensure complete copies of the
+reconstruction datasets are available across the Tier-2s. This space can
+be further used as a flexible buffer to deal with operational issues and difficulties
+in the short term.
+\item{} Simulation Staging and Temporary Space: 20TB is identified to
+stage simulation produced at the Tier-2s and other temporary
+files before they can be transferred to the permanent home. 
 \end{itemize}
-%\emph{ central/user/group/production data }
-%\emph{USE THE COMPUTING MODEL PAPER AT CHEP09 CR2009-084}
-%Making efficient use of the networking and ensuring the appropriate revision of a dataset is at a location with sufficient processing resources is a challenging data management exercise. The knowledge of the needs of many
-%groups of people is aggregated in the group leaders and not in an automated software system. CMS has attempted to increase the number of people empowered to make data management decisions by dividing the available storage into chunks. The 200TB of Tier-2 storage is divided into 4 logical pieces. At the storage at the Tier-2s increases in 2009 and beyond the allocations to groups and central space will grow.
-%1. Local Group and User Space: This is roughly 30TB per group currently with an additional
-%1TB per user that is controlled and managed by the geographically local community.
-%2. Physics Group Space: 60-90TB of space is allocated to 2-3 physics analysis groups.
-%Representatives from the groups serve as data managers for the space and make
-%subscription and deletion requests. The space for each group will increase with time as datasets grow.
-%3. Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is identified at each
-%Tier-2 under the control of CMS centrally. This is used to ensure complete copies of the
-%reconstruction datasets are available across the Tier-2s.
-%4. Simulation Staging and Temporary Space: 20TB is identified to stage simulation produced at the Tier-2s and other temporary files before they can either be merged or transferred to the permanent home.
-%CMS is in the process of training users and administrators to manage the storage at the Tier-2s to efficiently support analysis. Even in the current commissioning phase CMS has hundreds of active users and more than 5PB of disk space across the Tier-2s. We expect to utilize the space
-%dynamically and take advantage of the wide area network links to update samples frequently.
-%Shifting to this paradigm involves solving technical challenges as well as engaging a large community of users.
-\paragraph{User support model}
+
+\subsection{User support model}
+\label{sec:4_4}
 User documentation is provided by a set of twiki pages composing the so called CMS Workbook. Documentation about the distributed environment and CRAB usage are available, as well as a troubleshouting guide.
 Tutorials including hands-on session are periodically organized.
 The day by day support is mainly performed via a mailing list (HyperNews) where
