@@ -226,6 +226,7 @@ optimized for user analysis.
 %
 \label{sec:3_2}
 \subsubsection{CRAB}
+\label{sec:CRAB}
 The CMS Remote Analysis Builder (CRAB)\cite{RefCRAB} has been developed as a user-friendly interface to handle data analysis in a local or distributed environment, hiding the complexity of interactions to the Grid and CMS services.
 It allows the user to run over large distributed data samples the same 
 analysis code he has developed locally in a small scale test. 
@@ -275,13 +276,17 @@ The Analysis Server is coupled with an external GridFTp server %Storage Element
 \label{sec:4}
 \subsection{Distributed Infrastructure}
 \label{sec:4_1}
+The tools described in previous section operate on a distributed infrastructure
+of sites and interconnecting links. Sites hosts both Grid services and
+CMS software and tools. 
 
 \subsubsection{ Grid services }
 \label{sec:4_1_1}
 
 The access to CMS resources is controlled by grid services provided by the WLCG project.
-Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA).
-Authorization is based on VOMS attribute certificates that certify the membership of users
+%Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA).
+Authorization is based on X.509 certificates extended with VOMS attributess
+that certify the membership of users
 to the CMS Virtual Organization and possibly to CMS groups and the roles they have.
 VOMS servers are provided by the WLCG project.
 Data are stored on systems exposing an SRM interface (Storage Elements).
@@ -293,9 +298,9 @@ responsibilities, while at Tier-2s they are disk-based.
 The access to computing resources (Compute Elements) is based on
 the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
 The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer,
-several high level workload management tools provided by the different infrastructures.
-In particular the gLite WMS (by the EGEE projects), and the glide-in WMS (by OSG)
-are used to dispatch jobs to the different Compute Elements.
+several high level workload management tools provided by the different infrastructures
+(see~\ref{sec:CRAB}.
+
 
 All computing and storage resources publish information on their
 characteristics and state to an Information System based
@@ -360,7 +365,9 @@ In this way temporary glitches are allowed if recovered promptly.
 \subsubsection{ Data transfer links }
 \label{sec:LinkCommissioning}
 %% From DanieleB
-NEEDS SOME WORK
+NEEDS SOME WORK: CHECK 2008 DATE, ADD SOMETHING ABOUT
+ONGOING EFFORT MORE THEN HISTORY, COMMISSIONED LINKS OVERVIEW
+MEANS NOTHING ETC>
 
 An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT}
 was created in 2008 to coordinate the debugging of data transfer links,
@@ -375,18 +382,27 @@ The DDT procedures are now part of the commissioned links overview.
 \label{sec:4_3}
 \subsubsection{ Organized Analysis Activities }
 \label{sec:4_3_1}
-In order to optimize the processing chain, CMS performs as many processing steps as possible in an organized way. 
+In order to optimize the processing chain, CMS performs as many processing
+steps as possible in an organized way. 
 Besides the re-processing %that is performed by the Data Operation team 
-on the RAW data when improved reconstruction algorithms are available, a standard set of analysis passes is agreed with the physics groups and is performed promptly at the Tier-1 sites 
+on the RAW data when improved reconstruction algorithms are available,
+a standard set of analysis passes is agreed with the physics groups
+and is performed promptly at the Tier-1 sites 
 %by the CMS Data Operations team 
 as the data arrive from the Tier-0 (or Tier-2 in case of simulated data). 
-This step, known as skimming, performs data reduction both in terms of event size and number of events. 
-The samples produced in this way are made available to the CMS physicists at the Tier-2s. % together with the AOD.
+This step, known as skimming, performs data reduction both
+in terms of event size and number of events. 
+The samples produced in this way are made available
+to the CMS physicists at the Tier-2s. % together with the AOD.
 
-Normally only the team dealing with data processing operations %CMS Data Operations team 
-has access to the Tier-1 resources but in some special cases 
-some physicist may need access to large samples of RAW data. Examples of this kind of activity are the detector 
-calibration or the Data Quality Monitor validation. Since the RAW data in general are not distributed to the Tier-2 sites, a special VOMS role has been created to grant access to the Tier-1s to those physicists. 
+Normally only the team dealing with data processing operations
+has access to the Tier-1 resources but in some special cases
+some physicist may need access to large samples of RAW data,
+which can nto be hosted at T2's.
+Examples of this kind of activity are the detector 
+calibration or the Data Quality Monitor validation.
+A special VOMS role has been created to grant access
+to the Tier-1s to those physicists. 
 
 \subsubsection{Groups}
 \label{sec:4_3_2}
