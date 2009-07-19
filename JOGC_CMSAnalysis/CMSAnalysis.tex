@@ -614,7 +614,7 @@ groups workflows on CCRC’08}
 \begin{minipage}{.45\textwidth}
 \centering
 \includegraphics[width=1.\textwidth]{figures/CCRC08Chaotic.png}
-\caption{Chaotic phase}
+\caption{Distribution of the number of users in a site, during the Chaotic phasein CCRC’08}
 \label{fig:CCRC08Chaotic}
 \end{minipage}
 \end{figure}
@@ -719,7 +719,7 @@ and analysis of cosmic data collected in detector commissioning activities.
 During last year about 11 million analysis jobs were submitted.  Peaks
 of more than 100,000 jobs per day have been reached, with an average
 of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
-The distribution of jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryMarch0809}. Current analysis activities has spontaneously surpassed, in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
+The distribution of jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
 
 \begin{figure}
 \includegraphics[width=3.5in]{figures/crabjobsdaily.png}
@@ -727,21 +727,21 @@ The distribution of jobs at Tier2s over the year is shown in Figure~\ref{fig:Ana
 \label{fig:jobs}
 \end{figure}
 \begin{figure}
-\includegraphics[width=0.7\textwidth]{figures/AnalysisJobHistoryMarch0809.png}
-\caption{Number of analysis jobs by Tier2s during last year from CMS dashboard. Each color refers to a site. }
-\label{fig:AnalysisJobHistoryMarch0809}
+\includegraphics[width=0.7\textwidth]{figures/AnalysisJobHistoryApril0809.png}
+\caption{Number of analysis jobs by Tier2s during last year from CMS dashboard History view. Each color refers to a site. }
+\label{fig:AnalysisJobHistoryApril0809}
 \end{figure}
 
 \begin{figure}
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=1.\textwidth]{figures/UserInteg.png}
+\includegraphics[width=0.99\textwidth]{figures/UserInteg.png}
 \caption{Cumulative number of distinct CRAB users starting from 2008. }
 \label{fig:intuser}
 \end{minipage}
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=1.\textwidth]{figures/crabusersdaily.png}
+\includegraphics[width=1.2\textwidth]{figures/crabusersdaily.png}
 \caption{Number of CRAB daily users in the 2008. }
 \label{fig:distusers}
 \end{minipage}
@@ -753,7 +753,9 @@ community, as shown in Figure~\ref{fig:intuser}. About 100 users per day use CRA
 as shown in Figure~\ref{fig:distusers}.
 
 
-Analysis job efficiency is summaried in Fig.~\ref{fig:AnalysisJobEffMay08March09}. Most of the failures faced by the users are due to user application errors, remote stageout issues and errors reading data at the site. Application failures are expected, since analysis jobs run user code which may not have been
+%Analysis job efficiency is summaried in Fig.~\ref{fig:AnalysisJobEffMay08March09}. 
+The distribution of analysis job efficiency over time is shown inFig.~\ref{fig:T2EffApril0809}.
+Most of the failures faced by the users are due to user application errors, remote stageout issues and errors reading data at the site. Application failures are expected, since analysis jobs run user code which may not have been
 thoroughly tested.  Failures in stage out of the data output files to
 remote storage can be due to users misconfiguring the remote
 destination to use or to transfer problems. \emph{mention the foreseen approach for stageout}
@@ -774,9 +776,10 @@ too much time on the worker node and are killed by the local batch system, appea
 %   13% error reading files at site (8020)
 %    6.8% error 50115
 \begin{figure}
-\includegraphics[width=0.5\textwidth]{figures/AnalysisJobEffMay08March09.png}
-\caption{Analysis job efficiency from May 2008 to March 2009. \emph{If time and dashboard permits redo the py for one full year} }
-\label{fig:AnalysisJobEffMay08March09}
+%\includegraphics[width=0.5\textwidth]{figures/AnalysisJobEffMay08March09.png}
+\includegraphics[width=0.5\textwidth]{figures/T2EffApril0809.png}
+\caption{Analysis job efficiency during last year. }
+\label{fig:T2EffApril0809}
 \end{figure}
 
 About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7
@@ -799,18 +802,18 @@ In preparation for the LHC collision data taking real cosmic data are collected.
 \end{itemize}
 }
 \begin{figure}
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=1.\textwidth]{figures/CRAFTusers.pdf}
+\includegraphics[width=0.94\textwidth]{figures/CRAFTusers.pdf}
 \caption{Number of users analyzing CRAFT data using the CAF (light yellow) or the Tier2s(red).}
 \label{fig:CRAFTusers}
 %\end{figure}
 %\begin{figure}
 \end{minipage}
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=1.\textwidth]{figures/CRAFTjobs.pdf}
-\caption{Number of jobs analyzing CRAFT data using the CAF (light yellow) or the Tier2s(red).}
+\includegraphics[width=1.06\textwidth]{figures/CRAFTjobs.pdf}
+\caption{Number of jobs analyzing CRAFT data using the CAF (light gray) or the Tier2s(dark grey).}
 \label{fig:CRAFTjobs}
 \end{minipage}
 \end{figure}
