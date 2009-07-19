@@ -504,10 +504,12 @@ calibration or the Data Quality Monitor validation.
 A special VOMS role has been created to grant access
 to the Tier-1s to those physicists. 
 
-\subsubsection{Physics Groups}
+\subsubsection{Physics Groups and Users Activities}
 \label{sec:4_3_2}
-Physicist are organized in Physics Groups each with its own internal organization.
-Each Physics Groups is associated with a few Tier-2 sites that support it by providing storage space and processing power.
+Physicist are organized in Physics Groups each with its own internal 
+organization.
+Each Physics Groups is associated with a few Tier-2 sites that support it by 
+providing storage space and processing power.
 Each Tier-2 supports one or more Physics Groups depending on its size.
 Currently, the association of Physics Group to site is only reflected in policies for data location, but it is also foreseen to exploit VOMS groups to prioritize CPU usage at sites.
 
@@ -520,7 +522,7 @@ of 'quanta', each being currently 30TB of disk and enough CPU to process it, hos
 %AF: I am not aware the following statment being true
 %Central support advices PG leaders in selecting the specific location among the few available to each.
 
-\subsubsection{Users space}
+%\subsubsection{Users space}
 Each Tier-2 site also supports a local community of users, providing them
 a common space for data of local interest and a grid-enabled
 storage for each user where to e.g. receive output from CRAB jobs
@@ -528,8 +530,12 @@ running at other sites. Each CMS user can access any data
 hosted at any Tier-2, but can only write at the Tier-2 that supports him
 as a local user.
 
-\subsubsection{Pubblication of Physics Group and User data}
-TO BE ADDED. AS A SEPARATE SUBSECTION OR INCLUDED IN THE ABOVE?
+The user produced data stored at a Tier2 can also be published into a local DBS
+in order to allow their access to other collegues.
+The data that is going to be accessed by many users or transferred among sites %are of more wide interest
+, for instance the Physics Group specific event filtering and selections,
+could be exposed to the entire collaboration registering it in Global DBS and performing its transfer with PhEDEx.
+User data is typically not produced with files large enough for wide area transfers or suitable for storage systems. Therefore a migration process involving the merge of the files and the validation of the data is foreseen before the registration in DBS and PhEDEx occurs. 
 
 \subsubsection{Storage hierarchy at Tier-2}
 In order to support all the functionalities the CMS model requires the Tier-2 storage is divided into 4 logical pieces:
@@ -537,7 +543,7 @@ In order to support all the functionalities the CMS model requires the Tier-2 st
 \item{} Local Group and User Space: roughly 30TB for the local community and additional 1TB per user.
 \item{} Physics Group Space: 60-90TB of space is allocated to serve 2-3 Physics Groups. Representatives from the groups serve as data managers for the space and make subscription and deletion requests.
 The space for each group will increase with time as datasets grow.
-\item{} Centrally Controlled Space: 30TB (growing to 50TB in 2009) of space is identified at each Tier-2 under the control of CMS centrally.
+\item{} Centrally Controlled Space: 30TB of space is identified at each Tier-2 under the control of CMS centrally.
 This is used to ensure complete copies of the reconstruction datasets are available across the Tier-2s. This space can be further used as a flexible buffer to deal with operational issues and difficulties in the short term.
 \item{} Simulation Staging and Temporary Space: 20TB is identified to
 stage simulation produced at the Tier-2s and other temporary
@@ -882,7 +888,7 @@ A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 07200
 L. Tuura et al., Scaling CMS data transfer system for LHC start-up, J.Phys.Conf.Ser, 119, 072030 (2008)
 %
 \bibitem{RefPA}
-FIND A REFERENCE
+D. Evans et al., The CMS Monte Carlo production system: Development and design, Nucl.Phys.Proc.Suppl.177-178, 285-286 (2008)
 %
 \bibitem{RefCRAB}
 D. Spiga et al., The CMS Remote Analysis Builder CRAB, 14th Int. Conf. on High Performance Computing ISBN/ISSN: 978-3-540-77219-4 , 4873, 580-586 (2007)\\
