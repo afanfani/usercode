@@ -61,7 +61,7 @@ grestore
 \title{Distributed Analysis in CMS}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\author{Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Carlos Kavka \and Chih-Hao Huang \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Niccolo' Magini \and Pablo Saiz \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+\author{Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Niccolo' Magini \and Pablo Saiz \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
 
 \authorrunning{ Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Colling \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Gerhild Maier \and Giuseppe Bagliesi \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Ken Bloom \and Marco Calloni \and Mattia Cinquilli \and Niccolo' Magini \and Pablo Saiz \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Subir Sarkar \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo} % if too long for running head
 
@@ -101,7 +101,9 @@ grestore
            V. Kuznetsov \and D. Riley \at Cornell University, Ithaca, New York, USA 
            \and 
            R. Egeland \at Minnesota University, Twin Cities, USA
-           \and 
+           \and
+           B. Kim \at Florida University, USA 
+           \and
            T. Wildish \at Princeton University, USA
            \and
            J. Letts \and S. Padhi \and F. Wuerthwein \at S. Diego University, USA
@@ -450,9 +452,10 @@ are installed in addition, e.g. clients for databases, various ROOT
 versions and GEANT4.
 
 The installations itself are performed by high priority Grid
-jobs. Those jobs are sent using a dedicated VOMS role (lcgadmin) in
-order gain write access to the CMS software area. Once a release is
-installed a tag is set on the CE that published the availability of
+jobs. Those jobs are sent using a dedicated VOMS role %(lcgadmin) 
+in order gain write access to the CMS software area. Once a release is
+installed a tag is set on the %CE 
+site that published the availability of
 the release. The tags are used by the workload management systems to
 submit jobs to sites that provide the requested CMS release.
 Typically there about 10 production releases installed at time at all
@@ -463,7 +466,7 @@ using two different instances, one for OSG based sites and one for
 gLite based and ARC based sites. Including Tier-1, Tier-2 and Tier-3
 sites about 80 sites are served routinely.
 
-
+\subsection{Infrastructure readiness}
 \label{sec:4_2}
 Operation of the CMS distributed infrastructure requires a stable and 
 reliable behaviour of the services.
