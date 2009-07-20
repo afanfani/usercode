@@ -409,7 +409,6 @@ in turn depends on the gLite File Transfer System (FTS).
 WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites)
 that provide the transfer channels on which the transfers take place.
 
-% FIXME Need to define where/how to use the following sentence
 %CMS established a body to coordinate the operation of the facilities offering support to the experiment. The Facilities Operations team coordinates the operations at all sites (Tier-0, Tier-1s and Tier-2s) in close collaboration with the site managers and with the WLCG project.
 
 \subsubsection{ SiteDB }
@@ -561,7 +560,9 @@ The CMS Savannah Computing Infrastructure portal is used to report problems acro
 
 \section{Experience with CMS Distributed Analysis}
 \label{sec:5}
-\emph{intro about challanges and user experience....}
+
+Distributed Analysis in CMS has been experienced since several years, passing through sequentially planned steps of increasing complexity named data and physics challenges~\cite{RefPastExp}.
+It has been used extensively during studies to prepare the CMS Physics Technical Design Report~\cite{PTDR} and various detector commissioning activities. 
 
 \subsection{Tests}
 \label{sec:5_1}
@@ -716,16 +717,13 @@ analysis needs.
 \subsection{Sustained Analysis}
 \label{sec:5_2}
 
-Distributed analysis is regularly performed by CMS users for MonteCarlo based analysis
-and analysis of cosmic data collected in detector commissioning activities.
-
-
-\emph{Look at metrics/content of PADA ASTF CHEP09 PAPER CR2009-088}
-
+%\emph{Look at metrics/content of PADA ASTF CHEP09 PAPER CR2009-088}
+% CPU and wall clock time success rates are about 80% (from a 2 months observation) 
+Distributed analysis is regularly performed by users for studies of the CMS physics discovery potential based on MC simulation and of the cosmic data collected in detector commissioning activities.
 During last year about 11 million analysis jobs were submitted.  Peaks
 of more than 100,000 jobs per day have been reached, with an average
 of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
-The distribution of jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
+The distribution of analysis jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
 
 \begin{figure}
 \includegraphics[width=3.5in]{figures/crabjobsdaily.png}
@@ -760,27 +758,43 @@ as shown in Figure~\ref{fig:distusers}.
 
 
 %Analysis job efficiency is summaried in Fig.~\ref{fig:AnalysisJobEffMay08March09}. 
-The distribution of analysis job efficiency over time is shown inFig.~\ref{fig:T2EffApril0809}.
+The distribution of analysis job efficiency over time is shown inFig.~\ref{fig:T2EffApril0809}. The average success rate is 61\% with 4\% of cancelled jobs, 10\% of grid failures and 25\% application failures.
+% 61% success , 4% cancell 10% grid failures 25% application failures
 Most of the failures faced by the users are due to user application errors, remote stageout issues and errors reading data at the site. Application failures are expected, since analysis jobs run user code which may not have been
 thoroughly tested.  Failures in stage out of the data output files to
 remote storage can be due to users misconfiguring the remote
 destination to use or to transfer problems. \emph{mention the foreseen approach for stageout}
 Failures accessing data at the site mainly expose problems with the storage at the site or
 inconsistencies between the data catalogue and what has been deleted at the site.  
-A few percent of failures are due to jobs aborted by the Grid, however these are often due to site problems or jobs that spend
-too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
+\emph{data consistency campain...}
+Failures due to jobs aborted by the Grid might also be due to site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
 
+% From April08 to April09:
+% overall T2 analysis job efficiency 61%
+% breakdown of failures:
+% - Cancelled 4%
+% - Grid failures 10% Aborted
+% - Application errors 25%
+%   40% remote stageout    ==> overall 10%
+%   13% CMSSW error (8001)
+%    6% error reading files at site (8020) ==> overall 1.5% 
+%    9% cmsRun did not produce a valid job report (50115): Bad crash usually
+%    2% error 1
+%    2% problem with ModifyJobRepor (70500)
+%    2.5% Config File Read Error (7002)
+%
 % From Jan09 to May09:
 % overall analysis job efficiency 62%
 % breakdown of failures:
-% - Grid failures
-%   8% Grid Aborted jobs
+% - Grid failures: 8% Aborted
 % - Application errors:
 %   35% remote stageout
 %   22% CMSSW error (8001 , 8009) --> I suspect that some of the 8001
 %                                      are due to error reading input files
 %   13% error reading files at site (8020)
 %    6.8% error 50115
+%
+
 \begin{figure}
 %\includegraphics[width=0.5\textwidth]{figures/AnalysisJobEffMay08March09.png}
 \includegraphics[width=0.5\textwidth]{figures/T2EffApril0809.png}
@@ -903,12 +917,19 @@ G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Pr
 \bibitem{RefgLiteWMS} P. Andreetto et al., The gLite Workload Management System, J.Phys.Conf.Ser, 119, 062007 (2008)
 %
 \bibitem{RefOSG} R. Pordes et al, The Open Science Grid, J.Phys.Conf.Ser, 78, 012057 (2007)
-\bibitem{Refglidein} ADD A REFERENCE
+%
+\bibitem{Refglidein} I. Sfiligoi et al., glideinWMS - A generic pilot-based Workload Management System, J.Phys.Conf.Ser., 119, 062044 (2008)
 %
 \bibitem{RefARC} M.Ellertet al., Advanced Resource Connector middleware
   for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)
 %
 \bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Proceedings of NSS-IEEE, Dresden (2008)  \emph{ARE THERE MORE DETAILED INFO ABOUT THIS RERENCE?}
+%
+\bibitem{PTDR} G.L. Bayatian et al., CMS Technical Design Report volume II: physics performance, Journal of Physics G: Nuclear and Particle Physics., 34, 995-1579 (2007)
+%
+\bibitem{RefPastExp} N.DeFilippis et al., The CMS analysis chain in a distributed environment, Nucl.Instrum.Meth. A559, 38-42 (2006) 
+
+A.Fanfani et al.,Distributed computing Grid experiences in CMS, IEEE Trans.Nucl.Sci.52,884-890 (2005)
 %% Format for books
 %\bibitem{RefB}
 %Author, Book title, page numbers. Publisher, place (year)
