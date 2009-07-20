@@ -85,7 +85,7 @@ grestore
            \and
            S. Metson \at Bristol University, UK
            \and
-           C. Wissing \at DESY,  Germany
+           Ch. Wissing \at DESY,  Germany\\
            T. Kress \at RWTH , Germany
            \and
            J. D'Hondt \and J.Maes \and P. Van Mulders \and I. Villella \at Brussel University, Belgium
@@ -231,7 +231,7 @@ The functionalities that CRAB provides, as schematically illustrated in Fig.~\re
 \item{Data discovery and location:}
 Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find which data and where is to be accessed.
 \item{Job preparation:}
-Pack local user code and the environment to be sent to remote sites where the CMS software is pre-installed as described in ~\ref{sec:4_1_1}.
+Pack local user code and the environment to be sent to remote sites where the CMS software is pre-installed as described in ~\ref{sec:4_1_3}.
 \item{Job splitting:}
 Decide how to configure each job to access a subset of files in the dataset to effectively use the Tier-2s resources.
 \item{Job submission:}
@@ -253,7 +253,7 @@ Standard operations such as job submission, tracking, cancellation and output re
 %% CRAB server motivation and architecture:
 The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Fig.~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
 The Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
-The Analysis Server is coupled with an external GridFTp server %Storage Element
+The Analysis Server is coupled with an external GridFTP server %Storage Element
  that stores the user input and output data, allowing to implement CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
 
 
@@ -396,7 +396,7 @@ The access to computing resources (Compute Elements) is based on
 the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
 The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer,
 several high level workload management tools provided by the different infrastructures
-(see~\ref{sec:CRAB}.
+(see~\ref{sec:CRAB}).
 
 
 All computing and storage resources publish information on their
@@ -417,24 +417,53 @@ that provide the transfer channels on which the transfers take place.
 SiteDB is a catalogue of all CMS computing Tiers.
 It records the CMS resources at the site, the resources pledged for the future,
 and it keeps track of CMS personnel at each site, including the roles
-and duties they fulfull in the collaboration.
+and duties they fulfill in the collaboration.
 %Collaborators are automatically added to the SiteDB database on registering with the CMS Hypernews system. As well as providing the aforementioned information, SiteDB acts as a simple monitoring portal, bringing  in and providing links to content from PhEDEx, DBS, SAM tests, CMS Dashboard, GOCDB and GSTAT. The database also maintains a mapping between the different names a site can be known by, for instance the institute name (University of Bristol), its SAM/WLCG name (UKI-SOUTHGRID-BRIS-HEP), and the CMS name (T2_UK_SGrid_Bristol), as well as associations between sites (e.g. the parent T1 site for a T2)
 CMS has designed and built SiteDB because CMS relies on close contact
 to the sites it uses. The distributed nature of CMS computing makes
-it very useful to track the people's responsbilities, and to contact
-them on the basis of their role. Some site roles are technica
- (for instance running PhEDEx) others are related to CMS computing
- policy (e.g. the site's Data Manager). 
+it very useful to track the people's responsbilities, and to contact
+them on the basis of their role. Some site roles are technica
+ (for instance running PhEDEx) others are related to CMS computing
+ policy (e.g. the site's Data Manager).
 %For users (both end users, and consumer of the info like the computing shifters) who have a problem with a site and may not know what the various roles and responsibilities are at a site, SiteDB provides this information. 
 %In additions, SiteDB links to the CMS Savannah Computing Infrastructure portal, one of the tools CMS uses for internal  tracking of problems across the distributed infrastructure. In Savannah there is a group ('squad' in Savannah jargon) per site, dynamically maintained from the information in SiteDB via a set of cron-tabbed scripts.
 
 \subsubsection{ Software Installation }
 \label{sec:4_1_3}
-Distributed analysis relies on the experiment software being pre-installed on the remote
-sites for each release and removed when declared obsolete. 
-The installation procedure is controlled centrally via high priority Grid jobs, which install the software on dedicated shared areas on the Compute Elements and also publish the versions available on the information system.
+%% Contributed by Ch.Wissing
+%% Should be cross checked by Bockjoo
+Distributed analysis relies on the experiment software being
+pre-installed on the remote sites for each release. The CMS software
+is packaged using the RedHat Package Manager (RPM), which is used by
+some major Linux distributions. Dependencies between packages are
+resolved with the help of the apt-get tool, which is also widely used in
+the Linux community. The whole CMS software installation gets installed
+on a filesystem shared among all worker nodes of a site.
 
-\subsection{Infrastructure readiness}
+During the
+first setup of CMS software (``bootstrap'') the underlying operating system gets
+checked for all required packages. These are imported into a meta-RPM,
+which gets installed in the CMS software area. From that point on all
+CMS installations are independent of the underlying operating
+system. Except the actual CMSSW releases some ``external'' packages
+are installed in addition, e.g. clients for databases, various ROOT
+versions and GEANT4.
+
+The installations itself are performed by high priority Grid
+jobs. Those jobs are sent using a dedicated VOMS role (lcgadmin) in
+order gain write access to the CMS software area. Once a release is
+installed a tag is set on the CE that published the availability of
+the release. The tags are used by the workload management systems to
+submit jobs to sites that provide the requested CMS release.
+Typically there about 10 production releases installed at time at all
+sites requiring roughly 50\,GB.
+
+All software deployment and  removal activities are handled centrally
+using two different instances, one for OSG based sites and one for
+gLite based and ARC based sites. Including Tier-1, Tier-2 and Tier-3
+sites about 80 sites are served routinely.
+
+
 \label{sec:4_2}
 Operation of the CMS distributed infrastructure requires a stable and 
 reliable behaviour of the services.
