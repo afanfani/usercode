@@ -155,10 +155,10 @@ Each Tier-1 centre assures the distributed custodial storage of a fraction of th
 
 \subsection{Tier-2}
 \label{sec:2_3}
-Tier-2 centers provide capacity for user data analysis and for production of simulated data.
+Tier-2 centers, more than 50 sites around the world,  provide capacity for user data analysis and for production of simulated data.
 In CMS data transfer to Tier-2 can occur from any Tier-1. A significant effort is required in 
 commissioning all possible transfer links, as described in section ~\ref{sec:LinkCommissioning}, as well
-as improving site availability, as described in section ~\ref{sec:4_1_3}.
+as improving site availability, as described in section ~\ref{sec:4_2_1}.
 
 \section{Framework for CMS Distributed Analysis}
 \label{sec:3}
@@ -752,21 +752,9 @@ analysis needs.
 %\emph{Look at metrics/content of PADA ASTF CHEP09 PAPER CR2009-088}
 % CPU and wall clock time success rates are about 80% (from a 2 months observation) 
 Distributed analysis is regularly performed by users for studies of the CMS physics discovery potential based on MC simulation and of the cosmic data collected in detector commissioning activities.
-During last year about 11 million analysis jobs were submitted.  Peaks
-of more than 100,000 jobs per day have been reached, with an average
-of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
-The distribution of analysis jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
-
-\begin{figure}
-\includegraphics[width=3.5in]{figures/crabjobsdaily.png}
-\caption{Number of daily jobs terminated in 2008. }
-\label{fig:jobs}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.7\textwidth]{figures/AnalysisJobHistoryApril0809.png}
-\caption{Number of analysis jobs by Tier2s during last year from CMS dashboard History view. Each color refers to a site. }
-\label{fig:AnalysisJobHistoryApril0809}
-\end{figure}
+The number of users is increasing over time. For instance since 2008 the number of distinct CRAB users has continously grown to more than 1000, a very broad adoption that represent roughly 30\% of the whole CMS community, as shown in Figure~\ref{fig:intuser}.
+The day by day distribution of CRAB users is shown in Figure~\ref{fig:distusers}. An average of 95 different users per day use CRAB to submit their analysis 
+jobs. 
 
 \begin{figure}
 \begin{minipage}{.48\textwidth}
@@ -784,22 +772,31 @@ The distribution of analysis jobs at Tier2s over the year is shown in Figure~\re
 \end{figure}
 
 
-Since 2008 the number of distinct CRAB users has grown to more than 1000, almost 30\% of the whole CMS
-community, as shown in Figure~\ref{fig:intuser}. About 100 users per day use CRAB to submit their analysis jobs, 
-as shown in Figure~\ref{fig:distusers}.
-
+During last year about 11 million analysis jobs were submitted.  Peaks
+of more than 100,000 jobs per day have been reached, with an average
+of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
+The distribution of analysis jobs at Tier2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, both in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
+\begin{figure}
+\includegraphics[width=3.5in]{figures/crabjobsdaily.png}
+\caption{Number of daily jobs terminated in 2008. }
+\label{fig:jobs}
+\end{figure}
 
 %Analysis job efficiency is summaried in Fig.~\ref{fig:AnalysisJobEffMay08March09}. 
 The distribution of analysis job efficiency over time is shown inFig.~\ref{fig:T2EffApril0809}. The average success rate is 61\% with 4\% of cancelled jobs, 10\% of grid failures and 25\% application failures.
-% 61% success , 4% cancell 10% grid failures 25% application failures
-Most of the failures faced by the users are due to user application errors, remote stageout issues and errors reading data at the site. Application failures are expected, since analysis jobs run user code which may not have been
-thoroughly tested.  Failures in stage out of the data output files to
-remote storage can be due to users misconfiguring the remote
-destination to use or to transfer problems. \emph{mention the foreseen approach for stageout}
-Failures accessing data at the site mainly expose problems with the storage at the site or
-inconsistencies between the data catalogue and what has been deleted at the site.  
-\emph{data consistency campain...}
-Failures due to jobs aborted by the Grid might also be due to site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
+Most of the failures faced by the users are due to remote stageout issues, user application errors and errors reading data at the site. 
+Part of the failures are somehow expected, since analysis jobs run user code which may not have been thoroughly tested. For instance memory leaks or crash in rare events might be hard to spot in the small scale test done by the users.
+
+Failures in stage out of the data output files to remote storage can be due 
+to users misconfiguring the remote destination to use or to transfer problems.
+An hanging or failing stage out represents a waste of CPU since it occurs at 
+the end of the job processing, so an approach to decouple the job processing and the remote stage out is under development. At job finishing the output will be stored locally at the site and the remote stage out will occur in an asynchronous step.
+
+Failures accessing data at the site mainly expose problems with the storage at the site or inconsistencies between the data catalogue and what has been deleted at the site. 
+Periodically data consistency and integrity checks at all Tier-2 sites are performed. This check verifies that the contents of the disks at the Tier-2 sites are consistent with the PhEDEx databases and DBS and reduce the rate of data access errors.
+
+Grid failures are due to underlying grid system but also reflect site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
+
 
 % From April08 to April09:
 % overall T2 analysis job efficiency 61%
@@ -808,7 +805,7 @@ Failures due to jobs aborted by the Grid might also be due to site problems or j
 % - Grid failures 10% Aborted
 % - Application errors 25%
 %   40% remote stageout    ==> overall 10%
-%   13% CMSSW error (8001)
+%   13% CMSSW error (8001) ==> overall 3%
 %    6% error reading files at site (8020) ==> overall 1.5% 
 %    9% cmsRun did not produce a valid job report (50115): Bad crash usually
 %    2% error 1
@@ -826,38 +823,57 @@ Failures due to jobs aborted by the Grid might also be due to site problems or j
 %   13% error reading files at site (8020)
 %    6.8% error 50115
 %
-
 \begin{figure}
+\begin{minipage}{.55\textwidth}
+\centering
+\includegraphics[width=1.0\textwidth]{figures/AnalysisJobHistoryApril0809.png}
+\caption{Number of analysis jobs by Tier2s during last year from CMS dashboard History view. Each color refers to a site. }
+\label{fig:AnalysisJobHistoryApril0809}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\centering
 %\includegraphics[width=0.5\textwidth]{figures/AnalysisJobEffMay08March09.png}
-\includegraphics[width=0.5\textwidth]{figures/T2EffApril0809.png}
+\includegraphics[width=0.9\textwidth]{figures/T2EffApril0809.png}
 \caption{Analysis job efficiency during last year. }
 \label{fig:T2EffApril0809}
+\end{minipage}
 \end{figure}
 
-About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7
-WMS. The rest of the analysis jobs are submitted using Condor-G.
+About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
 
 CRAB Analysis Server instances have been deployed in several countries (CERN, Italy, France). A couple of them are open to worldwide distributed CMS users. Other instances are being used by local communities or specific physics group.
-For example the number of users using one server is shown in Fig.~\ref{fig:CSusers}.
-
+The growing number of users using a CRAB Analysis Server intance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
+% 33% of jobs in last 5 months submitted with Server (1.5M jobs), direct (3Mjobs) 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{figures/CSusersLast5months.png}
 \caption{Number of distinct users using a CRAB server instance during last 5 months}
 \label{fig:CSusers}
 \end{figure}
-In preparation for the LHC collision data taking real cosmic data are collected. 
-\emph{briefly describe the CRAFT analysis exercise at T2s: 
-\begin{itemize}
-\item a set of paper being prepare assessing the detector performance plus some physics measurement
-\item data distribution mainly at Muon Tier2s, but also at other sites for most popular skims
-\item number of users Fig.~\ref{fig:CRAFTusers} and jobs Fig.~\ref{fig:CRAFTjobs} in CRAFT ( 2/3 of jobs at Tier2s and 1/3 at CAF)
-\end{itemize}
-}
+
+An example of analysis activity during the year has been the analysis of real 
+cosmic data collected during a long period of data-taking, called CRAFT (Cosmics Run At Four Tesla) to commission the detector in preparation for LHC collision. About 300 million events of cosmic muons were taken and their analysis is meant to assess detector perfomance and perfom physics studies.
+% atmospheric cosmic muon charge ratio using the full CMS detector
+% measurement of the absolute cosmic muon flux as function of the muon momentum
+The raw data were transferred at Tier-1 where several re-processing and data skimming took place. The reconstructed data were all shipped to the CAF where calibration and alignment studies were performed in order to provide better conditions to be used in subsequent re-processing. 
+%All data at CAF: 122 TB
+Reconstructed data and their skims were also spread to Tier2s, manily to 
+those associated with Muon and Tracker group although overall about 20 sites hosted CRAFT data. The amount of CRAFT data transferred at Tier2s was about 300TB.
+%Total data of CRAFT data transfers at other T2s (19 sites):  ~315TB
+The number of users analysing CRAFT data during the year is shown in Fig.~\ref{fig:CRAFTusers} where the breackdown of users using the CAF and those using the Tier2s is also reported. The distribution of analysis jobs is shown in Fig.~\ref{fig:CRAFTjobs}, roughly two third at Tier2s and one third at CAF.
+The job efficiency at Tier2s is lower than that at CAF because on top of the application errors there are grid failures and the stage out error mentioned above.
+Effort in improving the success rate and regularly identifying problem areas are ongoing.
+%=== at CAF: success rate 83% with 17% of application failures 
+% application failures 37% CMSSW error,26% errror 50115 likely bad crash , 10% failures reading input files
+% overall 6% CMSSW error, 4% bad crash , 2% input files 
+%=== on Grid: success rate 48% with 35% of application failures and 17% of Grid failures 
+% application failures :57% stageout, 18% CMSSW error, 7% reading input files)
+% overall 20% stageout, 6% CMSSW error, 2.5% input files
+%
 \begin{figure}
 \begin{minipage}{.48\textwidth}
 \centering
 \includegraphics[width=0.94\textwidth]{figures/CRAFTusers.pdf}
-\caption{Number of users analyzing CRAFT data using the CAF (light yellow) or the Tier2s(red).}
+\caption{Number of users analyzing CRAFT data using the CAF (light gray) or the Tier2s (dark gray).}
 \label{fig:CRAFTusers}
 %\end{figure}
 %\begin{figure}
@@ -865,11 +881,10 @@ In preparation for the LHC collision data taking real cosmic data are collected.
 \begin{minipage}{.48\textwidth}
 \centering
 \includegraphics[width=1.06\textwidth]{figures/CRAFTjobs.pdf}
-\caption{Number of jobs analyzing CRAFT data using the CAF (light gray) or the Tier2s(dark grey).}
+\caption{Number of jobs analyzing CRAFT data using the CAF (light gray) or the Tier2s (dark grey).}
 \label{fig:CRAFTjobs}
 \end{minipage}
 \end{figure}
-
 
 
 \section{Conclusions}
@@ -925,7 +940,8 @@ In preparation for the LHC collision data taking real cosmic data are collected.
 CMS Collaboration R. Adolphi et al., The CMS experiment at the CERN LHC, JINST, 0803, S08004 (2008)
 %
 \bibitem{RefCM}
-CMS Collaboration, Computing Model TDR....
+C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-
+035/G-083 (2004)
 %
 \bibitem{RefDBS}
 A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 072001 (2008)
