@@ -61,9 +61,9 @@ grestore
 \title{Distributed Analysis in CMS}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\author{Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Niccolo' Magini \and Pablo Saiz \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+\author{Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
 
-\authorrunning{ Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Colling \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Gerhild Maier \and Giuseppe Bagliesi \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Ken Bloom \and Marco Calloni \and Mattia Cinquilli \and Niccolo' Magini \and Pablo Saiz \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Subir Sarkar \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo} % if too long for running head
+\authorrunning{ Alessandra Fanfani \and Andrea Sciab`a \and Anzar Afaq \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Colling \and Eric Vaandering \and Fabio Farina \and Federica Fanzago \and Frank Wuerthwein \and Gerhild Maier \and Giuseppe Bagliesi \and Giuseppe Codispoti \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose' M. Hern´andez \and Joseph Flix \and Jukka Klem \and Julia Andreeva \and Ken Bloom \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Subir Sarkar \and Thomas Kress \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo} % if too long for running head
 
 \institute{A. Fanfani \and D. Bonacorsi \and G. Codispoti \and C. Grandi
            \at INFN and University of Bologna, viale Berti Pichat 6/2, 40127 Bologna, Italy \\
@@ -71,7 +71,9 @@ grestore
               \email{fanfani@bo.infn.it}
 %             \emph{Present address:} of F. Author  %  if needed
            \and 
-            M. Calloni \and N. Magini \and D. Spiga \and J. Andreeva \and P. Saiz \and V. Miccio \at CERN, Switzerland
+            M. Calloni \and D. Spiga \and J. Andreeva \and P. Saiz \at CERN, Switzerland
+           \and
+           N. Magini \and V. Miccio \at CERN, Switzerland and INFN-CNAF, Italy 
            \and
            S. Lacaprara \at Legnaro INFN, Italy
            \and
@@ -495,19 +497,33 @@ To recover from a "not ready state" the site needs to be ok for at least two con
 
 \subsubsection{ Data transfer links }
 \label{sec:LinkCommissioning}
-%% From DanieleB
-A site needs to have sufficient data transfer connections to other sites in order to perform CMS workflows. 
-An ad-hoc task force (Debugging Data Transfers,DDT)\cite{RefDDT}
-was created in 2008 to coordinate the debugging of data transfer links,
+%% From DanieleB & Nicolo'
+A site needs to have sufficient data transfer connections to other sites in
+order to perform CMS workflows. 
+An ad-hoc task force (Debugging Data Transfers, DDT)\cite{RefDDT}
+was created in 2007 to coordinate the debugging of data transfer links,
 in order to commission most crucial transfer routes among CMS Tiers 
 by designing and enforcing a clear procedure to debug problematic links.
-The DDT procedures are now regularly used to certify links quality.
-A data link from Tier-0 or Tier-1s must demonstrate a rate of at least 20 MB/s over 24 hours from Tier-0 or Tier-1s. Recognizing that uplinks from Tier-2 to Tier-1 sites have a lower requirement in the computing model, they are only required to transfer 5 MB/s. Links are only decommissioned if they
-failed this transfer exercise for three days. 
-All Tier-0/1 to Tier-1 links are commissioned. 35 Tier-2 sites have all of their downlinks from Tier-1 sites commissioned, and 2 more have seven out of eight links commissioned. 43 Tier-2 sites have at least two commissioned uplinks to Tier-1 sites.
-\emph{FIXME: NEEDS SOME WORK: BETTER CLARIFY THE ONGOING EFFORT?}
-\emph{USE DDT PAPER AT CHEP09 CR2009-093}
 
+A LoadTest infrastructure was set up in a separate debug environment of PhEDEx
+to handle DDT test traffic.
+The task force was charged with scheduling LoadTest transfers, assisting site
+administrators with the configuration of data transfer middleware,
+troubleshooting transfer issues, and documenting common problems and solutions.
+The DDT procedures are now regularly used to certify links quality.
+
+In order to pass commissioning criteria, a data link from Tier-0 or Tier-1s must
+demonstrate a rate of at least 20 MB/s over 24 hours. Recognizing that uplinks
+from Tier-2 to Tier-1 sites have a lower requirement in the computing model,
+they are only required to transfer 5 MB/s. Links were routinely exercised and
+were only decommissioned if they failed to meet these requirements for three
+days in a row. Transfer quality on commissioned links is continuously monitored
+with low rate transfers.
+
+All Tier-0/1 to Tier-1 links are currently commissioned. 37 Tier-2 sites have
+all of their downlinks from Tier-1 sites commissioned, and 2 more have seven out
+of eight links commissioned. 47 Tier-2 sites have at least two commissioned
+uplinks to Tier-1 sites.
 
 \subsection{Analysis Organization at CMS Sites}
 \label{sec:4_3}
