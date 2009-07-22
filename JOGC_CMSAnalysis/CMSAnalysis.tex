@@ -207,18 +207,72 @@ Each CMS site has a Trivial File Catalogue made of simple rules to build site-sp
 
 \subsubsection{PhEDEx}
 \label{sec:3_1_3}
-The CMS data placement and transfer systems are implemented by PhEDEx\cite{RefPhEDEx}. The data placement system provides an interface to define, execute and monitor administrative decision of data movement like where experiment data is to be located, which copies are custodial, etc. 
-Data are distributed according to available resources and physics interests at sites. 
-% Users can request data transfer to a site however an authorization by the site data manager is required
-The data transfer system manages the replication of files from multiple sources to multiple destinations. It relies on transfer nodes dealing with %site specific replication and tape management. 
-the underlying grid file and storage management services.
-PhEDEx keeps track of data location in the distributed computing system. The analysis system relies on PhEDEx to obtain the locations of the data.
+The CMS data placement and transfer systems are implemented by
+PhEDEx\cite{RefPhEDEx}. The data placement system provides an
+interface to define, execute and monitor administrative decision of
+data movement such as where experiment data is to be located, which
+copies are custodial, and to which physics analysis group the data is
+allocated for.  Data are distributed according to available resources
+and physics interests at sites as determined by CMS Data Operations,
+physics analysis groups, and/or the site data managers.
 
-Technically PhEDEx is based on software agents storing their state and communicating via a central ''black board'' database hosted in the CERN Oracle RAC (Real Application Clusters). A set of service agents are operated centrally at CERN while each site in general operates only the agents that interact with the storage at the site. A web site offers various management tools and allows to monitor to current and historical transfer conditions.
+In PhEDEx, distinct storage areas (grid sites or disk/tape areas
+within a site) are represented by a node.  Links between the nodes
+define the transfer topology.  The transfer workflow begins when a
+user makes a transfer request of some data to some node via the web
+page, which is then approved by that node's Data Manager.  In the
+request, the user only specifies the destination node, and the optimal
+source node is determined from among the available file replicas.  To
+do this, PhEDEx uses Dijkstra's algorithm to calculate the path of
+least cost, where cost of transfer for each link is determined by the
+recent transfer rate and the size of the current queue over that link.
+Using this method, PhEDEx balances exports among multiple sources when
+the same data is requested to multiple nodes, and is also
+fault-tolerant when links fail to perform and another source replica
+is available.
 
-\emph{FIXME FOR RICKY: expand a bit with routing to find the optimal source, subscription and approval procedure, interfaced to the FTS service, deletion of data via PhEDEx, data consistency tool, etc}
-\emph{FIXME FOR RICKY: fill phedex usage numbers} In the last XY months PhEDEx transferred XY PB data. In months XXX the average global daily transfer rate was XYTB/day or XY GB/s. 
-%PhEDEx has demonstrated capacity to sustain well over xy million transfers an hour for extended periods of time.
+Technically PhEDEx is based on software agents storing their state and
+communicating via a central ``black board'' database hosted in the
+CERN Oracle RAC (Real Application Clusters). A set of service agents
+run centrally at CERN while each site in general runs
+only the agents that interact with the storage at the site. The usual
+method of transfer execution is to submit a job to FTS, which is
+managed by the site download agent using the FTS backend.  Download
+agent backends for other transfer methods are available, making PhEDEx
+technology independent. A web site offers various management tools,
+including the request creation and approval interfaces, and allows
+users and site administrators to monitor to current and historical
+transfer conditions.  File deletion and on-demand consistency checking
+are also provided by agents running at the site receiving work queues
+from the central database.  A web data service provides
+machine-readable XML or JSON data from the database, which is used to
+integrate PhEDEx with other CMS computing components.  For instance,
+PhEDEx keeps track of data location in the distributed computing
+system and the analysis system relies on the data service to obtain
+the locations of the data when submitting jobs.
+
+\begin{figure}
+ \includegraphics[width=0.70\textwidth]{figures/phedex-avg-monthly-volume.png}
+\caption{Average daily transfer volume per month using PhEDEx since the project began.}
+\label{fig:phedex-transfers}
+\end{figure}
+
+Using PhEDEx, CMS has transferred over 87 PB of data since the project
+begain in 2004.  Figure \ref{fig:phedex-transfers} shows the average
+daily transfer volume per month of data managed by PhEDEx from
+mid-2004 until July 2009.  Varios challenge periods are highlighted,
+and in particular the SC4, CSA07, and LoadTest/Debug periods resulted
+in large increases in average transfer volume.  ``General'' transfers
+include transferring of monte-carlo or cosmics raw data for physics
+analysis.  ``Debug'' and ``LoadTest'' transfers are of randomly
+generated data for the purpose of debugging and commissioning the
+transfer fabric.  In the first 6 months of 2009 PhEDEx has maintained
+average daily transfer volumes of over 80 TB per day, where roughly
+40\% of the traffic has been ``General'' production/analysis traffic
+and the remaining 60\% ``Debug'' commissioning traffic.  Expected
+burst levels during LHC data taking are at 200 TB per day, and such
+levels have already been demonstrated by PhEDEx in late February 2008
+during the CCRC'08 challenge.
 
 \subsection{Workload Management}
 The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs that process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis.
@@ -963,6 +1017,7 @@ C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-
 A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 072001 (2008)
 %
 \bibitem{RefPhEDEx}
+R. Egeland et al., Data transfer infrastructure for CMS data taking, Proceedings of Science, PoS(ACAT08)033
 L. Tuura et al., Scaling CMS data transfer system for LHC start-up, J.Phys.Conf.Ser, 119, 072030 (2008)
 %
 \bibitem{RefPA}
