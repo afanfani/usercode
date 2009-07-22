@@ -118,7 +118,17 @@ grestore
 \maketitle
 
 \begin{abstract}
-Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+CMS expects to manage several Pbytes of data each year, distributing them
+over many computing sites around the world and enabling data access at those
+centers for analysis. CMS has identified the distributed sites as the primary
+location for physics analysis to support a wide community of users,
+potentially as many as 3000 users. This represents an unprecedent scale of
+distributed computing resources and number of users.
+An overview of the computing architecture, the software tools and
+the distributed infrastructure deployed is reported.
+Summaries of the experience in establishing efficient and scalable operations
+to prepare for CMS distributed analysis are presented, followed by
+the user experience in their current analysis activities.
 \keywords{LHC \and CMS \and Distributed Analysis}
 % \PACS{PACS code1 \and PACS code2 \and more}
 % \subclass{MSC code1 \and MSC code2 \and more}
@@ -540,7 +550,7 @@ Operation of the CMS distributed infrastructure requires a stable and
 reliable behaviour of the services.
 CMS has established a procedure routinely operated by the Facilities 
 Operations team to extensively test all relevant aspects of sites 
-supporting CMS, such as the ability to efficiently use their network 
+supporting CMS~\cite{RefSite}, such as the ability to efficiently use their network 
 to transfer data, the functionality of all the site services relevant for CMS and the capability to sustain the various CMS computing workflows at the required scale.
 % FIXME: AF is not sure how that steering occurs..it does not for the time being in analysis
 %Result of the tests are combined in a "Readyness" metric that is used to 
@@ -1054,7 +1064,14 @@ G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Pr
 \bibitem{RefARC} M.Ellertet al., Advanced Resource Connector middleware
   for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)
 %
-\bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Proceedings of NSS-IEEE, Dresden (2008)  \emph{ARE THERE MORE DETAILED INFO ABOUT THIS RERENCE?}
+\bibitem{RefSite}
+J.Flix, A. Sciab\`a et al., The commissioning of CMS computing centres in the worldwide LHC computing Grid, Conference Record N29-5 session Grid Computing, Nuclear Science Symposium IEEE , Dresden (2008)
+%J.Flix et al., The commissioning of CMS sites: improving the site reliability, 
+%Proceedings of International Conference On Computing In High Energy Physics And Nuclear Physics (2009). \emph{IS IT POSSIBLE TO REFERNCE NOT YET PUBLISHED CHEP09 PAPER?}\\ 
+%\emph{IS THE ACAT REFERENCE READY?}
+
+%
+\bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Conference Record XYZ , Nuclear Science Symposium IEEE , Dresden (2008)  \emph{ADD THE CONFERENCE RECORD}
 %
 \bibitem{PTDR} G.L. Bayatian et al., CMS Technical Design Report volume II: physics performance, Journal of Physics G: Nuclear and Particle Physics., 34, 995-1579 (2007)
 %
