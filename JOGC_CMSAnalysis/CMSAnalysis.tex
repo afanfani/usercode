@@ -98,17 +98,17 @@ grestore
            \and
             J. Flix \at CIEMAT, Madrid, Spain  and PIC, Barcelona, Spain
            \and
-           A. Afaq \and D. Evans \and I. Fisk \and Y. Guo \and C. Huang \and V. Sekhri \and E.Vaandering \at Fermilab, Batavia, Illinois, USA
+           A. Afaq \and D. Evans \and I. Fisk \and Y. Guo \and C. Huang \and V. Sekhri \and E.Vaandering \at Fermilab, Batavia, IL, USA
            \and 
-           V. Kuznetsov \and D. Riley \at Cornell University, Ithaca, New York, USA 
+           V. Kuznetsov \and D. Riley \at Cornell University, Ithaca, NY, USA 
            \and 
-           R. Egeland \at Minnesota University, Twin Cities, USA
+           R. Egeland \at University of Minnesota, Twin Cities, MN, USA
            \and
-           B. Kim \at Florida University, USA 
+           B. Kim \at University of Florida, Gainesville, FL, USA 
            \and
-           T. Wildish \at Princeton University, USA
+           T. Wildish \at Princeton University, Princeton, NJ, USA
            \and
-           J. Letts \and S. Padhi \and F. Wuerthwein \at S. Diego University, USA
+           J. Letts \and S. Padhi \and F. Wuerthwein \at University of California, San Diego, CA, USA
 }
 
 \date{Received: date / Accepted: date}
@@ -163,13 +163,16 @@ The choice of a distributed system allows to delegate responsibilities to local 
 
 
 A multi-Tier hierarchical distributed model is adopted in CMS with specific functionality at different levels.
-\subsection{Tier-0}
-\label{sec:2_1}
-The Tier-0 centre at CERN accepts data from the CMS online system, archives the data, performs prompt first pass reconstruction. Reconstructed data at the Tier-0 together with the corresponding raw data are distributed to Tier-1s over the optical private network. In addition to the Tier-0 centre, CERN hosts the CMS Analysis Facility (CAF) that is focused on latency-critical detector, trigger and calibration activities.
+%\subsection{Tier-0}
+%\label{sec:2_1}
+\paragraph{Tier-0:}
+The Tier-0 centre at CERN accepts data from the CMS online system, archives the data, performs prompt first pass reconstruction. Reconstructed data at the Tier-0 together with the corresponding raw data are distributed to Tier-1s over the Optical Private Network that is the backbone network specifically built for LHC to interconnect CERN and the Tier-1s.
+In addition to the Tier-0 centre, CERN hosts the CMS Analysis Facility (CAF) that is focused on latency-critical detector, trigger and calibration activities.
 Roughly 20\% of the computing capacity is located at CERN, while the remaining is distributed.
 
-\subsection{Tier-1}
-\label{sec:2_2}
+%\subsection{Tier-1}
+%\label{sec:2_2}
+\paragraph{Tier-1:} 
 Each Tier-1 centre assures the distributed custodial storage of a fraction of the raw data produced by the CMS detector and for the simulated data produced at the connected Tier-2 centres; provides computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis; controls the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
 
 %The Tier-1 are 7 large regional computing centers located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States, where organized mass data processing are performed. That includes re-processing, data skimming and other organized intensive analysis tasks. 
@@ -177,8 +180,9 @@ Each Tier-1 centre assures the distributed custodial storage of a fraction of th
 %The Tier-1 centres archive the fraction of data distributed to them as well as the simulated data produced at the Tier-2 centres,  while they are serving analysis transfer requests to Tier-2.
 %%From CM CHEP09: In the CMS experiment the Tier-1 centers rather than the Tier-0 serve the majority of the data to the Tier-2 centers for analysis.
 
-\subsection{Tier-2}
-\label{sec:2_3}
+%\subsection{Tier-2}
+%\label{sec:2_3}
+\paragraph{Tier-2:}
 Tier-2 centers, more than 50 sites around the world,  provide capacity for user data analysis and for production of simulated data.
 In CMS data transfer to Tier-2 can occur from any Tier-1. A significant effort is required in 
 commissioning all possible transfer links, as described in section ~\ref{sec:LinkCommissioning}, as well
@@ -227,8 +231,14 @@ A CMS application only knows about logical files and relies on a local catalogue
 Each CMS site has a Trivial File Catalogue made of simple rules to build site-specific physical paths starting from logical file names and access protocols.
 %Local file catalogues provides site local information about how to access any given logical file name. This file catalogue returns the physical location of a logical file within the site itself. 
 
-\subsubsection{PhEDEx}
+\subsubsection{Conditions Data}
 \label{sec:3_1_3}
+%% CR-2009/073 
+The data describing the alignments and calibrations of the detector are known as ''conditions data''. Since the same conditions data need to be accessed by many processing jobs worldwide CMS uses a caching system called Frontier~\cite{RefFrontier}.
+Frontier translates database queries into HTTP, looks up the results in a central database at CERN, and caches the results in an industry-standard HTTP proxy/caching server called Squid. Squid servers are deployed at each site from which the copies of condition data are read.
+
+\subsubsection{PhEDEx}
+\label{sec:3_1_4}
 The CMS data placement and transfer systems are implemented by
 PhEDEx\cite{RefPhEDEx}. The data placement system provides an
 interface to define, execute and monitor administrative decision of
@@ -439,8 +449,7 @@ terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
 \caption{Dashboard Interactive Interface}
 \label{fig:Dashboard}
 \end{figure}
-The interactive interface
-allows to drill down expanding the set of jobs by
+The interactive interface allows to drill down expanding the set of jobs by
 various relevant properties (execution site, grid gateway,
 submitter user, completions status, grid workload management host,
 activity type, used dataset etc.), until all details stored in the DataBase
@@ -552,9 +561,11 @@ Operation of the CMS distributed infrastructure requires a stable and
 reliable behaviour of the services.
 CMS has established a procedure routinely operated by the Facilities 
 Operations team to extensively test all relevant aspects of sites 
-supporting CMS~\cite{RefSite}, such as the ability to efficiently use their network 
-to transfer data, the functionality of all the site services relevant for CMS and the capability to sustain the various CMS computing workflows at the required scale.
-% FIXME: AF is not sure how that steering occurs..it does not for the time being in analysis
+supporting CMS~\cite{RefSite}, such as the ability to efficiently use their 
+network to transfer data, the functionality of all the site services relevant 
+for CMS and the capability to sustain the various CMS computing workflows at 
+the required scale.
+% AF is not sure how that steering occurs..it does not for the time being in analysis
 %Result of the tests are combined in a "Readyness" metric that is used to 
 %steer activity toward sites with higher Readyness mark.
 
@@ -825,6 +836,8 @@ machine.  The load due to GridFTP is such that it's not compulsory to
 have the GridFTP server decoupled from the machine hosting the CRAB
 Server components.
 
+The number of users currently using a CRAB Analysis Server is significantly 
+increased with respect to the stress test scale, e.g. the growing number of real users using a CRAB Analysis Server instance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
 Currently the whole CMS analysis is made of 30,000 jobs/day and the
 CMS Computing model expectation is to reach around 100,000-200,000 jobs/day. 
 Some CRAB Server instances deployed at different sites to serve physic's
@@ -832,11 +845,19 @@ group activities and regional community, as foreseen, can cope with
 analysis needs.
 %\end{itemize}
 \begin{figure}
+\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=0.55\textwidth]{figures/MultiUserJobStatus.png}
+\includegraphics[width=0.99\textwidth]{figures/MultiUserJobStatus.png}
 \caption{Cumulative distribution of jobs submitted to CRAB Server
   during the multi-user test phase. }
 \label{fig:stressmulti}
+\end{minipage}
+\begin{minipage}{.48\textwidth}
+\centering
+\includegraphics[width=0.99\textwidth]{figures/CSusersLast5months.png}
+\caption{Number of distinct users using a CRAB server instance during last 5 months}
+\label{fig:CSusers}
+\end{minipage}
 \end{figure}
 
 
@@ -937,13 +958,9 @@ Grid failures are due to underlying grid system but also reflect site problems o
 About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
 
 CRAB Analysis Server instances have been deployed in several countries (CERN, Italy, France). A couple of them are open to worldwide distributed CMS users. Other instances are being used by local communities or specific physics group.
-The growing number of users using a CRAB Analysis Server intance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
+%% CrabServer usage
 % 33% of jobs in last 5 months submitted with Server (1.5M jobs), direct (3Mjobs) 
-\begin{figure}
-\includegraphics[width=0.5\textwidth]{figures/CSusersLast5months.png}
-\caption{Number of distinct users using a CRAB server instance during last 5 months}
-\label{fig:CSusers}
-\end{figure}
+%The growing number of users using a CRAB Analysis Server intance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
 
 A complete example of analysis activity during the year has been the analysis 
 of real cosmic data collected during a long period of data-taking, called CRAFT (Cosmics Run At Four Tesla) to commission the detector in preparation for LHC collision. About 300 million events of cosmic muons were taken and their analysis is meant to assess detector perfomance and perfom physics studies.
@@ -981,7 +998,8 @@ The job efficiency at Tier-2s is lower than that at CAF because, on top of the a
 \end{figure}
 
 
-Real user analysis jobs shows a worst job efficiency with respect to the efficiencies obtained during dedicated and controlled submissions.
+Real user analysis jobs shows a worst job efficiency (around 60\%) with respect to the efficiencies obtained during dedicated and controlled submissions such 
+as computing challenge and Job Robot activities, described in ~\ref{sec:5_1} and ~\ref{sec:4_2_1} respectivelly.
 Analysis specific operations to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities are beeing setup.
 
 
@@ -1053,6 +1071,9 @@ C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-
 %
 \bibitem{RefDBS}
 A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 072001 (2008)
+%
+\bibitem{RefFrontier}
+B. Blumenfeld,D. Dykstra,L. Lueking,E. Wicklund, CMS conditions data access usingFroNTier, J.Phys.Conf.Ser, 119, 072007 (2008)
 %
 \bibitem{RefPhEDEx}
 R. Egeland et al., Data transfer infrastructure for CMS data taking, Proceedings of Science, PoS(ACAT08)033 (2008)\\
