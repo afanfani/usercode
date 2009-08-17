@@ -61,7 +61,12 @@ grestore
 \title{Distributed Analysis in CMS}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\author{Alessandra Fanfani \and Akram Kahn \and Andrea Sartirana \and Aresh Vedaee \and Andrea Sciab\`a \and Anzar Afaq \and Barry J. Blumenfeld \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Dykstra \and Derek Feichtinger \and Edward Karavakis \and Eric Vaandering \and Eric Wicklund \and Fabio Farina \and Federica Fanzago \and Frank W\"urthwein \and Gerhild Maier \and Giuseppe Codispoti \and Giusepppe Bagliesi \and Haifeng Pi \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and Kati Lassila-Perini \and Kejing Kang \and Ken Bloom \and Lassi Tuura \and Lee Lueking \and Liang Dong \and Lothar Bauerdick \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose Afonso Sanches \and Jose' M. Hern\`andez \and Josep Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Patricia Bittencourt Sampaio \and Paul Rossman \and Peter Elmer \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tibor Kurca \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+\author{Alessandra Fanfani \and Akram Khan \and Andrea Sartirana \and Aresh Vedaee \and Andrea Sciab\`a \and Anzar Afaq \and Barry J. Blumenfeld \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Dykstra \and Derek Feichtinger \and Edward Karavakis \and Eric Vaandering \and Eric Wicklund \and Fabio Farina \and Federica Fanzago \and Frank W\"urthwein \and Gerhild Maier \and Giuseppe Codispoti \and Giusepppe Bagliesi \and Haifeng Pi \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and Kati Lassila-Perini \and Kejing Kang \and Ken Bloom \and Lassi Tuura \and Lee Lueking \and Liang Dong \and Lothar Bauerdick \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose Afonso Sanches \and Jose' M. Hern\`andez \and Josep Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Patricia Bittencourt Sampaio \and Paul Rossman \and Peter Elmer \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tibor Kurca \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+
+% Erik Edelmann  
+% Jesper Koivumaki
+% Kalle Happonen  
+% Tomas Linden
 
 \authorrunning{} % if too long for running head
 
@@ -75,7 +80,7 @@ grestore
            \and
            S. Metson \at Bristol University, UK
            \and
-           E.Karavaki \and A.Khan \at Brunel University, UK
+           E.Karavakis \and A.Khan \at Brunel University, UK
            \and
            J. D'Hondt \and J.Maes \and P. Van Mulders \and I. Villella \at Brussel University, Belgium
            \and 
@@ -89,7 +94,7 @@ grestore
            \and
             D. Cesini \and D. Dongiovanni \at INFN-CNAF, Italy
             \and
-            L. Dong \at Institute of High Energy Physics, Chinese Academy of Sciences Academia Sinica, Cina
+            L. Dong \at Institute of High Energy Physics, Chinese Academy of Sciences Academia Sinica, China
            \and
            V. Kuznetsov \and D. Riley \at Cornell University, Ithaca, NY, USA
            \and
@@ -100,6 +105,7 @@ grestore
            B. Kim \at University of Florida, Gainesville, FL, USA
            \and
            J. Klem \and K. Lassila-Perini \at Helsinki Institute of Physics, Finland
+%          E. Edelmann \and K. Happonen \and J. Klem \and J. Koivumaki \and K. Lassila-Perini \and T. Linden \at Helsinki Institute of Physics, Finland
            \and
            S. Lacaprara \at Legnaro INFN, Italy
            \and 
@@ -459,7 +465,7 @@ and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
 \begin{minipage}{.45\textwidth}
 \centering
  \includegraphics[width=0.95\textwidth]{figures/TaskMonitor1.png}
-\caption{All users tasks in last 2 days}
+\caption{All user's tasks in last 2 days}
 \label{fig:TaskMonitor1}
 %\end{figure}
 %\begin{figure}
@@ -583,7 +589,7 @@ installed a tag is set on the %CE
 site that publishes the availability of
 the release. The tags are used by the workload management systems to
 submit jobs to sites that provide the requested CMS release.
-Typically there about 10 production releases installed at a time at all
+Typically, there are about 10 production releases installed at a time at all
 sites requiring roughly 50\,GB.
 
 All software deployment and  removal activities are handled centrally
