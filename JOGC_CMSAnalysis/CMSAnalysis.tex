@@ -61,7 +61,7 @@ grestore
 \title{Distributed Analysis in CMS}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\author{Alessandra Fanfani \and Akram Khan \and Andrea Sartirana \and Aresh Vedaee \and Andrea Sciab\`a \and Anzar Afaq \and Barry J. Blumenfeld \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Dykstra \and Derek Feichtinger \and Edward Karavakis \and Eric Vaandering \and Eric Wicklund \and Fabio Farina \and Federica Fanzago \and Frank W\"urthwein \and Gerhild Maier \and Giuseppe Codispoti \and Giusepppe Bagliesi \and Haifeng Pi \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and Kati Lassila-Perini \and Kejing Kang \and Ken Bloom \and Lassi Tuura \and Lee Lueking \and Liang Dong \and Lothar Bauerdick \and Lukas Vanelderen \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose Afonso Sanches \and Jose' M. Hern\`andez \and Josep Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Patricia Bittencourt Sampaio \and Paul Rossman \and Peter Elmer \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tibor Kurca \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+\author{Alessandra Fanfani \and Akram Khan \and Andrea Sartirana \and Aresh Vedaee \and Andrea Sciab\`a \and Anzar Afaq \and Barry Blumenfeld \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Dykstra \and Derek Feichtinger \and Edward Karavakis \and Eric Vaandering \and Eric Wicklund \and Fabio Farina \and Federica Fanzago \and Frank W\"urthwein \and Gerhild Maier \and Giuseppe Codispoti \and Giusepppe Bagliesi \and Haifeng Pi \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and Kati Lassila-Perini \and Kejing Kang \and Ken Bloom \and Lassi Tuura \and Lee Lueking \and Liang Dong \and Lothar Bauerdick \and Lukas Vanelderen \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose Afonso Sanches \and Jose' M. Hern\`andez \and Josep Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Patricia Bittencourt Sampaio \and Paul Rossman \and Peter Elmer \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tibor Kurca \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
 
 % Erik Edelmann  
 % Jesper Koivumaki
@@ -123,7 +123,7 @@ grestore
            \and
            L. Tuura \at University of Northeastern, Boston, MA, USA
            \and
-           B.Blumenfeld \at Johns Hopkins University, Baltimore, MD, USA
+           B. Blumenfeld \at Johns Hopkins University, Baltimore, MD, USA
            \and
            F. Fanzago \at Padova INFN, Italy
            \and
@@ -161,7 +161,7 @@ CMS expects to manage several Pbytes of data each year, distributing them
 over many computing sites around the world and enabling data access at those
 centers for analysis. CMS has identified the distributed sites as the primary
 location for physics analysis to support a wide community of users,
-potentially as many as 3000 users. This represents an unprecedent scale of
+with potentially as many as 3000 users. This represents an unprecedent scale of
 distributed computing resources and number of users.
 An overview of the computing architecture, the software tools and
 the distributed infrastructure deployed is reported.
@@ -181,7 +181,7 @@ that will collect data at the Large Hadron Collider (LHC),located at CERN
 %The Compact Muon Solenoid (CMS) detector~\cite{RefCMS} is a general-purpose detector
 %designed to exploit the physics potential at the Large Hadron Collider (LHC),
 %located at CERN (Geneva).
-The beams will collide at the rate of 25 ns and CMS will record only the collisions
+The beams will collide at an interval of 25 ns and CMS will record only the collisions
 that pass a set of %real time 
 online trigger decisions with an expected rate around 300Hz and an
 average event size of 1-2 MB. A nominal year worth of data taking 
@@ -196,9 +196,9 @@ challenge for data management and processing.
 \label{sec:2}
 The CMS distributed computing and analysis model ~\cite{RefCM} is designed to serve, process and archive the %huge amount of data the experiment will collect.
 %large amounts of events that will be available when the detector starts collecting data.
-large number of events that will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high throughput networks and accessed via by means of Grid software. 
+large number of events that will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high throughput networks and accessed by means of Grid software. 
 %%  motivations to choose a distributed environment
-The choice of a distributed system allows to delegate responsibilities to local CMS communities, access to additional funding channels and ensure load balancing of the available resources while replicating the interesting data in different sites.
+The choice of a distributed system allows delegation of responsibilities to local CMS communities, access to additional funding channels and ensures load balancing of the available resources while replicating the interesting data in different sites.
 
 
 A multi-Tier hierarchical distributed model is adopted in CMS with specific functionality at different levels.
@@ -207,7 +207,7 @@ A multi-Tier hierarchical distributed model is adopted in CMS with specific func
 \paragraph{Tier-0:}
 The Tier-0 centre at CERN accepts data from the CMS online system, archives the data, performs prompt first pass reconstruction. Reconstructed data at the Tier-0 together with the corresponding raw data are distributed to Tier-1s over the Optical Private Network that is the backbone network specifically built for LHC to interconnect CERN and the Tier-1s.
 In addition to the Tier-0 centre, CERN hosts the CMS Analysis Facility (CAF) that is focused on latency-critical detector, trigger and calibration activities.
-Roughly 20\% of the computing capacity is located at CERN, while the remaining is distributed.
+Roughly 20\% of the computing capacity is located at CERN, while the remainder is distributed.
 
 %\subsection{Tier-1}
 %\label{sec:2_2}
@@ -242,14 +242,15 @@ The file-block contains files that can be processed and analyzed together.
 %Processing is block-based. 
 The packaging of events into files is done so that the average file size is
 kept reasonably large (e.g. at least 1GB), in order to avoid scaling issues with storage and tape systems and to optimize data transfer.
-This is achieved merging small outputs files produced by individual jobs in fewer larger files.
+This is achieved by merging small output file produced by individual jobs into fewer larger files.
+
 
 The CMS Data Management System is made of a set of loosely coupled components as described in the following sections.
 \subsubsection{DBS}
 \label{sec:3_1_1}
 The Dataset Bookkeeping Service (DBS)\cite{RefDBS} provides the means to describe, discover and use CMS event data. 
 It catalogs CMS specific data definitions such as run number, the algorithms and configurations used to process the data together with the information regarding the processing parentage of the data it describes.
-The DBS stores information about CMS data in a queryable format. The supported queries allow to discover available data and how they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
+The DBS stores information about CMS data in a queryable format. The supported queries allow discovery of available data and how they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
 
 The DBS is used for data discovery and job configuration by the production and analysis systems through a DBS API. 
 Users can discover what data exists using a Web browser or Command Line Interface.
@@ -282,8 +283,8 @@ Frontier translates database queries into HTTP, looks up the results in a centra
 \label{sec:3_1_4}
 The CMS data placement and transfer systems are implemented by
 PhEDEx\cite{RefPhEDEx}. The data placement system provides an
-interface to define, execute and monitor administrative decision of
-data movement such as where experiment data is to be located, which
+interface to define, execute and monitor administrative decisions of
+data movement such as where experimental data is to be located, which
 copies are custodial, and %to which physics analysis group the data is allocated for.  
 the physics analysis group a given set of data is replicated for at a given site.
 Data are distributed according to available resources
@@ -388,7 +389,7 @@ Standard operations such as job submission, tracking, cancellation and output re
 The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Fig.~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
 The Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
 The Analysis Server is coupled with an external GridFTP server %Storage Element
- that stores the user input and output data, allowing to implement CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
+ that stores the user input and output data, allowing implementation of CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
 
 
 \begin{figure}
@@ -427,14 +428,14 @@ Job monitoring was built around the idea of instrumented
 application: CMS jobs and tools send messages
 to a central collector. Only jobs that use the
 instrumented submission framework can be monitored in this way,
-a small penalty in CMS case where almost
+a small penalty in the CMS case where almost
 all user jobs are submitted using the CRAB tool.
 The implementation is based on a
 database running on Oracle server, a set of information collectors
 feeding from various sources, 
 and a few web interfaces (views) providing access with different levels
 of detail, aggregation and flexibility, customized to
-typical use cases, it is possible to cross link and navigate
+typical use cases. It is possible to cross link and navigate
 from one view to another providing both extreme flexibility
 and fast access to desired informations.
 This set of tools is called ''the CMS Dashboard''.
@@ -481,7 +482,7 @@ and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
 \end{figure}
 
 \subsubsection{Interactive Interface}
-Was the first view to be developed, based on
+This was the first view to be developed, based on
 vision more then experience, therefore
 emphasis was put on flexibility. It is a job-centric view
 aimed at understanding and debugging what happens ``now''.
@@ -506,8 +507,7 @@ on used wall and cpu time of jobs.
 \subsection{Distributed Infrastructure}
 \label{sec:4_1}
 The tools described before operate on a distributed infrastructure
-of sites offering uniform access via standard Grid services, moreover CMS maintains
-sofware libraries at each site to get a uniform execution
+of sites offering uniform access via standard Grid services. Moreover CMS maintains sofware libraries at each site to get a uniform execution
 environment. A small DataBase is used to keep track of
 information specific to each site and relevant for CMS operations.
 
@@ -688,7 +688,7 @@ to the Tier-1s to those physicists.
 \label{sec:4_3_2}
 Physicists are organized in Physics groups each with its own internal 
 organization.
-Each Physics groups is associated with a few Tier-2 sites that support it by 
+Each Physics group is associated with a few Tier-2 sites that support it by 
 providing storage space and processing power.
 Each Tier-2 supports one or more Physics groups depending on its size.
 Currently, the association of Physics groups to sites is only reflected in policies for data location, but it is also foreseen to exploit VOMS groups to prioritize CPU usage at sites.
@@ -711,7 +711,7 @@ hosted at any Tier-2, but can only write at the Tier-2 that supports him
 as a local user.
 
 The user produced data stored at a Tier2 can also be published into a local DBS
-in order to allow their access to other collegues.
+in order to allow access to other collegues.
 The data that is going to be accessed by many users or transferred among sites %are of more wide interest
 , for instance the Physics Group specific event filtering and selections,
 could be exposed to the entire collaboration by registering it in Global DBS and performing its transfer with PhEDEx.
@@ -744,7 +744,7 @@ The CMS Savannah Computing Infrastructure portal is used to report problems acro
 Distributed Analysis has been ongoing for several years, passing through sequentially planned steps of 
 increasing complexity, the so called data and physics challenges~\cite{RefPastExp}. 
 It has been used extensively during studies to prepare the CMS Physics Technical Design Report~\cite{PTDR} and various detector commissioning activities. 
-Last year experience both in term of dedicated commissioning tests and real users analysis is reported in the following sections.
+Last year's experience both in term of dedicated commissioning tests and real users analysis is reported in the following sections.
 
 \subsection{Analysis exercises within Common Computing Readiness Challenge}
 \label{sec:5_1}
@@ -768,7 +768,7 @@ due to storage problems at sites. In most but not all cases, those problems were
 
 \paragraph{Simualtion of physics group workflows}
 An exercise to mimic realistic physics group activities running
-on a list of associated Tier2s was setup. 
+on a list of associated Tier2s was set up. 
 %association of a list of T2s to each fake physics group
 The CRAB server was used to submit realistic physics group tasks: 
 analysis-like jobs reading a dataset at all sites and running for 
@@ -785,7 +785,7 @@ promptly fixed by the site administrators.
 During the second week, sites with efficiency above 90\% significantly increased, as shown in Figure~\ref{fig:CCRC08SiteEff}.
 %% mention the chaotic pahse?
 \paragraph{Chaotic job submissions}
-People from T2 sites were encouraged to submit jobs to other T2 sites, for mimicking a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities at several sites. Figure~\ref{fig:CCRC08Chaotic} summarizes the number of active users per site, including Tier-1s, Tier-2s, Tier-3s and opportunistic usage. Around 60 sites participated in these tests.
+People from T2 sites were encouraged to submit jobs to other T2 sites, to mimic a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities at several sites. Figure~\ref{fig:CCRC08Chaotic} summarizes the number of active users per site, including Tier-1s, Tier-2s, Tier-3s and opportunistic usage. Around 60 sites participated in these tests.
 
 The CCRC08 analysis challenge drove the level of activity and participation at Tier2s to an unprecedented scale in CMS.
 
@@ -868,9 +868,8 @@ Jobs were submitted to more than 50 sites with a rate above 50,000 jobs/day.
 This helped identify some limitations in the communication between 
 %JobTracking and GetOutput components 
 the components responsible for job outpul retrieval and handling that caused a backlog of jobs without output retrieved. This effect is more evident for homogeneous very short
-jobs, as those used in the test, that have a higher finishing rate
-than real user's jobs which tend to finish at different times. None
-the less, the backlog was absorbed in a few hours. This issue was
+jobs, such as those used in the test, that have a higher finishing rate
+than real user's jobs which tend to finish at different times. Nonetheless, the backlog was absorbed in a few hours. This issue was
 taken into account in the development cycle and the code was
 optimized.  About 120,000 jobs were successfully handled in 48 hours,
 as shown in Figure \ref{fig:stressmulti}.  The CPU load due to MySQL
@@ -884,10 +883,10 @@ Server components.
 
 The number of users currently using a CRAB Analysis Server is significantly 
 increased with respect to the stress test scale, e.g. the growing number of real users using a CRAB Analysis Server instance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
-Currently the whole CMS analysis is made of 30,000 jobs/day and the
+Currently the whole CMS analysis amounts to 30,000 jobs/day and the
 CMS Computing model expectation is to reach around 100,000-200,000 jobs/day. 
-Some CRAB Server instances deployed at different sites to serve physic's
-group activities and regional community, as foreseen, can cope with
+Some CRAB Server instances deployed at different sites to serve Physics
+group activities and a regional community, as foreseen, can cope with
 analysis needs.
 %\end{itemize}
 \begin{figure}
@@ -937,7 +936,7 @@ jobs.
 During last year about 11 million analysis jobs were submitted.  Peaks
 of more than 100,000 jobs per day have been reached, with an average
 of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
-The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, both in term of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
+The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, both in terms of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
 \begin{figure}
 \includegraphics[width=3.5in]{figures/crabjobsdaily.png}
 \caption{Number of daily jobs terminated in 2008. }
@@ -957,7 +956,7 @@ the end of the job processing, so an approach to decouple the job processing and
 Failures accessing data at the site mainly expose problems with the storage at the site or inconsistencies between the data catalogue and what has been deleted at the site. 
 Periodically data consistency and integrity checks at all Tier-2 sites are performed. This check verifies that the contents of the disks at the Tier-2 sites are consistent with the PhEDEx databases and DBS and reduce the rate of data access errors.
 
-Grid failures are due to underlying grid system but also reflect site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
+Grid failures are due to the underlying grid system but also reflect site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
 
 
 % From April08 to April09:
@@ -1003,21 +1002,21 @@ Grid failures are due to underlying grid system but also reflect site problems o
 
 About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
 
-CRAB Analysis Server instances have been deployed in several countries (CERN, Italy, France). A couple of them are open to worldwide distributed CMS users. Other instances are being used by local communities or specific physics group.
+CRAB Analysis Server instances have been deployed in several countries (CERN, Italy, France). A couple of them are open to worldwide distributed CMS users. Other instances are being used by local communities or specific physics groups.
 %% CrabServer usage
 % 33% of jobs in last 5 months submitted with Server (1.5M jobs), direct (3Mjobs) 
 %The growing number of users using a CRAB Analysis Server intance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
 
 A complete example of analysis activity during the year has been the analysis 
-of real cosmic data collected during a long period of data-taking, called CRAFT (Cosmics Run At Four Tesla) to commission the detector in preparation for LHC collision. About 300 million events of cosmic muons were taken and their analysis is meant to assess detector perfomance and perfom physics studies.
+of real cosmic data collected during a long period of data-taking, called CRAFT (Cosmics Run At Four Tesla) to commission the detector in preparation for LHC collisions. About 300 million events of cosmic muons were taken and their analysis is meant to assess detector perfomance and perfom physics studies.
 % such as measurement of cosmic muon charge ratio or absolute cosmic muon flux as function of the muon momentum
 The raw data were transferred at Tier-1 where several re-processing and data skimming took place. The reconstructed data were all shipped to the CAF where calibration and alignment studies were performed in order to provide better conditions to be used in subsequent re-processing. 
 %All data at CAF: 122 TB
 Reconstructed data and their skims were also spread to Tier-2s, manily to 
-those associated with Muon and Tracker group although overall about 20 sites hosted CRAFT data. The overall amount of CRAFT data transferred at Tier-2s was more than 300TB.
+those associated with Muon and Tracker group although overall about 20 sites hosted CRAFT data. The overall amount of CRAFT data transferred to Tier-2s was more than 300TB.
 %Total data of CRAFT data transfers at other T2s (19 sites):  ~315TB
-The number of users analysing CRAFT data during the year is shown in Fig.~\ref{fig:CRAFTusers} where the breakdown of users using the CAF and those using the Tier2s is also reported. The distribution of analysis jobs is shown in Fig.~\ref{fig:CRAFTjobs}, roughly two third at Tier-2s and one third at CAF.
-The job efficiency at Tier-2s is lower than that at CAF because, on top of the application errors, there are grid failures and the stage out error mentioned above.
+The number of users analysing CRAFT data during the year is shown in Fig.~\ref{fig:CRAFTusers} where the breakdown of users using the CAF and those using the Tier2s is also reported. The distribution of analysis jobs is shown in Fig.~\ref{fig:CRAFTjobs}, roughly two thirds at Tier-2s and one third at the CAF.
+The job efficiency at Tier-2s is lower than that at CAF because, on top of the application errors, there are grid failures and the stage out errors mentioned above.
 %Effort in improving the success rate and regularly identifying problem areas are ongoing.
 %=== at CAF: success rate 83% with 17% of application failures 
 % application failures 37% CMSSW error,26% errror 50115 likely bad crash , 10% failures reading input files
@@ -1046,7 +1045,7 @@ The job efficiency at Tier-2s is lower than that at CAF because, on top of the a
 
 Real user analysis jobs show worse job efficiency (around 60\%) with respect to the efficiencies obtained during dedicated and controlled submissions such 
 as computing challenge and Job Robot activities, described in ~\ref{sec:5_1} and ~\ref{sec:4_2_1} respectivelly.
-Analysis specific operations to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities are being setup.
+Analysis specific operations to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities are being set up.
 
 \section{Conclusions}
 \label{sec:6}
