@@ -61,14 +61,12 @@ grestore
 \title{Distributed Analysis in CMS}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\author{Alessandra Fanfani \and Akram Khan \and Andrea Sartirana \and Aresh Vedaee \and Andrea Sciab\`a \and Anzar Afaq \and Barry Blumenfeld \and Bockjoo Kim \and Carlos Kavka \and Chih-Hao Huang \and Chris Brew \and Christoph Wissing \and Claudio Grandi \and Daniele Bonacorsi \and Daniele Spiga \and Daniel Riley \and Dave Evans \and David Dykstra \and Derek Feichtinger \and Edward Karavakis \and Eric Vaandering \and Eric Wicklund \and Fabio Farina \and Federica Fanzago \and Frank W\"urthwein \and Gerhild Maier \and Giuseppe Codispoti \and Giusepppe Bagliesi \and Haifeng Pi \and Hassen Riahi \and Ian Fisk \and Ilaria Villella \and Kati Lassila-Perini \and Kejing Kang \and Ken Bloom \and Lassi Tuura \and Lee Lueking \and Liang Dong \and Lothar Bauerdick \and Lukas Vanelderen \and James Letts \and Jorgen D'Hondt \and Joris Maes \and Jose Afonso Sanches \and Jose' M. Hern\`andez \and Josep Flix \and Jukka Klem \and Julia Andreeva \and Marco Calloni \and Mattia Cinquilli \and Nicolo' Magini \and Pablo Saiz \and Patricia Bittencourt Sampaio \and Paul Rossman \and Peter Elmer \and Peter Kreuzer \and Petra Van Mulders \and Ricky Egeland \and Sanjay Padhi \and Simon Metson  \and Stefano Belforte \and Stefano Lacaprara \and Thomas Kress \and Tibor Kurca \and Tony Wildish \and Valentin Kuznetsov \and Vijay Sekhri \and Vincenzo Miccio \and Yuyi Guo }
+\author{Alessandra Fanfani \and Anzar Afaq \and Jose Afonso Sanches \and Julia Andreeva \and Giusepppe Bagliesi \and Lothar Bauerdick \and Stefano Belforte \and Patricia Bittencourt Sampaio \and Ken Bloom \and Barry Blumenfeld \and Daniele Bonacorsi \and Chris Brew \and Marco Calloni \and Daniele Cesini \and Mattia Cinquilli \and Giuseppe Codispoti \and Jorgen D'Hondt \and Liang Dong \and Danilo Dongiovanni \and Giacinto Donvito \and David Dykstra \and Ricky Egeland \and Peter Elmer \and Dave Evans \and Federica Fanzago \and Fabio Farina \and Derek Feichtinger \and Ian Fisk \and Josep Flix \and Claudio Grandi \and Yuyi Guo \and Jose' M. Hern\`andez \and Chih-Hao Huang \and Kejing Kang \and Edward Karavakis \and Carlos Kavka \and Akram Khan \and Bockjoo Kim \and Jukka Klem \and Thomas Kress \and Peter Kreuzer \and Tibor Kurca \and Valentin Kuznetsov \and Stefano Lacaprara \and Kati Lassila-Perini \and James Letts \and Lee Lueking \and Joris Maes \and Nicolo' Magini \and Gerhild Maier \and Simon Metson \and Vincenzo Miccio \and Sanjay Padhi \and Haifeng Pi \and Hassen Riahi \and Daniel Riley \and Paul Rossman \and Pablo Saiz \and Andrea Sartirana \and Andrea Sciab\`a \and Vijay Sekhri \and Daniele Spiga \and Lassi Tuura \and Eric Vaandering \and Lukas Vanelderen \and Petra Van Mulders \and Aresh Vedaee \and Ilaria Villella \and Eric Wicklund \and Tony Wildish \and Christoph Wissing \and Frank W\"urthwein}
 
-% Erik Edelmann  
-% Jesper Koivumaki
-% Kalle Happonen  
-% Tomas Linden
+% Erik Edelmann , Jesper Koivumaki
+% Kalle Happonen , Tomas Linden
 
-\authorrunning{} % if too long for running head
+\authorrunning{Alessandra Fanfani \and Anzar Afaq \and Jose Afonso Sanches \and Julia Andreeva \and Giusepppe Bagliesi \and Lothar Bauerdick \and Stefano Belforte \and Patricia Bittencourt Sampaio \and Ken Bloom \and Barry Blumenfeld \and Daniele Bonacorsi \and Chris Brew \and Marco Calloni \and Daniele Cesini \and Mattia Cinquilli \and Giuseppe Codispoti \and Jorgen D'Hondt \and Liang Dong \and Danilo Dongiovanni \and Giacinto Donvito \and David Dykstra \and Ricky Egeland \and Peter Elmer \and Dave Evans \and Federica Fanzago \and Fabio Farina \and Derek Feichtinger \and Ian Fisk \and Josep Flix \and Claudio Grandi \and Yuyi Guo \and Jose' M. Hern\`andez \and Chih-Hao Huang \and Kejing Kang \and Edward Karavakis \and Carlos Kavka \and Akram Khan \and Bockjoo Kim \and Jukka Klem \and Thomas Kress \and Peter Kreuzer \and Tibor Kurca \and Valentin Kuznetsov \and Stefano Lacaprara \and Kati Lassila-Perini \and James Letts \and Lee Lueking \and Joris Maes \and Nicolo' Magini \and Gerhild Maier \and Simon Metson \and Vincenzo Miccio \and Sanjay Padhi \and Haifeng Pi \and Hassen Riahi \and Daniel Riley \and Paul Rossman \and Pablo Saiz \and Andrea Sartirana \and Andrea Sciab\`a \and Vijay Sekhri \and Daniele Spiga \and Lassi Tuura \and Eric Vaandering \and Lukas Vanelderen \and Petra Van Mulders \and Aresh Vedaee \and Ilaria Villella \and Eric Wicklund \and Tony Wildish \and Christoph Wissing \and Frank W\"urthwein} % if too long for running head
 
 \institute{A. Fanfani \and D. Bonacorsi \and G. Codispoti \and C. Grandi
            \at INFN and University of Bologna, viale Berti Pichat 6/2, 40127 Bologna, Italy \\
@@ -161,8 +159,8 @@ CMS expects to manage several Pbytes of data each year, distributing them
 over many computing sites around the world and enabling data access at those
 centers for analysis. CMS has identified the distributed sites as the primary
 location for physics analysis to support a wide community of users,
-with potentially as many as 3000 users. This represents an unprecedent scale of
-distributed computing resources and number of users.
+with potentially as many as 3000 users. This represents an unprecedented scale
+ of distributed computing resources and number of users.
 An overview of the computing architecture, the software tools and
 the distributed infrastructure deployed is reported.
 Summaries of the experience in establishing efficient and scalable operations
@@ -181,7 +179,7 @@ that will collect data at the Large Hadron Collider (LHC),located at CERN
 %The Compact Muon Solenoid (CMS) detector~\cite{RefCMS} is a general-purpose detector
 %designed to exploit the physics potential at the Large Hadron Collider (LHC),
 %located at CERN (Geneva).
-The beams will collide at an interval of 25 ns and CMS will record only the collisions
+The beams will collide at intervals of 25 ns and CMS will record only the collisions
 that pass a set of %real time 
 online trigger decisions with an expected rate around 300Hz and an
 average event size of 1-2 MB. A nominal year worth of data taking 
@@ -212,7 +210,8 @@ Roughly 20\% of the computing capacity is located at CERN, while the remainder i
 %\subsection{Tier-1}
 %\label{sec:2_2}
 \paragraph{Tier-1:} 
-Each Tier-1 centre assures the distributed custodial storage of a fraction of the raw data produced by the CMS detector and for the simulated data produced at the connected Tier-2 centres; provides computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis; controls the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
+Each Tier-1 centre assures the custodial storage of a fraction of the raw data produced by the CMS detector and of the simulated data produced at the connected Tier-2 centres. Tier-1 centres provide computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis.
+They control the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
 
 %The Tier-1 are 7 large regional computing centers located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States, where organized mass data processing are performed. That includes re-processing, data skimming and other organized intensive analysis tasks. 
 %%From CM CHEP09: For reconstruction a nominal Tier-1 should be capable of processing 70Hz worth of data with a required IO rate of 100MB/s. Skimming through the reconstructed datasets uses only 1\% of CPU of reconstruction so sparse reading of the file is required to have manageable IO rates.
@@ -261,8 +260,8 @@ The DBS is usable in multiple “scopes”:
 Data produced in local scope may be migrated to global scope as needed.
 
 \end{itemize}
-The DBS system is a multi-tier web application whose design is modular and makes it easily adaptable to multiple database technologies. The supported types of database (ORACLE, MySQL and SQLite) enable the DBS deployment in a range of environments from general CMS at large installations to specific personal installations.
-An XML format is used for the format of the HTTP payload exchanged with the client.
+The DBS system is a multi-tier web application with a modular design. This makes it easily adaptable to multiple database technologies. The supported types of database (ORACLE, MySQL and SQLite) enable the DBS deployment in a range of environments from general CMS at large installations to specific personal installations.
+XML is used for the format of the HTTP payload exchanged with the client.
 
 The Global DBS is hosted at CERN and its database engine is the CERN Oracle RAC (Real Application Cluster) server for CMS. Some local scope DBS instances that catalog data from Physics groups are also hosted at CERN. There are also DBS instances installed at other sites for private use. 
 % If possible find out the amount of data (datasets,files) described so far in Global DBS
@@ -333,8 +332,8 @@ the locations of the data when submitting jobs.
 \label{fig:phedex-transfers}
 \end{figure}
 
-Using PhEDEx, CMS has transferred over 87 PB of data since the project
-begain in 2004.  Figure \ref{fig:phedex-transfers} shows the average
+Using PhEDEx, CMS has transferred over 87 PB of data since the project 
+began in 2004.  Figure \ref{fig:phedex-transfers} shows the average
 daily transfer volume per month of data managed by PhEDEx from
 mid-2004 until July 2009.  Varios challenge periods are highlighted,
 and in particular the SC4, CSA06~\cite{RefPastExp}, and LoadTest/Debug periods resulted
@@ -364,24 +363,25 @@ locally in a small scale test.
 The functionalities that CRAB provides, as schematically illustrated in Fig.~\ref{fig:CRABWorkflow}, are:
 \begin{itemize}
 \item{Data discovery and location:}
-Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find which data and where it is to be accessed.
+Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find 
+what data exists and where it can be accessed.
 \item{Job preparation:}
 Pack local user code and the environment to be sent to remote sites where the CMS software is pre-installed as described in ~\ref{sec:4_1_3}.
 \item{Job splitting:}
 Decide how to configure each job to access a subset of files in the dataset to effectively use the Tier-2s resources.
 \item{Job submission:}
-Submit to Grid sites hosting the user required data.
+Submit to Grid sites hosting the required data.
 \item{Job monitoring:}
-Monitor the status of the submitted jobs querying Grid services.
+Monitor the status of the submitted jobs by querying Grid services.
 \item{Handling Output data:}
 Copy the produced output to a remote Tier-2 the user is associated with or return it to the user for small files (few MB).
-Publish the produced data with their description and provenance into a local DBS so that the data can be used in further analysis and shared with other colleagues.
+Publish the produced data with their description and provenance into a local DBS so that the data can be used in further analysis and shared with colleagues.
 \end{itemize} 
 
 %% Grid integration via BOSSLite
 CRAB is coded in Python. The interface to the Grid middlewares and local batch systems is provided by a Python library named BOSSLite\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
 An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. The current implementation supports MySQL and SQLite databases.
-Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler (batch system or grid) specific interfaces are implemented in plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
+Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler-specific (batch system or grid) interfaces are implemented as plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
 %\emph{FIXME: are few lines about grid specific implementation required? Such as the following lines about gLite}
 %Using the gLite WMS BOSSLite enables bulk job submission through gLite collections. This allows a faster job submission, but also an optimized job status tracking through bulk queries. Since the CMS computing model uses its own data location system, the gLite WMS match making has the main role to perform a load balancing among sites that are hosting the data to be accessed. 
 
@@ -418,20 +418,20 @@ A few main points drove the development of monitoring tools:
 \item record
   enough information about failures so that plans and actions are set
   based on quantitative facts and that effectiveness of solutions can be metered
-\item detect overall usage patterns to guide management into making
- choices and plans about how and were to steer user activities and
+\item detect overall usage patterns to guide management in making
+ choices and plans about how and where to steer user activities and
  how to plan for the future
 \item do not try to define a priori all the relevant metrics
 \end{itemize}
 
-Job monitoring was built around the idea of instrumented
+Job monitoring is built around the idea of instrumented
 application: CMS jobs and tools send messages
 to a central collector. Only jobs that use the
 instrumented submission framework can be monitored in this way,
 a small penalty in the CMS case where almost
 all user jobs are submitted using the CRAB tool.
 The implementation is based on a
-database running on Oracle server, a set of information collectors
+database running on an Oracle server, a set of information collectors
 feeding from various sources, 
 and a few web interfaces (views) providing access with different levels
 of detail, aggregation and flexibility, customized to
@@ -442,7 +442,7 @@ This set of tools is called ''the CMS Dashboard''.
 
 \subsubsection{History View}
 The aim here is to present time history of relevant
-metrics to highlite overall patterns and trends.% (see Fig.~\ref{fig:HistoryView}).
+metrics to highlight overall patterns and trends.% (see Fig.~\ref{fig:HistoryView}).
 %\begin{figure}
 % \includegraphics[width=0.70\textwidth]{figures/HistoryView.png}
 %\caption{Dashboard History View}
@@ -457,8 +457,8 @@ according to the used site(s) or job type or job completion status, among others
 
 \subsubsection{Task Monitoring for Analysis user}
 A user centric view where the user is
-initially presented the list of tasks he submitted in lasts
-two days, both in tabular and graphical way (see Fig.~\ref{fig:TaskMonitor1}).
+initially presented the list of tasks he submitted in the last
+two days, both in tabular and graphical format (see Fig.~\ref{fig:TaskMonitor1}).
 
 The user can then expand one selected task to get
 a graphical overall summary of execution/completion progress
@@ -489,14 +489,14 @@ aimed at understanding and debugging what happens ``now''.
 The entry point is the number of jobs submitted or
 terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
 \begin{figure}
- \includegraphics[width=0.80\textwidth]{figures/DashboardInteractive.png}
+ \includegraphics[width=0.60\textwidth]{figures/DashboardInteractive.png}
 \caption{Dashboard Interactive Interface}
 \label{fig:Dashboard}
 \end{figure}
 The interactive interface allows to drill down expanding the set of jobs by
 various relevant properties (execution site, grid gateway,
 submitter user, completions status, grid workload management host,
-activity type, used dataset etc.), until all details stored in the DataBase
+activity type, used dataset etc.), until all details stored in the database
 about a choosen (set of) job(s) can be accessed.
 The interface reports success/failure
 according to grid/site/application problem, and information
@@ -506,9 +506,9 @@ on used wall and cpu time of jobs.
 \label{sec:4}
 \subsection{Distributed Infrastructure}
 \label{sec:4_1}
-The tools described before operate on a distributed infrastructure
+The tools described above operate on a distributed infrastructure
 of sites offering uniform access via standard Grid services. Moreover CMS maintains sofware libraries at each site to get a uniform execution
-environment. A small DataBase is used to keep track of
+environment. A small database is used to keep track of
 information specific to each site and relevant for CMS operations.
 
 \subsubsection{ Grid services }
@@ -516,7 +516,7 @@ information specific to each site and relevant for CMS operations.
 
 The access to CMS resources is controlled by grid services provided by the WLCG project.
 %Users are authenticated via X.509 certificated issued by trusted Certificate Authorities (CA).
-Authorization is based on X.509 certificates extended with VOMS attributess
+Authorization is based on X.509 certificates extended with VOMS attributes
 that certify the membership of users in the CMS Virtual Organization and possibly 
 to CMS groups and the roles they have.
 VOMS servers are provided by the WLCG project.
@@ -556,7 +556,7 @@ and duties they fulfill in the collaboration.
 %Collaborators are automatically added to the SiteDB database on registering with the CMS Hypernews system. As well as providing the aforementioned information, SiteDB acts as a simple monitoring portal, bringing  in and providing links to content from PhEDEx, DBS, SAM tests, CMS Dashboard, GOCDB and GSTAT. The database also maintains a mapping between the different names a site can be known by, for instance the institute name (University of Bristol), its SAM/WLCG name (UKI-SOUTHGRID-BRIS-HEP), and the CMS name (T2_UK_SGrid_Bristol), as well as associations between sites (e.g. the parent T1 site for a T2)
 CMS has designed and built SiteDB because CMS relies on close contact
 to the sites it uses. The distributed nature of CMS computing makes
-it very useful to track the people's responsbilities, and to contact
+it very useful to track the people's responsibilities, and to contact
 them on the basis of their role. Some site roles are technical
  (for instance running PhEDEx) others are related to CMS computing
  policy (e.g. the site's Data Manager).
@@ -572,13 +572,13 @@ pre-installed on the remote sites for each release. The CMS software
 is packaged using the RedHat Package Manager (RPM), which is used by
 some major Linux distributions. Dependencies between packages are
 resolved with the help of the apt-get tool, which is also widely used in
-the Linux community. The whole CMS software installation gets installed
+the Linux community. The whole CMS software suite is installed
 on a filesystem shared among all worker nodes of a site.
 
 During the
-first setup of CMS software (``bootstrap'') the underlying operating system gets
+first setup of CMS software (``bootstrap'') the underlying operating system is
 checked for all required packages. These are imported into a meta-RPM,
-which gets installed in the CMS software area. From that point on all
+which is installed in the CMS software area. From that point on all
 CMS installations are independent of the underlying operating
 system. In addition to the actual CMS software (CMSSW) releases some ``external'' 
 packages are installed, e.g. clients for databases, various ROOT
@@ -592,7 +592,7 @@ site that publishes the availability of
 the release. The tags are used by the workload management systems to
 submit jobs to sites that provide the requested CMS release.
 Typically, there are about 10 production releases installed at a time at all
-sites requiring roughly 50\,GB.
+sites. This requires roughly 50\,GB of disk space.
 
 All software deployment and  removal activities are handled centrally
 using two different instances, one for OSG based sites and one for
@@ -677,7 +677,7 @@ to the CMS physicists at the Tier-2s. % together with the AOD.
 
 Normally only the team dealing with data processing operations (Data Operation)
 has access to the Tier-1 resources but in some special cases
-some physicist may need access to large samples of raw data,
+a physicist may need access to large samples of raw data,
 which can not be hosted at Tier-2's.
 Examples of this kind of activity are the detector 
 calibration or the Data Quality Monitor validation.
@@ -686,7 +686,7 @@ to the Tier-1s to those physicists.
 
 \subsubsection{Physics groups and Users Activities}
 \label{sec:4_3_2}
-Physicists are organized in Physics groups each with its own internal 
+Physicists are organized in Physics groups, each with its own internal 
 organization.
 Each Physics group is associated with a few Tier-2 sites that support it by 
 providing storage space and processing power.
@@ -710,10 +710,9 @@ running at other sites. Each CMS user can access any data
 hosted at any Tier-2, but can only write at the Tier-2 that supports him
 as a local user.
 
-The user produced data stored at a Tier2 can also be published into a local DBS
-in order to allow access to other collegues.
-The data that is going to be accessed by many users or transferred among sites %are of more wide interest
-, for instance the Physics Group specific event filtering and selections,
+The user-produced data stored at a Tier2 can also be published into a local DBS
+in order to allow access to other colleagues.
+The data that is going to be accessed by many users or transferred among sites, for instance the Physics Group specific event filtering and selections,
 could be exposed to the entire collaboration by registering it in Global DBS and performing its transfer with PhEDEx.
 User data is typically not produced with files large enough for wide area transfers or suitable for storage systems. Therefore a migration process involving the merge of the files and the validation of the data is foreseen before the registration in Global DBS and PhEDEx occurs.
  
@@ -768,7 +767,7 @@ due to storage problems at sites. In most but not all cases, those problems were
 
 \paragraph{Simualtion of physics group workflows}
 An exercise to mimic realistic physics group activities running
-on a list of associated Tier2s was set up. 
+on a list of associated Tier2s was conducted. 
 %association of a list of T2s to each fake physics group
 The CRAB server was used to submit realistic physics group tasks: 
 analysis-like jobs reading a dataset at all sites and running for 
@@ -1010,7 +1009,7 @@ CRAB Analysis Server instances have been deployed in several countries (CERN, It
 A complete example of analysis activity during the year has been the analysis 
 of real cosmic data collected during a long period of data-taking, called CRAFT (Cosmics Run At Four Tesla) to commission the detector in preparation for LHC collisions. About 300 million events of cosmic muons were taken and their analysis is meant to assess detector perfomance and perfom physics studies.
 % such as measurement of cosmic muon charge ratio or absolute cosmic muon flux as function of the muon momentum
-The raw data were transferred at Tier-1 where several re-processing and data skimming took place. The reconstructed data were all shipped to the CAF where calibration and alignment studies were performed in order to provide better conditions to be used in subsequent re-processing. 
+The raw data were transferred to Tier-1s where several re-processing and data skimming passes took place. The reconstructed data were all shipped to the CAF where calibration and alignment studies were performed in order to provide better conditions to be used in subsequent re-processing. 
 %All data at CAF: 122 TB
 Reconstructed data and their skims were also spread to Tier-2s, manily to 
 those associated with Muon and Tracker group although overall about 20 sites hosted CRAFT data. The overall amount of CRAFT data transferred to Tier-2s was more than 300TB.
@@ -1045,7 +1044,7 @@ The job efficiency at Tier-2s is lower than that at CAF because, on top of the a
 
 Real user analysis jobs show worse job efficiency (around 60\%) with respect to the efficiencies obtained during dedicated and controlled submissions such 
 as computing challenge and Job Robot activities, described in ~\ref{sec:5_1} and ~\ref{sec:4_2_1} respectivelly.
-Analysis specific operations to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities are being set up.
+Analysis specific operations are being defined to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities.
 
 \section{Conclusions}
 \label{sec:6}
