@@ -169,7 +169,7 @@ the user experience in their current analysis activities.
 \section{Introduction}
 \label{intro}
 The Compact Muon Solenoid (CMS) ~\cite{RefCMS} is a general-purpose detector
-that will collect data at the Large Hadron Collider (LHC),located at CERN
+built to collect data at the Large Hadron Collider (LHC),located at CERN
 (Geneva).
 The beams will collide at intervals of 25 ns and CMS will record only the collisions
 that pass a set of %real time 
@@ -184,7 +184,7 @@ challenge for data management and processing.
 \section{The CMS Computing Model}
 \label{sec:2}
 The CMS distributed computing and analysis model ~\cite{RefCM} is designed to serve, process and archive the %huge amount of data the experiment will collect.
-large number of events that will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high throughput networks and accessed by means of Grid software. 
+large number of events which will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high throughput networks and accessed by means of Grid software. 
 The choice of a distributed system allows delegation of responsibilities to local CMS communities, access to additional funding channels and ensures load balancing of the available resources while replicating the interesting data in different sites.
 
 
@@ -206,20 +206,20 @@ as improving site availability, as described in section ~\ref{sec:4_2_1}.
 
 \section{Framework for CMS Distributed Analysis}
 \label{sec:3}
-The CMS analysis model foresees activites driven by data location. Data are distributed over many computing centers according to CMS data placement policies. Processing takes place where data are located. In order to enable distributed analysis a set of Workload and Data Management tools have been developed, building CMS-specific services on top of existing Grid services.
+The CMS analysis model foresees activites driven by data location. Data are distributed over many computing centers according to CMS data placement policies. Processing takes place in the sites where data are located. In order to enable distributed analysis a set of Workload and Data Management tools have been developed, building CMS-specific services on top of existing Grid services.
 
 \subsection{Data Management}
 \label{sec:3_1}
 The CMS Data Management System provides the basic infrastructure and tools necessary to manage the large amounts of data produced, processed and analysed in a distributed computing environment. 
 In order to simplify bulk data management, files are grouped together into “file-blocks”  of a convenient size for data transfer. 
-File-blocks are in turn grouped in datasets whose size is driven by physics.
+File-blocks are in turn grouped in datasets whose content is driven by physics.
 The file-block is the unit of data location and replication. 
 The tracking of data location is file-block based and it provides the name of sites hosting the data, not the physical location of constituent files at the sites nor the composition of file-blocks.
 The file-block contains files that can be processed and analyzed together.
 %Processing is block-based. 
 The packaging of events into files is done so that the average file size is
-kept reasonably large (e.g. at least 1GB), in order to avoid scaling issues with storage and tape systems and to optimize data transfer.
-This is achieved by merging small output file produced by individual jobs into fewer larger files.
+kept reasonably large (e.g. at least 1GB), in order to avoid scaling issues with storage and tape systems and optimize data transfer.
+This is achieved by merging small output files produced by individual jobs into fewer larger files.
 
 
 The CMS Data Management System is made of a set of loosely coupled components as described in the following sections.
@@ -227,10 +227,11 @@ The CMS Data Management System is made of a set of loosely coupled components as
 \label{sec:3_1_1}
 The Dataset Bookkeeping Service (DBS)\cite{RefDBS} provides the means to describe, discover and use CMS event data. 
 It catalogs CMS specific data definitions such as run number, the algorithms and configurations used to process the data together with the information regarding the processing parentage of the data it describes.
-The DBS stores information about CMS data in a queryable format. The supported queries allow discovery of available data and how they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
+The DBS stores information about CMS data in a queryable format. The supported queries allow discovery of available data and the way they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
 
 The DBS is used for data discovery and job configuration by the production and analysis systems through a DBS API. 
-Users can discover what data exists using a Web browser or Command Line Interface.
+Users can discover %what data exists using a 
+which data exist using either a Web browser or a Command Line Interface.
 The DBS is usable in multiple “scopes”:
 \begin{itemize}
 \item A Global scope DBS is a single instance describing data CMS-wide 
@@ -258,7 +259,7 @@ Frontier translates database queries into HTTP, looks up the results in a centra
 The CMS data placement and transfer systems are implemented by
 PhEDEx\cite{RefPhEDEx}. The data placement system provides an
 interface to define, execute and monitor administrative decisions of
-data movement such as where experimental data is to be located, which
+data movement such as where experimental data are to be located, which
 copies are custodial, and %to which physics analysis group the data is allocated for.  
 the physics analysis group a given set of data is replicated for at a given site.
 Data are distributed according to available resources
@@ -309,9 +310,9 @@ the locations of the data when submitting jobs.
 Using PhEDEx, CMS has transferred over 87 PB of data since the project 
 began in 2004.  Figure \ref{fig:phedex-transfers} shows the average
 daily transfer volume per month of data managed by PhEDEx from
-mid-2004 until July 2009.  Varios challenge periods are highlighted,
-and in particular the SC4, CSA06~\cite{RefPastExp}, and LoadTest/Debug periods resulted
-in large increases in average transfer volume.  ``General'' transfers
+mid-2004 until July 2009.  Various challenge periods are highlighted,
+and in particular the SC4, CSA06~\cite{RefPastExp}, and LoadTest/Debug periods which resulted
+in large increases in the average transfer volume.  ``General'' transfers
 include transferring of Monte Carlo or cosmics raw data for physics
 analysis.  ``Debug'' and ``LoadTest'' transfers are of randomly
 generated data for the purpose of debugging and commissioning the
@@ -324,7 +325,7 @@ levels have already been demonstrated by PhEDEx in late February 2008
 during the Common Computing Readiness Challenge (CCRC08) challenge.
 
 \subsection{Workload Management}
-The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs that process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis.
+The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs which will process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis.
 
 %
 \label{sec:3_2}
@@ -338,7 +339,7 @@ The functionalities that CRAB provides, as schematically illustrated in Fig.~\re
 \begin{itemize}
 \item{Data discovery and location:}
 Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find 
-what data exists and where it can be accessed.
+what data exist and where they can be accessed.
 \item{Job preparation:}
 Pack local user code and the environment to be sent to remote sites where the CMS software is pre-installed as described in ~\ref{sec:4_1_3}.
 \item{Job splitting:}
@@ -384,7 +385,7 @@ A few main points drove the development of monitoring tools:
   jobs are not properly reported
 \item record
   enough information about failures so that plans and actions are set
-  based on quantitative facts and that effectiveness of solutions can be metered
+  based on quantitative facts and that  the effectiveness of solutions can be measured 
 \item detect overall usage patterns to guide management in making
  choices and plans about how and where to steer user activities and
  how to plan for the future
@@ -393,7 +394,7 @@ A few main points drove the development of monitoring tools:
 
 Job monitoring is built around the idea of instrumented
 application: CMS jobs and tools send messages
-to a central collector. Only jobs that use the
+to a central collector. Only jobs which use the
 instrumented submission framework can be monitored in this way,
 a small penalty in the CMS case where almost
 all user jobs are submitted using the CRAB tool.
@@ -417,8 +418,8 @@ amount of detail. Data can be viewed divided
 according to the used site(s) or job type or job completion status, among others.
 
 \subsubsection{Task Monitoring for Analysis user}
-A user centric view where the user is
-initially presented the list of tasks he submitted in the last
+A user-centric view where the user is
+initially presented with the list of tasks he has submitted in the last
 two days, both in tabular and graphical format (see Fig.~\ref{fig:TaskMonitor1}).
 
 The user can then expand one selected task to get
@@ -442,7 +443,7 @@ and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
 
 \subsubsection{Interactive Interface}
 This was the first view to be developed, based on
-vision more then experience, therefore
+vision more than experience, therefore
 emphasis was put on flexibility. It is a job-centric view
 aimed at understanding and debugging what happens ``now''.
 The entry point is the number of jobs submitted or
@@ -452,14 +453,12 @@ terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
 \caption{Dashboard Interactive Interface}
 \label{fig:Dashboard}
 \end{figure}
-The interactive interface allows to drill down expanding the set of jobs by
-various relevant properties (execution site, grid gateway,
+The interactive interface allows to drill down expanding the set of jobs according to various relevant properties (execution site, grid gateway,
 submitter user, completions status, grid workload management host,
 activity type, used dataset etc.), until all details stored in the database
 about a choosen (set of) job(s) can be accessed.
-The interface reports success/failure
-according to grid/site/application problem, and information
-on used wall and cpu time of jobs.
+The interface reports success/failure according to grid/site/application problem, and information on used wall-clock time and cpu time of jobs.
+
 
 \section{Operation of CMS Distributed Analysis}
 \label{sec:4}
@@ -496,10 +495,10 @@ characteristics and state to an Information System based
 on the BDII provided by WLCG. The information is used both
 for monitoring and for resource selection.
 
-The CMS data transfer system is implemented by PhEDEx that
+The CMS data transfer system is implemented by PhEDEx which
 in turn depends on the gLite File Transfer System (FTS).
 WLCG maintains a number of FTS servers (at Tier-0 and Tier-1 sites)
-that provide the transfer channels on which the transfers take place.
+which provide the transfer channels on which the transfers take place.
 %Should you say here that FTS uses SRM which in turn uses gridFTP ?
 
 
@@ -507,13 +506,13 @@ that provide the transfer channels on which the transfers take place.
 \label{sec:4_1_2}
 SiteDB is a catalogue of all CMS computing Tiers.
 It records the CMS resources at the site, the resources pledged for the future,
-and it keeps track of CMS personnel at each site, including the roles
+and keeps track of CMS personnel at each site, including the roles
 and duties they fulfill in the collaboration.
 CMS has designed and built SiteDB because CMS relies on close contact
-to the sites it uses. The distributed nature of CMS computing makes
+with the sites it uses. The distributed nature of CMS computing makes
 it very useful to track the people's responsibilities, and to contact
 them on the basis of their role. Some site roles are technical
- (for instance running PhEDEx) others are related to CMS computing
+ (for instance running PhEDEx), while others are related to CMS computing
  policy (e.g. the site's Data Manager).
 
 \subsubsection{ Software Installation }
@@ -535,13 +534,13 @@ system. In addition to the actual CMS software (CMSSW) releases some ``external'
 packages are installed, e.g. clients for databases, various ROOT
 versions and GEANT4.
 
-The installations itself are performed by high priority Grid
+The installations themselves are performed by high priority Grid
 jobs. Those jobs are sent using a dedicated VOMS role %(lcgadmin) 
-in order gain write access to the CMS software area. Once a release is
-installed a tag is set on the 
-site that publishes the availability of
+in order to gain write access to the CMS software area. Once a release is
+installed, a tag is set on the 
+site which publishes the availability of
 the release. The tags are used by the workload management systems to
-submit jobs to sites that provide the requested CMS release.
+submit jobs to sites which provide the requested CMS release.
 Typically, there are about 10 production releases installed at a time at all
 sites. This requires roughly 50\,GB of disk space.
 
@@ -645,26 +644,26 @@ them in the process, each Physics group is allocated a limited number
 of 'quanta', each being currently 30TB of disk and enough CPU to process it, hosted at few Tier-2s. 
 
 Each Tier-2 site also supports a local community of users, providing them
-a common space for data of local interest and a grid-enabled
+with a common space for data of local interest and a grid-enabled
 storage for each user where to e.g. receive output from CRAB jobs
 running at other sites. Each CMS user can access any data
 hosted at any Tier-2, but can only write at the Tier-2 that supports him
 as a local user.
 
-The user-produced data stored at a Tier2 can also be published into a local DBS
+The user-produced data stored at a Tier-2 can also be published into a local DBS
 in order to allow access to other colleagues.
-The data that is going to be accessed by many users or transferred among sites, for instance the Physics Group specific event filtering and selections,
-could be exposed to the entire collaboration by registering it in Global DBS and performing its transfer with PhEDEx.
-User data is typically not produced with files large enough for wide area transfers or suitable for storage systems. Therefore a migration process involving the merge of the files and the validation of the data is foreseen before the registration in Global DBS and PhEDEx occurs.
+The data meant to be accessed by many users or transferred among sites, for instance the Physics Group specific event filtering and selections,
+could be exposed to the entire collaboration by registering it in Global DBS and performing their transfer with PhEDEx.
+User data are typically not produced with files large enough for wide area transfers or suitable for storage systems. Therefore a migration process involving the merge of the files and the validation of the data is foreseen before the registration in Global DBS and PhEDEx occurs.
  
 \subsubsection{Storage hierarchy at Tier-2}
-In order to support all the functionalities the CMS model requires the Tier-2 storage is divided into 4 logical pieces:
+In order to support all the functionalities required by the CMS model, the Tier-2 storage is divided into 4 logical parts:
 \begin{itemize}
 \item{} Local Group and User Space: roughly 30TB for the local community and additional 1TB per user.
 \item{} Physics Group Space: 60-90TB of space is allocated to serve 2-3 Physics Groups. Representatives from the groups serve as data managers for the space and make subscription and deletion requests.
 The space for each group will increase with time as datasets grow.
-\item{} Centrally Controlled Space: 30TB of space is identified at each Tier-2 under the control of CMS centrally.
-This is used to ensure complete copies of the reconstruction datasets are available across the Tier-2s. This space can be further used as a flexible buffer to deal with operational issues and difficulties in the short term.
+\item{} Centrally Controlled Space: 30TB of space is identified at each Tier-2 under the central control of CMS.
+This is used to ensure that complete copies of the reconstruction datasets are available across the Tier-2s. This space can be further used as a flexible buffer to deal with operational issues and difficulties in the short term.
 \item{} Simulation Staging and Temporary Space: 20TB is identified to
 stage simulation produced at the Tier-2s and other temporary
 files before they can be transferred to the permanent home. 
@@ -675,8 +674,8 @@ files before they can be transferred to the permanent home.
 User documentation is provided by a set of twiki pages composing the so called CMS Workbook. Documentation about the distributed environment and CRAB usage are available, as well as a troubleshouting guide.
 Tutorials including hands-on session are periodically organized.
 The day by day support is currently performed mainly via a mailing list (HyperNews) where users reports the problems they are facing. The reported problems range from problems with the infrastructure, 
-site related issues to user's mistakes in tools configuration or real bug report that are feed back to developers.
-The CMS Savannah Computing Infrastructure portal is used to report problems across the distributed infrastructure such as data access problems, problem on specific CMS software version at sites etc.
+site related issues to user's mistakes in tools configuration or real bug report which are fed back to the developers.
+The CMS Savannah Computing Infrastructure portal is used to report problems across the distributed infrastructure such as data access problems, problems on specific CMS software versions at sites, etc.
 
 \section{Experience with CMS Distributed Analysis}
 \label{sec:5}
@@ -684,7 +683,7 @@ The CMS Savannah Computing Infrastructure portal is used to report problems acro
 Distributed Analysis has been ongoing for several years, passing through sequentially planned steps of 
 increasing complexity, the so called data and physics challenges~\cite{RefPastExp}. 
 It has been used extensively during studies to prepare the CMS Physics Technical Design Report~\cite{PTDR} and various detector commissioning activities. 
-Last year's experience both in term of dedicated commissioning tests and real users analysis is reported in the following sections.
+Last year's experience both in terms of dedicated commissioning tests and real users analysis is reported in the following sections.
 
 \subsection{Analysis exercises within Common Computing Readiness Challenge}
 \label{sec:5_1}
@@ -697,31 +696,32 @@ expected by the physics groups.
 Different types of jobs, with increasing complexity, were used:
 \begin{itemize}
 \item long-running CPU intensive jobs with moderate I/O. This tests the basic submission and execution of an analysis job with no strenuous requirements on 
-either submit rate, or I/O, or stageout. The goal here was to fill all batch slots available for the analysis at a given site without stressing the site.
+either submit rate, I/O, or stageout. The goal here was to fill all batch slots available for the analysis at a given site without stressing the site.
 \item long-running I/O intensive jobs provided some non negligible stress on 
 the storage infrastructure at the sites.
 \item short-running jobs O(10 min) with local stage out of O(10 MB) file as output. These jobs run for a short time, with many jobs finishing per hour, thus leading to a significant write request rate at large sites.
 \end{itemize}
-Up to 40 sites were involved across EGEE, OSG, and NorduGrid. More than 100,000 jobs succeeded throughout the challenge. The error rates were very mixed, ranging from less than 1\% at many sites to up to 50\% at a few sites due to
-catastrophic storage failures. The failures were predominantly
-due to storage problems at sites. In most but not all cases, those problems were detected and fixed by the site administrators within 24 hours. Ignoring the storage failures, the success rate in this exercise was found to be better than 99\%. Overall success rate including the storage issues, ranged between 92-99\% for these exercises.
+Up to 40 sites were involved across EGEE, OSG, and NorduGrid. More than 100,000 jobs succeeded throughout the challenge. The error rates were very mixed, ranging from less than 1\% at many sites to up to 50\% at a few %sites due to catastrophic storage failures. 
+The failures were predominantly due to storage problems at the sites. 
+In most but not all the cases, those problems were detected and fixed by the site administrators within 24 hours. Ignoring the storage failures, the success rate in this exercise was found to be better than 99\%. Overall success rate including the storage issues, ranged between 92-99\% for these exercises.
 
 \paragraph{Simualtion of physics group workflows}
 An exercise to mimic realistic physics group activities running
 on a list of associated Tier2s was conducted. 
 The CRAB server was used to submit realistic physics group tasks: 
 analysis-like jobs reading a dataset at all sites and running for 
-about 4 hours with remote stageout of a O(20 MB) output file to a subset of T2
-sites. This simulates the computing model where each user has space at a T2 while the datasets are generally distributed throughout the world.
+about 4 hours with remote stageout of a O(20 MB) output file to a subset of 
+Tier-2 sites. This simulates the computing model where each user has space at 
+a Tier-2 while the datasets are generally distributed throughout the world.
 More than 100,000 jobs on about 30 sites were submitted in two weeks and 
 the CRAB Server provided the needed functionality for job submission and 
 tracking. %It is worth noting that the aim of this challenge was to test 
 %the readiness of sites, by filling their resources, rather than a scale test of the CRAB Server.
 Most failures were problems accessing the input data, from 0.1\%-10\% up to 50\% for pathological cases, and remote stageout issues were due to old Grid clients affecting from 100\% to few \% per site. These stageout issues were
 promptly fixed by the site administrators. 
-During the second week, sites with efficiency above 90\% significantly increased, as shown in Figure~\ref{fig:CCRC08SiteEff}.
+During the second week, the number of sites with efficiency above 90\% significantly increased, as shown in Figure~\ref{fig:CCRC08SiteEff}.
 \paragraph{Chaotic job submissions}
-People from T2 sites were encouraged to submit jobs to other T2 sites, to mimic a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities at several sites. Figure~\ref{fig:CCRC08Chaotic} summarizes the number of active users per site, including Tier-1s, Tier-2s, Tier-3s and opportunistic usage. Around 60 sites participated in these tests.
+People from Tier-2 sites were encouraged to submit jobs to other Tier-2 sites, to mimic a chaotic job submission pattern. This activity was clearly visible in the CMS Dashboard, showing lots of user activities at several sites. Figure~\ref{fig:CCRC08Chaotic} summarizes the number of active users per site, including Tier-1s, Tier-2s, Tier-3s and opportunistic usage. Around 60 sites participated in these tests.
 
 The CCRC08 analysis challenge drove the level of activity and participation at Tier2s to an unprecedented scale in CMS.
 
@@ -765,7 +765,7 @@ made to provide a harsher environment for job handling due to higher
 rate of finished jobs and to limit the resource usage at sites.
 
 Controlled submissions from different user certificates, thus 
-emulating the CRAB Server usage in a multi-users environment, were performed.
+emulating the CRAB Server usage in a multi-user environment, were performed.
 Different submission patterns were adopted by the 12 users
 involved. For example a user submitting 100 jobs every 15 minutes,
 another 500 jobs every 20 minutes, another 2000 jobs every 6 hours
@@ -775,7 +775,7 @@ environment. %With respect to the single-user test
 Jobs were submitted to more than 50 sites with a rate above 50,000 jobs/day.
 This helped identify some limitations in the communication between 
 the components responsible for job outpul retrieval and handling that caused a backlog of jobs without output retrieved. This effect is more evident for homogeneous very short
-jobs, such as those used in the test, that have a higher finishing rate
+jobs, such as those used in the test, which have a higher finishing rate
 than real user's jobs which tend to finish at different times. Nonetheless, the backlog was absorbed in a few hours. This issue was
 taken into account in the development cycle and the code was
 optimized.  About 120,000 jobs were successfully handled in 48 hours,
@@ -838,7 +838,7 @@ jobs.
 \end{figure}
 
 
-During last year about 11 million analysis jobs were submitted.  Peaks
+During the last year about 11 million analysis jobs were submitted.  Peaks
 of more than 100,000 jobs per day have been reached, with an average
 of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
 The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, both in terms of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
@@ -850,15 +850,15 @@ The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\r
 
 The distribution of analysis job efficiency over time is shown in Fig.~\ref{fig:T2EffApril0809}. The average success rate is 61\% with 4\% of cancelled jobs, 10\% of grid failures and 25\% application failures.
 Most of the failures faced by the users are due to remote stageout issues, user application errors and errors reading data at the site. 
-Part of the failures are somehow expected, since analysis jobs run user code which may not have been thoroughly tested. For instance memory leaks or crash in rare events might be hard to spot in the small scale test typically done by the users.
+Part of the failures are somehow expected, since analysis jobs run user code which may not have been thoroughly tested. For instance memory leaks or crashes in rare events might be hard to spot in the small scale test typically done by the users.
 
 Failures in stage out of the data output files to remote storage can be due 
-to users misconfiguring the remote destination to use or to transfer problems.
+to users misconfiguring the remote destination or transfer problems.
 A hanging or failing stage out represents a waste of CPU since it occurs at 
 the end of the job processing, so an approach to decouple the job processing and the remote stage out is under development. At job finishing the output will be stored locally at the site and the remote stage out will occur in an asynchronous step.
 
 Failures accessing data at the site mainly expose problems with the storage at the site or inconsistencies between the data catalogue and what has been deleted at the site. 
-Periodically data consistency and integrity checks at all Tier-2 sites are performed. This check verifies that the contents of the disks at the Tier-2 sites are consistent with the PhEDEx databases and DBS and reduce the rate of data access errors.
+Data consistency and integrity checks at all Tier-2 sites are performed periodically. These checks verify that the contents of the disks at the Tier-2 sites are consistent with the PhEDEx databases and DBS and reduce the rate of data access errors.
 
 Grid failures are due to the underlying grid system but also reflect site problems or jobs that spend too much time on the worker node and are killed by the local batch system, appearing as aborted by the Grid.
 
@@ -916,7 +916,7 @@ of real cosmic data collected during a long period of data-taking, called CRAFT 
 The raw data were transferred to Tier-1s where several re-processing and data skimming passes took place. The reconstructed data were all shipped to the CAF where calibration and alignment studies were performed in order to provide better conditions to be used in subsequent re-processing. 
 %All data at CAF: 122 TB
 Reconstructed data and their skims were also spread to Tier-2s, manily to 
-those associated with Muon and Tracker group although overall about 20 sites hosted CRAFT data. The overall amount of CRAFT data transferred to Tier-2s was more than 300TB.
+those associated with the Muon and Tracker groups with a total of about 20 sites hosting CRAFT data. The overall amount of CRAFT data transferred to Tier-2s was more than 300TB.
 %Total data of CRAFT data transfers at other T2s (19 sites):  ~315TB
 The number of users analysing CRAFT data during the year is shown in Fig.~\ref{fig:CRAFTusers} where the breakdown of users using the CAF and those using the Tier2s is also reported. The distribution of analysis jobs is shown in Fig.~\ref{fig:CRAFTjobs}, roughly two thirds at Tier-2s and one third at the CAF.
 The job efficiency at Tier-2s is lower than that at CAF because, on top of the application errors, there are grid failures and the stage out errors mentioned above.
