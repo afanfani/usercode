@@ -152,11 +152,12 @@ grestore
 CMS expects to manage several Pbytes of data each year, distributing them
 over many computing sites around the world and enabling data access at those
 centers for analysis. CMS has identified the distributed sites as the primary
-location for physics analysis to support a wide community of users,
-with potentially as many as 3000 users. This represents an unprecedented scale
- of distributed computing resources and number of users.
-An overview of the computing architecture, the software tools and
-the distributed infrastructure deployed is reported.
+location for physics analysis to 
+%support a wide community of users, with potentially as many as 3000 users. 
+ support a wide community with thousands potential users
+This represents an unprecedented scale of distributed computing resources 
+and number of users.
+An overview of the computing architecture, the software tools and the distributed infrastructure deployed is reported.
 Summaries of the experience in establishing efficient and scalable operations
 to prepare for CMS distributed analysis are presented, followed by
 the user experience in their current analysis activities.
@@ -176,7 +177,7 @@ online trigger decisions with an expected rate around 300Hz and an
 average event size of 1-2 MB. A nominal year worth of data taking 
 corresponds to about 2-6 PB of storage prior to any processing.
 Data will have to be accessed for reprocessing and analysis by a
-large experimental community with more than 3000 collaborators distributed
+large experimental community with more than 3000 collaborators ~\cite{RefCMSCollaboration} distributed
 worldwide across 40 countries. This imposes an unprecedented computing
 challenge for data management and processing.
 
@@ -198,7 +199,8 @@ Each Tier-1 centre assures the custodial storage of a fraction of the raw data p
 They control the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
 
 \paragraph{Tier-2:}
-Tier-2 centers, more than 50 sites around the world,  provide capacity for user data analysis and for production of simulated data.
+%Tier-2 centers, more than 50 
+Tier-2 centers, about 50 sites around the world ~\cite{RefSite}, provide capacity for user data analysis and for production of simulated data.
 In CMS data transfer to Tier-2 can occur from any Tier-1. A significant effort is required in 
 commissioning all possible transfer links, as described in section ~\ref{sec:LinkCommissioning}, as well
 as improving site availability, as described in section ~\ref{sec:4_2_1}.
@@ -1012,9 +1014,18 @@ Tier-1 and Tier-2 centres and acknowledge their support.
 \bibitem{RefCMS}
 CMS Collaboration R. Adolphi et al., The CMS experiment at the CERN LHC, JINST, 0803, S08004 (2008)
 %
+\bibitem{RefCMSCollaboration}
+CMS Collaboration, http://cms.web.cern.ch/cms/Collaboration/index.html
+%
 \bibitem{RefCM}
 C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-
 035/G-083 (2004)
+%
+\bibitem{RefSite}
+J.Flix, A. Sciab\`a et al., The commissioning of CMS sites: improving the site reliability,  Proceedings of 17th International Conference On Computing In High Energy Physics And Nuclear Physics,  approved for publication in J. Phys.: Conf. Ser. (2009) \\
+J.Flix, A. Sciab\`a et al., The commissioning of CMS computing centres in the worldwide LHC computing Grid, Conference Record N29-5 session Grid Computing, Nuclear Science Symposium IEEE , Dresden (2008)
+%\emph{IS THE ACAT REFERENCE READY?}
+
 %
 \bibitem{RefDBS}
 A. Afaq et al., The CMS dataset bookkeeping service, J.Phys.Conf.Ser, 119, 072001 (2008)
@@ -1036,7 +1047,7 @@ D. Spiga et al., The CMS Remote Analysis Builder CRAB, 14th Int. Conf. on High P
 LCG Computing Grid Technical Design Report, LCG-TDR-001 CERN/LHCC 2005-024 (2005)
 %
 \bibitem{RefBOSSLite}
-G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Proceedings of International Conference On Computing In High Energy Physics And Nuclear Physics (2009). 
+G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Proceedings of 17th International Conference On Computing In High Energy Physics And Nuclear Physics, approved for publication in J. Phys.: Conf. Ser. (2009). 
 %
 \bibitem{RefgLiteWMS} P. Andreetto et al., The gLite Workload Management System, J.Phys.Conf.Ser, 119, 062007 (2008)
 %
@@ -1046,13 +1057,6 @@ G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Pr
 %
 \bibitem{RefARC} M.Ellertet al., Advanced Resource Connector middleware
   for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)
-%
-\bibitem{RefSite}
-J.Flix, A. Sciab\`a et al., The commissioning of CMS computing centres in the worldwide LHC computing Grid, Conference Record N29-5 session Grid Computing, Nuclear Science Symposium IEEE , Dresden (2008)
-%J.Flix et al., The commissioning of CMS sites: improving the site reliability, 
-%Proceedings of International Conference On Computing In High Energy Physics And Nuclear Physics (2009). \emph{IS IT POSSIBLE TO REFERNCE NOT YET PUBLISHED CHEP09 PAPER?}\\ 
-%\emph{IS THE ACAT REFERENCE READY?}
-
 %
 \bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Conference Record N67-2 session Applied Computing Techniques, Nuclear Science Symposium IEEE , Dresden (2008)
 %
