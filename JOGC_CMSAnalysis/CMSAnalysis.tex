@@ -303,6 +303,7 @@ system and the analysis system relies on the data service to obtain
 the locations of the data when submitting jobs.
 
 \begin{figure}
+\centering
  \includegraphics[width=0.70\textwidth]{phedex-avg-monthly-volume.eps}
 \caption{Average daily transfer volume per month using PhEDEx since the project began.}
 \label{fig:phedex-transfers}
@@ -365,7 +366,7 @@ The Analysis Server is coupled with an external GridFTP server %Storage Element
 
 
 \begin{figure}
- \includegraphics[width=0.70\textwidth]{CRABWorkflow.eps}
+ \includegraphics[width=0.98\textwidth]{CRABWorkflow.eps}
 \caption{CRAB workflow. WMS can stand either for gLite WMS or glidein WMS.}
 \label{fig:CRABWorkflow}
 \end{figure}
@@ -421,26 +422,26 @@ according to the used site(s) or job type or job completion status, among others
 \subsubsection{Task Monitoring for Analysis user}
 A user-centric view where the user is
 initially presented with the list of tasks he has submitted in the last
-two days, both in tabular and graphical format (see Fig.~\ref{fig:TaskMonitor1}).
+two days, both in tabular and graphical format.% (see Fig.~\ref{fig:TaskMonitor1}).
 
 The user can then expand one selected task to get
 a graphical overall summary of execution/completion progress
-and access details of each job (see Fig.~\ref{fig:TaskMonitor2}).
+and access details of each job.% (see Fig.~\ref{fig:TaskMonitor2}).
 
-\begin{figure}
-\begin{minipage}{.45\textwidth}
-\centering
- \includegraphics[width=0.95\textwidth]{TaskMonitor1.eps}
-\caption{All user's tasks in last 2 days}
-\label{fig:TaskMonitor1}
-\end{minipage}
-\begin{minipage}{.45\textwidth}
-\centering
-\includegraphics[width=0.95\textwidth]{TaskMonitor2.eps}
-\caption{Expanded view of one task}
-\label{fig:TaskMonitor2}
-\end{minipage}
-\end{figure}
+%\begin{figure}
+%\begin{minipage}{.45\textwidth}
+%\centering
+% \includegraphics[width=0.95\textwidth]{TaskMonitor1.eps}
+%\caption{All user's tasks in last 2 days}
+%\label{fig:TaskMonitor1}
+%\end{minipage}
+%\begin{minipage}{.45\textwidth}
+%\centering
+%\includegraphics[width=0.95\textwidth]{TaskMonitor2.eps}
+%\caption{Expanded view of one task}
+%\label{fig:TaskMonitor2}
+%\end{minipage}
+%\end{figure}
 
 \subsubsection{Interactive Interface}
 This was the first view to be developed, based on
@@ -450,7 +451,7 @@ aimed at understanding and debugging what happens ``now''.
 The entry point is the number of jobs submitted or
 terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
 \begin{figure}
- \includegraphics[width=0.60\textwidth]{DashboardInteractive.eps}
+ \includegraphics[width=0.98\textwidth]{DashboardInteractive.eps}
 \caption{Dashboard Interactive Interface}
 \label{fig:Dashboard}
 \end{figure}
@@ -728,21 +729,16 @@ The CCRC08 analysis challenge drove the level of activity and participation at T
 
 \begin{figure}
 \centering
-\begin{minipage}{.45\textwidth}
-\centering
-\includegraphics[width=0.95\textwidth]{CCRC08SiteEff.eps}
+\includegraphics[width=0.80\textwidth]{CCRC08SiteEff.eps}
 \caption{Distribution of the job efficiency by site, when simulating physics
 groups workflows on CCRC’08}
 \label{fig:CCRC08SiteEff}
-%\end{figure}
-%\begin{figure}
-\end{minipage}
-\begin{minipage}{.45\textwidth}
+\end{figure}
+\begin{figure}
 \centering
-\includegraphics[width=1.\textwidth]{CCRC08Chaotic.eps}
+\includegraphics[width=0.90\textwidth]{CCRC08Chaotic.eps}
 \caption{Distribution of the number of users in a site, during the Chaotic phasein CCRC’08}
 \label{fig:CCRC08Chaotic}
-\end{minipage}
 \end{figure}
 
 \subsection{CRAB Analysis server stress test}
@@ -798,19 +794,17 @@ group activities and a regional community, as foreseen, can cope with
 analysis needs.
 %\end{itemize}
 \begin{figure}
-\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=0.99\textwidth]{MultiUserJobStatus.eps}
+\includegraphics[width=0.95\textwidth]{MultiUserJobStatus.eps}
 \caption{Cumulative distribution of jobs submitted to CRAB Server
   during the multi-user test phase. }
 \label{fig:stressmulti}
-\end{minipage}
-\begin{minipage}{.48\textwidth}
+\end{figure}
+\begin{figure}
 \centering
-\includegraphics[width=0.99\textwidth]{CSusersLast5months.eps}
+\includegraphics[width=0.95\textwidth]{CSusersLast5months.eps}
 \caption{Number of distinct users using a CRAB server instance during last 5 months}
 \label{fig:CSusers}
-\end{minipage}
 \end{figure}
 
 
@@ -824,18 +818,16 @@ The day by day distribution of CRAB users is shown in Figure~\ref{fig:distusers}
 jobs. 
 
 \begin{figure}
-\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=0.99\textwidth]{UserInteg.eps}
+\includegraphics[width=0.95\textwidth]{UserInteg.eps}
 \caption{Cumulative number of distinct CRAB users starting from 2008. }
 \label{fig:intuser}
-\end{minipage}
-\begin{minipage}{.48\textwidth}
+\begin{figure}
+\end{figure}
 \centering
-\includegraphics[width=1.2\textwidth]{crabusersdaily.eps}
+\includegraphics[width=0.95\textwidth]{crabusersdaily.eps}
 \caption{Number of CRAB daily users in 2008. }
 \label{fig:distusers}
-\end{minipage}
 \end{figure}
 
 
@@ -844,7 +836,7 @@ of more than 100,000 jobs per day have been reached, with an average
 of 30,000 jobs per day, as shown in Figure~\ref{fig:jobs}.
 The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\ref{fig:AnalysisJobHistoryApril0809}. Current analysis activities has spontaneously surpassed, both in terms of number of jobs and number of sites, the scale reached in CCRC08 dedicated tests. 
 \begin{figure}
-\includegraphics[width=3.5in]{crabjobsdaily.eps}
+\includegraphics[width=0.95\textwidth]{crabjobsdaily.eps}
 \caption{Number of daily jobs terminated in 2008. }
 \label{fig:jobs}
 \end{figure}
@@ -890,18 +882,16 @@ Grid failures are due to the underlying grid system but also reflect site proble
 %    6.8% error 50115
 %
 \begin{figure}
-\begin{minipage}{.55\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{AnalysisJobHistoryApril0809.eps}
 \caption{Number of analysis jobs by Tier-2s during last year from CMS dashboard History view. Each color refers to a site. }
 \label{fig:AnalysisJobHistoryApril0809}
-\end{minipage}
-\begin{minipage}{.45\textwidth}
+\end{figure}
+\begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{T2EffApril0809.eps}
 \caption{Analysis job efficiency during last year. }
 \label{fig:T2EffApril0809}
-\end{minipage}
 \end{figure}
 
 About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
@@ -930,24 +920,67 @@ The job efficiency at Tier-2s is lower than that at CAF because, on top of the a
 % overall 20% stageout, 6% CMSSW error, 2.5% input files
 %
 \begin{figure}
-\begin{minipage}{.48\textwidth}
 \centering
-\includegraphics[width=0.94\textwidth]{CRAFTusers.eps}
+\includegraphics[width=0.80\textwidth]{CRAFTusers.eps}
 \caption{Number of users analyzing CRAFT data using the CAF (light color) or the Tier-2s (dark color).}
 \label{fig:CRAFTusers}
-\end{minipage}
-\begin{minipage}{.48\textwidth}
+\begin{figure}
+\end{figure}
 \centering
-\includegraphics[width=1.06\textwidth]{CRAFTjobs.eps}
+\includegraphics[width=0.80\textwidth]{CRAFTjobs.eps}
 \caption{Number of jobs analyzing CRAFT data using the CAF (light color) or the Tier-2s (dark color).}
 \label{fig:CRAFTjobs}
-\end{minipage}
 \end{figure}
 
 
 Real user analysis jobs show worse job efficiency (around 60\%) with respect to the efficiencies obtained during dedicated and controlled submissions such 
 as computing challenge and Job Robot activities, described in ~\ref{sec:5_1} and ~\ref{sec:4_2_1} respectivelly.
 Analysis specific operations are being defined to improve the success rate and user experience when utilizing the distributed computing environment and to ensure a functional system with a more efficient use of CMS resources on sustained user activities.
+
+\section{Related work}
+The system presented in this paper is somehow similar to the systems developed 
+by the other experiments at the LHC (ALICE~\cite{RefALICETDR},ATLAS~\cite{RefATLASTDR},LHCb~\cite{RefLHCbTDR}), since they all share the same environment and needs. They all make use of the Worlwide LHC Computing Grid (WLCG), a global collaboration linking Grid infrastructures and computer centres worldwide~\cite{RefWLCG}. The WLCG provides a globally distributed system for data storage and analysis.
+
+The computing centres providing resources for WLCG are embedded in different
+operational Grid organisations across the world, in particular  EGEE (Enabling
+Grids for E-SciencE,~\cite{RefEGEE}), OSG (the Open Science Grid, ~\cite{RefOSG}) and NDGF (Nordic Data Grid Facility ~\cite{RefNDGF}), but also several national and regional Grid structures.
+
+EGEE, OSG and NDGF use their own Grid middleware distributions, gLite~\cite{RefgLite}, VDT~\cite{RefVDT} and ARC~\cite{RefARC} respectively. Grid interoperation
+bridges the differences between the various Grids and enable the LHC virtual
+organizations to access resources at the institutions independent of the Grid
+project affiliation.
+
+%Nevertheless there are peculiarities in the CMS system that is worth to underline.
+Similarly to other LHC experiments, the CMS computing system follows a
+tiered architecture as first proposed by the MONARC project~\cite{RefMONARC}. 
+In CMS though, the communication between Tier-2 and Tier-1 sites is not limited by region boundaries. The data distribution model in CMS is required to be
+under complete control of the operators and no automatic transfers triggered
+by middleware components are allowed. For this reason CMS developed the
+PhEDEx data distribution system that efficiently manages the full mesh of
+links between sites and implements re-routing strategies in case of
+temporary unavailability, or simply slowness, of data sources. This adds
+value to the underlying layer based on FTS, which is used by all the
+experiments.
+
+The CMS Metadata Catalogue (DBS) is based on Oracle and its implementation
+is specific to CMS, as it happens for all other LHC experiments.
+
+Since PhEDEx has the knowledge of the location of all CMS data, it also
+serves as a global data location catalogue. Using DBS and PhEDEx a CMS user
+can find the list of logical file names of interest and the site where the
+files are. The translation to physical file names happens by means of a site
+dependent algorithm (the Trivial File Catalogue). This is different from
+what other experiments do as in other experiments this translation is in
+general done through a catalogue such as the LFC from the gLite middleware stack.
+
+CRAB, the CMS job submission and control framework for analysis, is quite
+similar to other analysis frameworks used by LHC experiments such as GANGA~\cite{RefGANGA}, used by ATLAS and LHCb, and Alien~\cite{RefAlien}, used by ALICE, 
+but it is tailored to CMS needs. By means of specific plug-ins CRAB can work in
+different environments, submitting jobs with workload management systems
+using "push-mode", such as the gLite-WMS~\cite{RefgLiteWMS} from the gLite 
+stack, or using "pilot jobs", such as the glidein-WMS~\cite{Refglidein} by Condor.
+
+
 
 \section{Conclusions}
 \label{sec:6}
@@ -964,6 +997,7 @@ exercises, in preparation for the LHC collision data taking.
 \section{Acknowledgements}
 We thank the technical and administrative staff of CERN and CMS Institutes,
 Tier-1 and Tier-2 centres and acknowledge their support.
+This work is co-funded by the European Commission through the EGEE-III project (www.eu-egee.org), contract number INFSO-RI-222667, and the results produced made use of the EGEE grid infrastructure.
 
 % For one-column wide figures use
 %\begin{figure}
@@ -1018,8 +1052,8 @@ CMS Collaboration R. Adolphi et al., The CMS experiment at the CERN LHC, JINST, 
 CMS Collaboration, http://cms.web.cern.ch/cms/Collaboration/index.html
 %
 \bibitem{RefCM}
-C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-
-035/G-083 (2004)
+CMS Collaboration, CMS: The computing project. Technical design report, CERN-LHCC-2005-023, Jun 2005. ISBN 92-9083-252-5 \\
+C.Grandi, D.Stickland, L.Taylor et al., The CMS Computing Model, CERN-LHCC-2004-035/G-083 (2004)
 %
 \bibitem{RefSite}
 J.Flix, A. Sciab\`a et al., The commissioning of CMS sites: improving the site reliability,  Proceedings of 17th International Conference On Computing In High Energy Physics And Nuclear Physics,  approved for publication in J. Phys.: Conf. Ser. (2009) \\
@@ -1041,22 +1075,26 @@ L. Tuura et al., Scaling CMS data transfer system for LHC start-up, J.Phys.Conf.
 D. Evans et al., The CMS Monte Carlo production system: Development and design, Nucl.Phys.Proc.Suppl.177-178, 285-286 (2008)
 %
 \bibitem{RefCRAB}
-D. Spiga et al., The CMS Remote Analysis Builder CRAB, 14th Int. Conf. on High Performance Computing ISBN/ISSN: 978-3-540-77219-4 , 4873, 580-586 (2007)
+G.Codispoti et al. ,CRAB: A CMS application for distributed analysis, IEEE Trans.Nucl.Sci.56:2850-2858 (2009). 
 %
 \bibitem{RefWLCG}
-LCG Computing Grid Technical Design Report, LCG-TDR-001 CERN/LHCC 2005-024 (2005)
+LCG Computing Grid Technical Design Report, LCG-TDR-001 CERN/LHCC 2005-024 (2005) \\
+http://lcg.web.cern.ch/lcg/
 %
 \bibitem{RefBOSSLite}
 G. Codispoti et al., Use of the gLite-WMS in CMS for production and analysis, Proceedings of 17th International Conference On Computing In High Energy Physics And Nuclear Physics, approved for publication in J. Phys.: Conf. Ser. (2009). 
 %
-\bibitem{RefgLiteWMS} P. Andreetto et al., The gLite Workload Management System, J.Phys.Conf.Ser, 119, 062007 (2008)
+\bibitem{RefgLiteWMS}
+P. Andreetto et al., The gLite Workload Management System, J.Phys.Conf.Ser, 119, 062007 (2008)
 %
-\bibitem{RefOSG} R. Pordes et al, The Open Science Grid, J.Phys.Conf.Ser, 78, 012057 (2007)
+\bibitem{RefOSG} R. Pordes et al, The Open Science Grid, J.Phys.Conf.Ser, 78, 012057 (2007) \\
+http://www.opensciencegrid.org/
 %
 \bibitem{Refglidein} I. Sfiligoi et al., glideinWMS - A generic pilot-based Workload Management System, J.Phys.Conf.Ser., 119, 062044 (2008)
 %
 \bibitem{RefARC} M.Ellertet al., Advanced Resource Connector middleware
-  for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)
+  for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)\\
+http://www.nordugrid.org/arc/
 %
 \bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Conference Record N67-2 session Applied Computing Techniques, Nuclear Science Symposium IEEE , Dresden (2008)
 %
@@ -1067,6 +1105,37 @@ CMS collaboration,  CMS Computing, Software and Analysis Challenge in 2006 (CSA0
 CERN/LHCC 2007-010 (2007) \\
 N.DeFilippis et al., The CMS analysis chain in a distributed environment, Nucl.Instrum.Meth. A559, 38-42 (2006) \\
 A.Fanfani et al.,Distributed computing Grid experiences in CMS, IEEE Trans.Nucl.Sci.52,884-890 (2005)
+
+\bibitem{RefALICETDR}
+ALICE Collaboration, ALICE technical design report of the computing, CERN-LHCC-2005-018, ISBN 92-9083-247-9 (2005)
+
+\bibitem{RefATLASTDR}
+ATLAS Collaboration, ATLAS computing: Technical design report, CERN-LHCC-2005-022, ISBN 92-9083-250-9 (2005)
+
+\bibitem{RefLHCbTDR}
+ LHCb Collaboration, LHCb TDR computing technical design report, CERN-LHCC-2005-019 (2005)
+
+\bibitem{RefEGEE}
+http://www.eu-egee.org/
+
+\bibitem{RefNDGF}
+http://www.nordugrid.org/
+
+\bibitem{RefgLite}
+E. Laure, S.M. Fisher, A. Frohner, C. Grandi, P. Kunszt, et al., Programming the Grid with gLite, Computational Methods in Science and Technology, 12(1) 33-45 (2006)
+
+\bibitem{RefVDT}
+http://vdt.cs.wisc.edu/
+
+\bibitem{RefMONARC}
+ M. Aderholz, et al., Models of networked analysis at regional centres for LHC experiments (MONARC). Phase 2 report, CERN/LCB 2000-001 (2000)
+
+\bibitem{RefGANGA}
+J.T. Moscicki et al. , Ganga: a tool for computational-task management and easy access to Grid resources, Computer Physics Communications, Volume 180, Issue 11, (2009)
+
+\bibitem{RefAlien}
+S. Bagnasco et al., AliEn: ALICE environment on the Grid, Grid J. Phys.: Conf. Series 119 6 062012 (2008)
+
 %% Format for books
 %\bibitem{RefB}
 %Author, Book title, page numbers. Publisher, place (year)
