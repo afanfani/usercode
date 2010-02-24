@@ -149,17 +149,13 @@ grestore
 \maketitle
 
 \begin{abstract}
-CMS expects to manage several Pbytes of data each year, distributing them
-over many computing sites around the world and enabling data access at those
-centers for analysis. CMS has identified the distributed sites as the primary
-location for physics analysis to 
+The CMS experiment expects to manage several Pbytes of data each year during the LHC programme, distributing them over many computing sites around the world and enabling data access at those centers for analysis. CMS has identified the distributed sites as the primary location for physics analysis to 
 %support a wide community of users, with potentially as many as 3000 users. 
- support a wide community with thousands potential users
-This represents an unprecedented scale of distributed computing resources 
-and number of users.
-An overview of the computing architecture, the software tools and the distributed infrastructure deployed is reported.
+ support a wide community with thousands potential users.
+This represents an unprecedented experimental challenge in terms of the scale of distributed computing resources and number of user.
+An overview of the computing architecture, the software tools and the distributed infrastructure is reported.
 Summaries of the experience in establishing efficient and scalable operations
-to prepare for CMS distributed analysis are presented, followed by
+to get prepared for CMS distributed analysis are presented, followed by
 the user experience in their current analysis activities.
 \keywords{LHC \and CMS \and Distributed Analysis \and Grid}
 % \PACS{PACS code1 \and PACS code2 \and more}
@@ -168,23 +164,22 @@ the user experience in their current analysis activities.
 
 \section{Introduction}
 \label{intro}
-The Compact Muon Solenoid (CMS) ~\cite{RefCMS} is a general-purpose detector
-built to collect data at the Large Hadron Collider (LHC),located at CERN
-(Geneva).
-The beams will collide at intervals of 25 ns and CMS will record only the collisions
-that pass a set of %real time 
-online trigger decisions with an expected rate around 300Hz and an
-average event size of 1-2 MB. A nominal year worth of data taking 
+The Compact Muon Solenoid (CMS)~\cite{RefCMS} is a general-purpose detector
+built to collect data at the Large Hadron Collider (LHC), located at CERN
+(Geneva, Switzerland).
+The beams will collide at intervals of 25 ns and CMS will record only the collisions that pass a set of %real time 
+online trigger decisions with an expected rate around 300 Hz and an
+average event size of 1-2 MB. A nominal-year worth of data taking 
 corresponds to about 2-6 PB of storage prior to any processing.
 Data will have to be accessed for reprocessing and analysis by a
-large experimental community with more than 3000 collaborators ~\cite{RefCMSCollaboration} distributed
+large experimental community with more than 3000 collaborators~\cite{RefCMSCollaboration} distributed
 worldwide across 40 countries. This imposes an unprecedented computing
 challenge for data management and processing.
 
 \section{The CMS Computing Model}
 \label{sec:2}
-The CMS distributed computing and analysis model ~\cite{RefCM} is designed to serve, process and archive the %huge amount of data the experiment will collect.
-large number of events which will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high throughput networks and accessed by means of Grid software. 
+The CMS distributed computing and analysis model~\cite{RefCM} is designed to serve, process and archive the %huge amount of data the experiment will collect.
+large number of events which will be generated when the CMS detector starts taking data. The computing resources are geographically distributed, interconnected via high-throughput networks and accessed by means of Grid techniques. 
 The choice of a distributed system allows delegation of responsibilities to local CMS communities, access to additional funding channels and ensures load balancing of the available resources while replicating the interesting data in different sites.
 
 
@@ -196,18 +191,20 @@ Roughly 20\% of the computing capacity is located at CERN, while the remainder i
 
 \paragraph{Tier-1:} 
 Each Tier-1 centre assures the custodial storage of a fraction of the raw data produced by the CMS detector and of the simulated data produced at the connected Tier-2 centres. Tier-1 centres provide computing resources for their further re-processing (re-reconstruction, skimming, etc…) and for high priority analysis.
-They control the data transfer to the Tier-2 centres for analysis. There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
+They control the data transfer to the Tier-2 centres and among them for analysis.
+There are 7 Tier-1 centres located in France, Germany, Italy, Spain, Taiwan, United Kingdom and United States.
 
 \paragraph{Tier-2:}
 %Tier-2 centers, more than 50 
-Tier-2 centers, about 50 sites around the world ~\cite{RefSite}, provide capacity for user data analysis and for production of simulated data.
-In CMS data transfer to Tier-2 can occur from any Tier-1. A significant effort is required in 
-commissioning all possible transfer links, as described in section ~\ref{sec:LinkCommissioning}, as well
-as improving site availability, as described in section ~\ref{sec:4_2_1}.
+Tier-2 centers, about 50 sites around the world~\cite{RefSite}, provide capacity for user data analysis and for production of simulated data.
+In the CMS data transfer topology, transfers to Tier-2 can occur from any Tier-1.
+A significant effort is required in commissioning all needed transfer links, as described in 
+section ~\ref{sec:LinkCommissioning}, as well
+as improving site availability and readiness, as described in section ~\ref{sec:4_2_1}.
 
 \section{Framework for CMS Distributed Analysis}
 \label{sec:3}
-The CMS analysis model foresees activites driven by data location. Data are distributed over many computing centers according to CMS data placement policies. Processing takes place in the sites where data are located. In order to enable distributed analysis a set of Workload and Data Management tools have been developed, building CMS-specific services on top of existing Grid services.
+The CMS analysis model foresees activites driven by data location. Data are distributed over many computing centers according to CMS data placement policies. Processing takes place in the sites where data are located. In order to enable distributed analysis, a set of Workload and Data Management tools have been developed, building CMS-specific services on top of existing Grid services.
 
 \subsection{Data Management}
 \label{sec:3_1}
@@ -219,82 +216,85 @@ The tracking of data location is file-block based and it provides the name of si
 The file-block contains files that can be processed and analyzed together.
 %Processing is block-based. 
 The packaging of events into files is done so that the average file size is
-kept reasonably large (e.g. at least 1GB), in order to avoid scaling issues with storage and tape systems and optimize data transfer.
+kept reasonably large (e.g. at least 1 GB), in order to avoid scaling issues with storage and tape systems and optimize data transfer.
 This is achieved by merging small output files produced by individual jobs into fewer larger files.
 
 
 The CMS Data Management System is made of a set of loosely coupled components as described in the following sections.
 \subsubsection{DBS}
 \label{sec:3_1_1}
-The Dataset Bookkeeping Service (DBS)\cite{RefDBS} provides the means to describe, discover and use CMS event data. 
+The Dataset Bookkeeping Service (DBS)~\cite{RefDBS} provides the means to describe, discover and use CMS event data. 
 It catalogs CMS specific data definitions such as run number, the algorithms and configurations used to process the data together with the information regarding the processing parentage of the data it describes.
 The DBS stores information about CMS data in a queryable format. The supported queries allow discovery of available data and the way they are organized logically in term of packaging units like files and file-blocks. The information available from queries to DBS are site independent.
 
 The DBS is used for data discovery and job configuration by the production and analysis systems through a DBS API. 
 Users can discover %what data exists using a 
-which data exist using either a Web browser or a Command Line Interface.
-The DBS is usable in multiple “scopes”:
+which data exist using either a Web browser or a command line interface.
+The DBS is usable in multiple ``scopes'':
 \begin{itemize}
-\item A Global scope DBS is a single instance describing data CMS-wide 
-\item Many local scopes are established to describe data produced by MonteCarlo production, Physics groups or individuals. 
-Data produced in local scope may be migrated to global scope as needed.
+\item A Global scope DBS is a single instance describing data CMS-wide; 
+\item Many local-scopes DBS's are established to describe data produced by MonteCarlo production, Physics groups or individuals. 
+Data produced in local-scope may be migrated to global-scope as needed.
 
 \end{itemize}
 The DBS system is a multi-tier web application with a modular design. This makes it easily adaptable to multiple database technologies. The supported types of database (Oracle, MySQL and SQLite) enable the DBS deployment in a range of environments from general CMS at large installations to specific personal installations.
-XML is used for the format of the HTTP payload exchanged with the client.
+XML is used as the format of the HTTP payload exchanged with the client.
 
-The Global DBS is hosted at CERN and its database engine is the CERN Oracle RAC (Real Application Cluster) server for CMS. Some local scope DBS instances that catalog data from Physics groups are also hosted at CERN. There are also DBS instances installed at other sites for private use. 
+The Global DBS is hosted at CERN and its database engine is the CERN Oracle RAC (Real Application Cluster) server for CMS. Some local-scope DBS instances that catalog data from Physics groups are also hosted at CERN. There are also DBS instances installed at other sites for private use. 
 
 \subsubsection{Local Data Catalogue}
 \label{sec:3_1_2}
-A CMS application only knows about logical files and relies on a local catalogue service to have access to the physical files.
+A CMS application only knows about logical files and relies on a local catalogue service to have access to the physical files. %The translation from logical file names to physical file names happens
+%by means of a flexible algorithmic mechanism (the Trivial File Catalogue).
 Each CMS site has a Trivial File Catalogue made of simple rules to build site-specific physical paths starting from logical file names and access protocols.
 
 \subsubsection{Conditions Data}
 \label{sec:3_1_3}
 The data describing the alignment and calibration of the detector are known as ``conditions data''. Since the same conditions data need to be accessed by many processing jobs worldwide CMS uses a caching system called FroNTier~\cite{RefFrontier}.
-FroNTier translates database queries into HTTP, looks up the results in a central database at CERN, and caches the results in an industry-standard HTTP proxy/caching server called Squid. Squid servers are deployed at each site. Conditions data is read by the applications from these Squid servers.
+FroNTier translates database queries into HTTP, looks up the results in a central database at CERN, and caches the results in a industry-standard HTTP proxy/caching server called Squid~\cite{RefFrontier}. Squid servers are deployed at each site. Conditions data is read by the applications from these Squid servers.
 
 \subsubsection{PhEDEx}
 \label{sec:3_1_4}
 The CMS data placement and transfer systems are implemented by
-PhEDEx\cite{RefPhEDEx}. The data placement system provides an
+PhEDEx~\cite{RefPhEDEx}. The data placement system provides an
 interface to define, execute and monitor administrative decisions of
-data movement such as where experimental data are to be located, which
-copies are custodial, and %to which physics analysis group the data is allocated for.  
-the physics analysis group a given set of data is replicated for at a given site.
+data movement such as where experimental data have to be located, which
+copies are custodial. %, and %to which physics analysis group the data is allocated for.  
+%the physics analysis group a given set of data is replicated for at a given site.
 Data are distributed according to available resources
 and physics interests at sites as determined by CMS Data Operations,
-physics analysis groups, and/or the members of the ``local" CMS community the site serves. 
+physics analysis groups, and/or the members of the ``local" CMS community served by the site.
 
 In PhEDEx, distinct storage areas (grid sites or disk/tape areas
-within a site) are represented by a node.  Links between the nodes
+within a site) are represented by a ``node''.  Links between the ``nodes''
 define the transfer topology.  The transfer workflow begins when a
-user makes a transfer request of some data to some node via the web
-page, which is then approved by that node's Data Manager.  In the
-request, the user only specifies the destination node, and the optimal
-source node is determined from among the available file replicas.  To
+user makes a transfer request of some data to some ``node'' via the web
+page, which is then approved by that ``node'''s Data Manager.  In the
+request, the user only specifies the destination ``node'', and the optimal
+source ``node'' is determined from among the available file replicas.  To
 do this, PhEDEx uses Dijkstra's algorithm to calculate the path of
 least cost, where cost of transfer for each link is determined by the
 recent transfer rate and the size of the current queue over that link.
 Using this method, PhEDEx balances exports among multiple sources when
-the same data is requested to multiple nodes, and is also
+the same data is requested to multiple ``node''s. Additionally, it is 
 fault-tolerant when links fail to perform and another source replica
 is available.
 
-Technically PhEDEx is based on software agents storing their state and
-communicating via a central ``black board'' database hosted in the
-CERN Oracle RAC (Real Application Clusters). A set of service agents
+From a design standpoint, PhEDEx is based on software ``agents'' storing their state and
+communicating via a central ``blackboard'' database hosted in a
+CERN Oracle RAC installation. A set of service ``agents''
 run centrally at CERN while each site in general runs
-only the agents that interact with the storage at the site. The usual
-method of transfer execution is to submit a job to File Transfer System (FTS), 
-which is managed by the site download agent using the FTS backend.  Download
-agent backends for other transfer methods are available, making PhEDEx
-technology independent. A web site offers various management tools,
+only the ``agents'' that interact with the storage at the site. The usual
+method of transfer execution is to submit a job to the gLite File Transfer System (FTS), 
+which is managed by the site download ``agent'' using the FTS backend.  Download
+``agent'' backends for other transfer methods are available, making PhEDEx
+technology independent of the underlying transfer mechanism. 
+The PhEDEx web site offers major workflow management tools,
+%A web site offers various management tools,
 including the request creation and approval interfaces, and allows
 users and site administrators to monitor current and historical
 transfer conditions.  File deletion and on-demand consistency checking
-are also provided by agents running at the site receiving work queues
+are also provided by ``agents'' running at the site receiving work queues
 from the central database.  A web data service provides
 machine-readable XML or JSON data from the database, which is used to
 integrate PhEDEx with other CMS computing components.  For instance,
@@ -313,61 +313,66 @@ Using PhEDEx, CMS has transferred over 87 PB of data since the project
 began in 2004.  Figure \ref{fig:phedex-transfers} shows the average
 daily transfer volume per month of data managed by PhEDEx from
 mid-2004 until July 2009.  Various challenge periods are highlighted,
-and in particular the SC4, CSA06~\cite{RefPastExp}, and LoadTest/Debug periods which resulted
+and in particular the SC4, CSA'06~\cite{RefPastExp}, and LoadTest/Debug periods which resulted
 in large increases in the average transfer volume.  ``General'' transfers
 include transferring of Monte Carlo or cosmics raw data for physics
 analysis.  ``Debug'' and ``LoadTest'' transfers are of randomly
-generated data for the purpose of debugging and commissioning the
-transfer fabric.  In the first 6 months of 2009 PhEDEx has maintained
-average daily transfer volumes of over 80 TB per day, where roughly
-40\% of the traffic has been ``General'' production/analysis traffic
-and the remaining 60\% ``Debug'' commissioning traffic.  Expected
-burst levels during LHC data taking are at 200 TB per day, and such
-levels have already been demonstrated by PhEDEx in late February 2008
-during the Common Computing Readiness Challenge (CCRC08) challenge.
+generated data for the purpose of debugging and commissioning the transfer links at the fabric level.
+In the first 6 months of 2009, PhEDEx has 
+%maintained average daily transfer volumes of over 80 TB per day, where roughly
+has sustained on average transfer volumes of over 80 TB per day, where roughly
+40\% of the traffic has been ``General'' production/analysis WAN traffic
+and the remaining 60\% ``Debug'' commissioning traffic.  
+Expected burst levels on any link during LHC data taking are at 200 TB per day.
+PhEDEx already demonstrated to be able to cope with these levels during the 
+Common Computing Readiness Challenge (CCRC'08) challenge~\cite{RefCCRC08}, in February 2008 and June 2008 (phase 1 and 2 respectively).
+%, and such levels have already been demonstrated by PhEDEx in late February 2008
+%during the Common Computing Readiness Challenge (CCRC08) challenge.
+
+PhEDEx already demonstrated to be able to cope with...
 
 \subsection{Workload Management}
-The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs which will process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis.
+The role of the CMS Workload Management system includes the interpretation of user processing requests, the creation of the jobs which will process the data, the submission of the jobs to local or distributed systems, the monitoring of the jobs and the retrieval of their outputs. The Production Agent (ProdAgent)~\cite{RefPA} is a tool optimized to perform these operations in a controlled environment i.e. at the Tier-0 and at the Tier-1 centres. The CMS Remote Analysis Builder (CRAB) is optimized for user analysis, as described in the next section.
 
 %
 \label{sec:3_2}
 \subsubsection{CRAB}
 \label{sec:CRAB}
-The CMS Remote Analysis Builder (CRAB)\cite{RefCRAB} has been developed as a user-friendly interface to handle data analysis in a local or distributed environment, hiding the complexity of interactions with the Grid and CMS services.
+The CMS Remote Analysis Builder (CRAB)~\cite{RefCRAB} has been developed as a user-friendly interface to handle data analysis in a local or distributed environment, hiding the complexity of interactions with the Grid and CMS services.
 It allows the user to run over large distributed data samples with the same analysis code he has developed 
 locally in a small scale test. 
 
-The functionalities that CRAB provides, as schematically illustrated in Fig.~\ref{fig:CRABWorkflow}, are:
+The functionalities that CRAB provides, as schematically illustrated in Figure~\ref{fig:CRABWorkflow}, are:
 \begin{itemize}
-\item{Data discovery and location:}
+\item{\it{Data discovery and location:}}
 Facilitate queries of the experiment data catalogues (DBS and PhEDEx) to find 
 what data exist and where they can be accessed.
-\item{Job preparation:}
+\item{\it{Job preparation:}}
 Pack local user code and the environment to be sent to remote sites where the CMS software is pre-installed as described in ~\ref{sec:4_1_3}.
-\item{Job splitting:}
+\item{\it{Job splitting:}}
 Decide how to configure each job to access a subset of files in the dataset to effectively use the Tier-2s resources.
-\item{Job submission:}
+\item{\it{Job submission:}}
 Submit to Grid sites hosting the required data.
-\item{Job monitoring:}
+\item{\it{Job monitoring:}}
 Monitor the status of the submitted jobs by querying Grid services.
-\item{Handling Output data:}
+\item{\it{Handling Output data:}}
 Copy the produced output to a remote Tier-2 the user is associated with or return it to the user for small files (few MB).
 Publish the produced data with their description and provenance into a local DBS so that the data can be used in further analysis and shared with colleagues.
 \end{itemize} 
 
-CRAB is coded in Python. The interface to the Grid middlewares and local batch systems is provided by a Python library named BOSSLite\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
+CRAB is coded in Python. The interface to the Grid middlewares and local batch systems is provided by a Python library named BOSSLite~\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
 An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. The current implementation supports MySQL and SQLite databases.
-Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler-specific (batch system or grid) interfaces are implemented as plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite) \cite{RefgLiteWMS}, OSG \cite{RefOSG} both direct Condor-G submission or a pilot based job submission system(glideinWMS\cite{Refglidein}), and ARC (NorduGrid)\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
+Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler-specific (batch system or grid) interfaces are implemented as plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite WMS)~\cite{RefgLiteWMS}, OSG~\cite{RefOSG} both direct Condor-G submission or a pilot based job submission system ( glidein-WMS~\cite{Refglidein}), and ARC (NorduGrid)~\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
 
-The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Fig.~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
-The Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
-The Analysis Server is coupled with an external GridFTP server %Storage Element
+The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Figure~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
+The CRAB Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
+The CRAB Analysis Server is coupled with an external GridFTP server %Storage Element
  that stores the user input and output data, allowing implementation of CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
 
 
 \begin{figure}
  \includegraphics[width=0.98\textwidth]{CRABWorkflow.eps}
-\caption{CRAB workflow. WMS can stand either for gLite WMS or glidein WMS.}
+\caption{CRAB workflow. WMS can refer either to gLite WMS or glidein-WMS.}
 \label{fig:CRABWorkflow}
 \end{figure}
 
@@ -408,7 +413,7 @@ of detail, aggregation and flexibility, customized to
 typical use cases. It is possible to cross link and navigate
 from one view to another providing both extreme flexibility
 and fast access to desired informations.
-This set of tools is called ``the CMS Dashboard''.
+This set of tools is called ``the CMS Dashboard''~\cite{RefDashBoard}.
 
 \subsubsection{History View}
 The aim here is to present time history of relevant
@@ -449,7 +454,7 @@ vision more than experience, therefore
 emphasis was put on flexibility. It is a job-centric view
 aimed at understanding and debugging what happens ``now''.
 The entry point is the number of jobs submitted or
-terminated in a chosen time period (see Fig.~\ref{fig:Dashboard}).
+terminated in a chosen time period (see Figure~\ref{fig:Dashboard}).
 \begin{figure}
  \includegraphics[width=0.98\textwidth]{DashboardInteractive.eps}
 \caption{Dashboard Interactive Interface}
@@ -478,15 +483,17 @@ The access to CMS resources is controlled by grid services provided by the WLCG 
 Authorization is based on X.509 certificates extended with VOMS attributes
 that certify the membership of users in the CMS Virtual Organization and possibly 
 to CMS groups and the roles they have.
-VOMS servers are provided by the WLCG project.
-Data are stored on systems exposing an SRM interface (Storage Elements).
+VOMS servers are provided and mantained by the WLCG project~\cite{RefWLCG}.
+Data are stored on systems exposing a SRM interface (Storage Elements).
 The specific implementation of the storage system is left to the sites
-(e.g. d-Cache, DPM, Castor, Storm, etc...). In CMS Tier-1s the storage
-systems also have a tape-based back-end to fulfil their custodial
-responsibilities, while at Tier-2s they are disk-based.
+(e.g. dCache, DPM, Castor, StoRM, etc...). 
+The storage solution at CMS Tier-1 sites also foresees a tape-based backend to fulfill 
+the custodial responsibility as from the Computing model, while CMS Tier-2 site are disk-based.
+%In CMS Tier-1s the storage systems also have a tape-based back-end to fulfil their custodial
+%responsibilities, while at Tier-2s they are disk-based.
 
-The access to computing resources (Compute Elements) is based on
-the Globus gatekeeper (on EGEE via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
+The access to computing resources (Computing Elements) is based on
+the Globus gatekeeper (on EGEE, currently via its LCG-CE implementation) or on the ARC-CE on NorduGrid.
 The CMS workload management system (CRAB and ProdAgent) may use, via the BossLite layer,
 several high level workload management tools provided by the different infrastructures
 (see~\ref{sec:CRAB}).
@@ -506,7 +513,7 @@ which provide the transfer channels on which the transfers take place.
 
 \subsubsection{ SiteDB }
 \label{sec:4_1_2}
-SiteDB is a catalogue of all CMS computing Tiers.
+SiteDB~\cite{RefSiteDB} is a catalogue of all CMS computing Tiers.
 It records the CMS resources at the site, the resources pledged for the future,
 and keeps track of CMS personnel at each site, including the roles
 and duties they fulfill in the collaboration.
@@ -776,7 +783,7 @@ jobs, such as those used in the test, which have a higher finishing rate
 than real user's jobs which tend to finish at different times. Nonetheless, the backlog was absorbed in a few hours. This issue was
 taken into account in the development cycle and the code was
 optimized.  About 120,000 jobs were successfully handled in 48 hours,
-as shown in Figure \ref{fig:stressmulti}.  The CPU load due to MySQL
+as shown in Figure~\ref{fig:stressmulti}.  The CPU load due to MySQL
 proved to be stable regardless of the database size increase with more
 jobs in the system. Overall the breakdown of CPU load usage is 2~CPUs
 for MySQL, about 1.5~CPUs for GridFTP and about 1~CPU for all the CRAB
@@ -786,7 +793,7 @@ have the GridFTP server decoupled from the machine hosting the CRAB
 Server components.
 
 The number of users currently using a CRAB Analysis Server is significantly 
-increased with respect to the stress test scale, e.g. the growing number of real users using a CRAB Analysis Server instance over the last 5 months is shown in Fig.~\ref{fig:CSusers}.
+increased with respect to the stress test scale, e.g. the growing number of real users using a CRAB Analysis Server instance over the last 5 months is shown in Figure~\ref{fig:CSusers}.
 Currently the whole CMS analysis amounts to 30,000 jobs/day and the
 CMS Computing model expectation is to reach around 100,000-200,000 jobs/day. 
 Some CRAB Server instances deployed at different sites to serve Physics
@@ -841,7 +848,7 @@ The distribution of analysis jobs at Tier-2s over the year is shown in Figure~\r
 \label{fig:jobs}
 \end{figure}
 
-The distribution of analysis job efficiency over time is shown in Fig.~\ref{fig:T2EffApril0809}. The average success rate is 61\% with 4\% of cancelled jobs, 10\% of grid failures and 25\% application failures.
+The distribution of analysis job efficiency over time is shown in Figure~\ref{fig:T2EffApril0809}. The average success rate is 61\% with 4\% of cancelled jobs, 10\% of grid failures and 25\% application failures.
 Most of the failures faced by the users are due to remote stageout issues, user application errors and errors reading data at the site. 
 Part of the failures are somehow expected, since analysis jobs run user code which may not have been thoroughly tested. For instance memory leaks or crashes in rare events might be hard to spot in the small scale test typically done by the users.
 
@@ -909,7 +916,7 @@ The raw data were transferred to Tier-1s where several re-processing and data sk
 Reconstructed data and their skims were also spread to Tier-2s, manily to 
 those associated with the Muon and Tracker groups with a total of about 20 sites hosting CRAFT data. The overall amount of CRAFT data transferred to Tier-2s was more than 300TB.
 %Total data of CRAFT data transfers at other T2s (19 sites):  ~315TB
-The number of users analysing CRAFT data during the year is shown in Fig.~\ref{fig:CRAFTusers} where the breakdown of users using the CAF and those using the Tier-2s is also reported. The distribution of analysis jobs is shown in Fig.~\ref{fig:CRAFTjobs}, roughly two thirds at Tier-2s and one third at the CAF.
+The number of users analysing CRAFT data during the year is shown in Figure~\ref{fig:CRAFTusers} where the breakdown of users using the CAF and those using the Tier-2s is also reported. The distribution of analysis jobs is shown in Figure~\ref{fig:CRAFTjobs}, roughly two thirds at Tier-2s and one third at the CAF.
 The job efficiency at Tier-2s is lower than that at CAF because, on top of the application errors, there are grid failures and the stage out errors mentioned above.
 %Effort in improving the success rate and regularly identifying problem areas are ongoing.
 %=== at CAF: success rate 83% with 17% of application failures 
@@ -945,7 +952,7 @@ The computing centres providing resources for WLCG are embedded in different
 operational Grid organizations across the world, in particular  EGEE (Enabling
 Grids for E-SciencE, ~\cite{RefEGEE}), OSG (Open Science Grid, ~\cite{RefOSG}) and NDGF (Nordic Data Grid Facility, ~\cite{RefNDGF}), but also several national and regional Grid structures.
 
-EGEE, OSG and NDGF use their own Grid middleware distributions: gLite~\cite{RefgLite}, VDT~\cite{RefVDT} and ARC~\cite{RefARC} respectively. Grid interoperation bridges the differences between the various Grids and enable the Grid Virtual Organizations for LHC experiments to access resources at the Institutions, independently of the Grid project affiliation.
+EGEE, OSG and NDGF use their own Grid middleware distributions: gLite~\cite{RefgLite}, VDT~\cite{RefVDT} and ARC~\cite{RefARC} respectively. Grid interoperation bridges the differences between the various Grids and enable the Grid Virtual Organizations for LHC experiments to access resources at the Institutions, independent of the Grid project affiliation.
 
 %Nevertheless there are peculiarities in the CMS system that is worth to underline.
 Similarly to other LHC experiments, the CMS computing system 
@@ -973,7 +980,8 @@ serves as a global data location catalogue. Using DBS and PhEDEx, a CMS user
 can find the list of logical file names of interest and the site where the
 files are hosted. 
 The translation from logical file names to physical file names happens 
-by means of a site-dependent, flexible algorithmic mechanism (the Trivial File Catalogue). 
+by means of a Trivial File Catalogue.
+%site-dependent, flexible algorithmic mechanism (the Trivial File Catalogue). 
 This is different from what other experiments do, as they do such translation through
 %This is different from what other experiments do as in other experiments this translation is in
 %general done through
@@ -1083,6 +1091,8 @@ CERN/LHCC 2007-010 (2007) \\
 N.DeFilippis et al., The CMS analysis chain in a distributed environment, Nucl.Instrum.Meth. A559, 38-42 (2006) \\
 A.Fanfani et al.,Distributed computing Grid experiences in CMS, IEEE Trans.Nucl.Sci.52,884-890 (2005)
 %
+\bibitem{RefCCRC08}
+D. Bonacorsi and L. Bauerdick on behalf of the CMS Collaboration, CMS results in the Combined Computing Readiness Challenge (CCRC’08), accepted for publication in Nuclear Physics B (Proc. Suppl.) 197 (2009)"
 \bibitem{RefPA}
 D. Evans et al., The CMS Monte Carlo production system: Development and design, Nucl.Phys.Proc.Suppl.177-178, 285-286 (2008)
 %
@@ -1104,6 +1114,16 @@ http://www.opensciencegrid.org/
   for lightweight computational Grids, Future Generation Computer Systems, 23, 219-240 (2007)\\
 http://www.nordugrid.org/arc/
 %
+\bibitem{RefDashBoard}
+J. Andreeva et al. Dashboard for the LHC experiments, J.Phys.Conf.Ser.119:062008 (2008)
+%
+\bibitem{RefWLCG}
+LCG Computing Grid Technical Design Report, LCG-TDR-001 CERN/LHCC 2005-024 (2005) \\
+http://lcg.web.cern.ch/lcg/
+%
+\bibitem{RefSiteDB}
+D. Bonacorsi, R. Egeland, S. Metson, SiteDB: Marshalling the people and resources available to CMS, poster at the International Conference on Computing in High Energy and Nuclear Physics (CHEP 2009), Prague, 21-27 March (2009)
+%
 \bibitem{RefDDT} N. Magini et al., The CMS Data Transfer Test Environment in Preparation for LHC Data Taking, Conference Record N67-2 session Applied Computing Techniques, Nuclear Science Symposium IEEE , Dresden (2008)
 %
 \bibitem{PTDR} G.L. Bayatian et al., CMS Technical Design Report volume II: physics performance, Journal of Physics G: Nuclear and Particle Physics., 34, 995-1579 (2007)
@@ -1117,10 +1137,6 @@ ATLAS Collaboration, ATLAS computing: Technical design report, CERN-LHCC-2005-02
 
 \bibitem{RefLHCbTDR}
  LHCb Collaboration, LHCb TDR computing technical design report, CERN-LHCC-2005-019 (2005)
-
-\bibitem{RefWLCG}
-LCG Computing Grid Technical Design Report, LCG-TDR-001 CERN/LHCC 2005-024 (2005) \\
-http://lcg.web.cern.ch/lcg/
 
 \bibitem{RefEGEE}
 http://www.eu-egee.org/
