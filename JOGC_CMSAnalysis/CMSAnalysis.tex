@@ -362,17 +362,17 @@ Publish the produced data with their description and provenance into a local DBS
 
 CRAB is coded in Python. The interface to the Grid middlewares and local batch systems is provided by a Python library named BOSSLite~\cite{RefBOSSLite}. It relies on a database to track and log information about the user requested task into an entity-relation schema.
 An abstract interface is used to access the database through safe sessions and connection pools to grant safe operation in a multiprocessing/multi threaded environment. The current implementation supports MySQL and SQLite databases.
-Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler-specific (batch system or grid) interfaces are implemented as plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite WMS)~\cite{RefgLiteWMS}, OSG~\cite{RefOSG} both direct Condor-G submission or a pilot based job submission system ( glidein-WMS~\cite{Refglidein}), and ARC (NorduGrid)~\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
+Standard operations such as job submission, tracking, cancellation and output retrieval are also performed via a generic abstract interface. Scheduler-specific (batch system or grid) interfaces are implemented as plug-ins, loaded at run-time. Presently, plug-ins are implemented for the Grid middleware EGEE (gLite-WMS)~\cite{RefgLiteWMS}, OSG~\cite{RefOSG} both direct Condor-G submission or a pilot based job submission system ( glidein-WMS~\cite{Refglidein}), and ARC (NorduGrid)~\cite{RefARC}.In addition plug-ins for batch systems such as LSF and SGE are provided.
 
 The interaction with the Grid can be either direct with a thin CRAB client or using an intermediate CRAB Analysis Server~\cite{RefCRAB} (see Figure~\ref{fig:CRABWorkflow}). The CRAB Analysis Server automates the user analysis workflow with resubmissions, error handling, output retrieval thus leaving to the user just the preparation of the configuration file and notifying him of the output availability. In addition it has the capability of implementing advanced analysis use cases.
 The CRAB Analysis Server is made of a set of independent components communicating asynchronously through a shared messaging service and cooperating to carry out the analysis workflow. The communication between client and server is implemented using the gSOAP framework and Grid credentials of users are delegated to server.
 The CRAB Analysis Server is coupled with an external GridFTP server %Storage Element
- that stores the user input and output data, allowing implementation of CMS policies on sandbox sizes, bypassing for instance the gLite WMS limits.
+ that stores the user input and output data, allowing implementation of CMS policies on sandbox sizes, bypassing for instance the gLite-WMS limits.
 
 
 \begin{figure}
  \includegraphics[width=0.98\textwidth]{CRABWorkflow.eps}
-\caption{CRAB workflow. WMS can refer either to gLite WMS or glidein-WMS.}
+\caption{CRAB workflow. WMS can refer either to gLite-WMS or glidein-WMS.}
 \label{fig:CRABWorkflow}
 \end{figure}
 
@@ -759,10 +759,10 @@ due the shipping of input/output sandboxes and the core workflow
 management. The machine hosting the Storage Element and the CRAB
 server were both 4 CPU 2000 MHz Dual Core AMD Opterons with 4 GB
 RAM. The test was performed in the gLite context using two dedicated
-gLite WMS. Monitoring information was collected from various sources
+gLite-WMS. Monitoring information was collected from various sources
 like the CRAB Server database tracking the job flow and the CPU usage
 of its components, as well as from underlying services like MySQL and
-GridFTP server and gLite WMS internal monitoring. The kind of
+GridFTP server and gLite-WMS internal monitoring. The kind of
 jobs submitted were very short jobs running for less than a few
 minutes, not reading a dataset and without stage-out. This choice was
 made to provide a harsher environment for job handling due to higher
@@ -901,7 +901,7 @@ Grid failures are due to the underlying grid system but also reflect site proble
 \label{fig:T2EffApril0809}
 \end{figure}
 
-About 78\% of the CMS analysis jobs were submitted using gLite WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
+About 78\% of the CMS analysis jobs were submitted using gLite-WMS.  Since the gLite architecture is such that the system scales linearly with the number of gLite-WMSs used, analysis jobs are balanced currently over 7 WMS. The rest of the analysis jobs are submitted using Condor-G.
 
 CRAB Analysis Server instances have been deployed in several countries (CERN, Italy, France). A couple of them are open to worldwide distributed CMS users. Other instances are being used by local communities or specific physics groups.
 %% CrabServer usage
