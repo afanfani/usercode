@@ -44,7 +44,7 @@ oniafilter = cms.EDFilter("PythiaFilter",
                           Status = cms.untracked.int32(2),   
                           MaxRapidity = cms.untracked.double(2.2),
                           MinRapidity = cms.untracked.double(-2.2),
-                          MinPt = cms.untracked.double(8.0),
+                          MinPt = cms.untracked.double(10.0),
                           ParticleID = cms.untracked.int32(9120443) ## X(3872) from EvtGen
                           )
 
