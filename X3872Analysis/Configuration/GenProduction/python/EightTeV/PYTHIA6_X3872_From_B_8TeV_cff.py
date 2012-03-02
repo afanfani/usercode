@@ -2,8 +2,8 @@
 import FWCore.ParameterSet.Config as cms
 
 configurationMetadata = cms.untracked.PSet(
-        version = cms.untracked.string('$Revision: 1.1 $'),
-        name = cms.untracked.string('$Source: /cvs/CMSSW/CMSSW/Configuration/GenProduction/python/EightTeV/PYTHIA6_X3872_From_B_8TeV_cff.py,v $'),
+        version = cms.untracked.string('$Revision: 1.2 $'),
+        name = cms.untracked.string('$Source: /cvs/CMSSW/UserCode/AFanfani/X3872Analysis/Configuration/GenProduction/python/EightTeV/PYTHIA6_X3872_From_B_8TeV_cff.py,v $'),
         annotation = cms.untracked.string(' 8TeV, D6T tune')
 )
 
@@ -14,7 +14,7 @@ generator = cms.EDFilter("Pythia6GeneratorFilter",
     pythiaHepMCVerbosity = cms.untracked.bool(False),
     comEnergy = cms.double(8000.0),
     crossSection = cms.untracked.double(49590000000.0),
-    filterEfficiency = cms.untracked.double(0.00016),
+    filterEfficiency = cms.untracked.double(0.000121),
     maxEventsToPrint = cms.untracked.int32(0),
     ExternalDecays = cms.PSet(
         EvtGen = cms.untracked.PSet(
