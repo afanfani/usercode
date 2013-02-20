@@ -181,6 +181,7 @@ process.mkcands = cms.EDAnalyzer("JPsiPiPiPAT",
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string('MuOniaRun2012C_Prompt_JPsiPiPiPAT_ntpl.root')
+                                   )
 
 # turn off MC matching for the process
 from PhysicsTools.PatAlgos.tools.coreTools import *
